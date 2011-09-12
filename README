@@ -1,0 +1,15 @@
+<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]]) %>
+
+
+<%= f.select :score, options_for_select([["Fault(4)", "4"], ["Taint(2)", "2"], ["0", "0"]]) %>
+
+
+<%= f.select :intensity, options_for_select([["Fault(4)", "4"], ["Taint(2)", "2"], ["0", "0"]], selected = ["0", "0"]) %>
+
+<%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %>
+
+<%= f.select :number_of_cups, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]], selected = ["0", "0"]) %>
+
+
+
+number_of_cups
