@@ -1,0 +1,42 @@
+<%= form_for(@check) do |f| %>
+  <% if @check.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@check.errors.count, "error") %> prohibited this check from being saved:</h2>
+
+      <ul>
+      <% @check.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :milestones, "Milestone type" %><br>
+		<%= f.collection_select :milestones, Check::MILESTONES,
+     :to_s, :to_s %>
+  </div>
+  <div class="field">
+    <%= f.label :temp %><br />
+    <%= f.number_field :temp, :size=> 11 %> degrees.
+  </div>
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.select :time, options_for_select((0..20).to_a.map{|s| ["#{s}", s]}, :selected => @check.time)%>
+  </div>
+	<p>
+		Only use the following if there is a change. 
+	</p>
+	<div class="field">
+    <%= f.label :gas_flow %><br />
+		<%= f.collection_select :gas_flow, Check::GAS,
+     :to_s, :to_s, :include_blank => true %>
+  </div>
+	<div class="field">
+    <%= f.label :air_flow %><br />
+    <%= f.text_field :air_flow, :size=> 11 %>
+  </div>
+	<%= f.hidden_field :roast_id, :value => @roast.id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

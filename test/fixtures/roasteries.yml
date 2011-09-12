@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  year_opened: 2011-07-31
+  description: MyText
+  contact: MyString
+
+two:
+  name: MyString
+  year_opened: 2011-07-31
+  description: MyText
+  contact: MyString

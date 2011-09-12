@@ -1,0 +1,25 @@
+<h1>Listing cupping_total_scores</h1>
+
+<table>
+  <tr>
+    <th>Sample</th>
+    <th>Score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cupping_total_scores.each do |cupping_total_score| %>
+  <tr>
+    <td><%= cupping_total_score.sample %></td>
+    <td><%= cupping_total_score.score %></td>
+    <td><%= link_to 'Show', cupping_total_score %></td>
+    <td><%= link_to 'Edit', edit_cupping_total_score_path(cupping_total_score) %></td>
+    <td><%= link_to 'Destroy', cupping_total_score, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cupping total score', new_cupping_total_score_path %>

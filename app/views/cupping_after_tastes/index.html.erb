@@ -1,0 +1,12 @@
+<h1>Listing cupping After Tastes</h1>
+<table>
+	<% @cupping_after_tastes.each do |cupping_after_taste| %>
+	  <tr>
+		  <td><b>Score:</b> <%= cupping_after_taste.score %><td>
+		  <td><b>Notes:</b> <%= cupping_after_taste.notes %></td>
+			<td><%= button_to 'Remove', cupping_after_taste, :method => :delete %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to 'Back', totalupdate_path(:id => @cupping_total_score.id) %>

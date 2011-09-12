@@ -1,0 +1,2 @@
+module CuppingUniformitiesHelper
+end

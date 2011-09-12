@@ -1,0 +1,2 @@
+module CuppingSweetnessesHelper
+end

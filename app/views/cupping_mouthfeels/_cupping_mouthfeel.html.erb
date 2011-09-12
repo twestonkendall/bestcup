@@ -1,0 +1,9 @@
+<b>Mouthfeel:</b>
+<% if cupping_mouthfeel.present? %>
+<b>Score:</b> <%= cupping_mouthfeel.score %>
+<% end %>
+<% if cupping_mouthfeel.weight.present? %>
+<b>Weight:</b> <%= cupping_mouthfeel.weight %>
+<% end %>
+
+<%= link_to 'Re-do', cupping_mouthfeel, :method => :delete %>

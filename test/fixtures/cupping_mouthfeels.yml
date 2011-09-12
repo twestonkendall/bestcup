@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sample: 
+  score: 1
+  weight: 1
+
+two:
+  sample: 
+  score: 1
+  weight: 1

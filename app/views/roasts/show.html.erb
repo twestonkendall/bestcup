@@ -1,0 +1,62 @@
+<h1>Show Roast</h1>
+<p>
+  <b>Name:</b> <%= @roast.name %><br>
+	<b>Batch #:</b> <%= @roast.batch_number %><br>
+  <b>Roasted on:</b> <%= @roast.roasted_on.to_s(:long) %><br>
+  <b>Roastery:</b> <%= @roast.roastery.name %><br>
+	<b>Weight:</b> <%= @weight %><br>
+	<%= link_to 'Edit', edit_roast_path(@roast) %>
+</p>
+<p>
+	<% if @blends.present? %>
+		<b>Beans in this roast:</b>
+	<% end %>
+	<%= link_to 'Add a Bean', new_blend_path(:roast_id => @roast.id, :roastery_id => @roastery.id) %>
+	<% @blends.each do |bl| %>
+		<table>
+		  <tr>
+				<td><b><%= bl.weight %></b></td>
+				<td>pounds of <b><%= bl.bean.variety%></b></td>
+				<td>from <b><%= bl.bean.farm.name %></b>.</td>
+				<% if bl.lot_number.present? %>
+					<td>  Lot number <b><%= bl.lot_number %></b>.</td>
+				<% end %>
+				<td><%= link_to 'Edit', edit_blend_path(bl) %></td>
+				<td><%= button_to 'Remove', bl, :confirm => 'Are you sure?', 
+				:method => :delete %></td>
+			</tr>
+		</table>
+	<% end %>
+</p>
+<p>
+<% if @checks.present? %>
+	<b>Checks:</b> 
+<% end %>
+<% if @blends.present? %>
+	<%= link_to 'Add a Check', new_check_path(:roast_id => @roast.id) %>
+<% end %>
+	<% @checks.each do |ch| %>
+		<table>
+		  <tr>
+		    <td><b>Time:</b> <%= ch.time %> minutes.</td>
+				<td><b>Temp:</b> <%= ch.temp %> degrees.</td>
+				<td><b>Milestone:</b> <%= ch.milestones %></td>
+		    <% if ch.air_flow.present? %>
+					<td><b>Air flow:</b> <%= ch.air_flow %></td>
+				<% end %>
+				<% if ch.gas_flow.present? %>
+			    <td><b>Gas flow:</b> <%= ch.gas_flow %></td>
+				<% end %>
+				<td><%= link_to 'Edit', edit_check_path(ch) %></td>
+				<td><%= button_to 'Remove', ch, :confirm => 'Are you sure?', 
+				:method => :delete %></td>
+			</tr>
+		</table>
+	<% end %>
+</p>
+
+<p>
+	<%= link_to(@roastery) do %>
+		Back to <%= @roastery.name %>
+	<% end %>
+</p>

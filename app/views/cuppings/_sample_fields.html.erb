@@ -1,0 +1,23 @@
+<div  class="fields">
+	<p>
+		<b><%= f.label :sample_number %>:</b>
+		<%= f.text_field :sample_number, :size=> 1  %>
+		<%= f.hidden_field :_destroy %>  
+		<%= link_to_remove_fields "Remove Sample", f %><br>
+		<b><%= f.label :roast %>:</b>
+		<%= f.collection_select(:roast_id, Roast.order('roasted_on DESC'), :id, :roast_slelct, {:include_blank => 'Please Select'}) %> <br>
+		<b><%= f.label :color, "Roast Level" %>:</b><br>
+		<%= f.radio_button :color, "City Roast" %>
+		<%= image_tag("city.jpg", :alt => "City Roast") %>
+		<%= f.radio_button :color, "City Plus" %>
+		<%= image_tag("cityplus.jpg", :alt => "City Plus") %>
+		<%= f.radio_button :color, "Full City" %>
+		<%= image_tag("fullcity.jpg", :alt => "Full City") %>
+		<%= f.radio_button :color, "Full City Plus" %>
+		<%= image_tag("fullcityplus.jpg", :alt => "Full City Plus") %>
+		<%= f.radio_button :color, "Light French" %>
+		<%= image_tag("lightfrench.jpg", :alt => "Light Roast") %>
+		<%= f.radio_button :color, "French Roast" %>
+		<%= image_tag("fullfrench.jpg", :alt => "French Roast") %>
+	</p>
+</div>

@@ -1,0 +1,8 @@
+<h1>Show Cupping</h1>
+<b>Cupped on:</b> <%= @cupping.created_at.to_s(:long) %><br>
+
+<%= render :partial => "samples/sample",
+           :collection => @cupping.samples %>
+
+<%= link_to 'Edit Sample Info', edit_cupping_path(@cupping) %> |
+<%= link_to 'Back', cuppings_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@cupping_total_score) do |f| %>
+  <% if @cupping_total_score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cupping_total_score.errors.count, "error") %> prohibited this cupping_total_score from being saved:</h2>
+
+      <ul>
+      <% @cupping_total_score.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sample %><br />
+    <%= f.text_field :sample %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br />
+    <%= f.number_field :score %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<h1>Listing roasteries</h1>
+<p>
+	<%= link_to 'New Roastery', new_roastery_path %>
+</p>
+
+<% @roasteries.each do |roastery| %>
+<p>
+  <b>Name:</b> <%= roastery.name %><br>
+	<b>Year opened:</b> <%= roastery.year_opened %><br>
+  <b>Description:</b> <%= roastery.description %><br>
+  <b>Contact:</b> <%= roastery.contact %><br>
+	<%= link_to "Details", roastery %>
+</p>
+<% end %>
+

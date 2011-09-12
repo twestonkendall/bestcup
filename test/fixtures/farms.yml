@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  farmer: MyString
+  country: MyString
+  region: MyString
+  elevation: MyString
+  description: MyString
+
+two:
+  name: MyString
+  farmer: MyString
+  country: MyString
+  region: MyString
+  elevation: MyString
+  description: MyString

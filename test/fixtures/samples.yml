@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cupping: 
+  roast: 
+  color: MyString
+
+two:
+  cupping: 
+  roast: 
+  color: MyString

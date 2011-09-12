@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sample:</b>
+  <%= @cupping_total_score.sample %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @cupping_total_score.score %>
+</p>
+
+
+<%= link_to 'Edit', edit_cupping_total_score_path(@cupping_total_score) %> |
+<%= link_to 'Back', cupping_total_scores_path %>

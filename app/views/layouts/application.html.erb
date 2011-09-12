@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bestcup</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<%= link_to 'Dashboard', root_url %> | <%= link_to 'Producers', farms_url %> | <%= link_to 'Roasteries', roasteries_url %> | <%= link_to 'Cuppings', cuppings_url %>
+	<p id="notice"><%= notice %></p>
+<hr>
+<%= yield %>
+<hr>
+<%= params.inspect %>
+
+</body>
+</html>

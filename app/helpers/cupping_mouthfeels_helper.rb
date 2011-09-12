@@ -1,0 +1,2 @@
+module CuppingMouthfeelsHelper
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sample: 
+  score: 1
+  intensity: 1
+  notes: MyText
+
+two:
+  sample: 
+  score: 1
+  intensity: 1
+  notes: MyText

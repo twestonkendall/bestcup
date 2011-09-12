@@ -1,0 +1,2 @@
+module CuppingTotalScoresHelper
+end

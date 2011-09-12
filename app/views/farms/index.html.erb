@@ -1,0 +1,16 @@
+<h1>Listing producers</h1>
+<p>
+	<%= link_to 'New Producer', new_farm_path %>
+</p>
+
+<% @farms.each do |farm| %>
+<p>
+  <b>The bean producer:</b> <%= farm.name %><br>
+  <b>Humans involved:</b> <%= farm.farmer %><br>
+  <b>Country produced in:</b> <%= farm.country %><br>
+  <b>Region of the country:</b> <%= farm.region %><br>
+  <b>Elevation:</b> <%= farm.elevation %><br>
+  <b>Description of the producer:</b> <%= farm.description %><br>
+	<%= link_to 'Details', farm %>
+</p>
+<% end %>

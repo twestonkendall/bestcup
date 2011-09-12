@@ -1,0 +1,2 @@
+module CuppingAfterTastesHelper
+end

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  preheat: false
+  end: false
+  1st_crack: false
+  2nd_crack: false
+  air_flow: MyString
+  temp: 1
+  time: 1
+  gas_flow: 9.99
+
+two:
+  preheat: false
+  end: false
+  1st_crack: false
+  2nd_crack: false
+  air_flow: MyString
+  temp: 1
+  time: 1
+  gas_flow: 9.99

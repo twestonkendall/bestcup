@@ -1,0 +1,10 @@
+<h1>Listing producers</h1>
+<p>
+	Not on the list? <%= link_to 'New Producer', new_farm_path(:roast_id => @roast.id) %>
+</p>
+
+<% @farms.each do |farm| %>
+	<p>
+		<%= link_to farm.name, new_bean_path(:farm_id => farm, :roast_id => @roast.id) %><br>
+	</p>
+<% end %>

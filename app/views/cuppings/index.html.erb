@@ -1,0 +1,11 @@
+<h1>Listing cuppings</h1>
+<p>
+	<%= link_to 'New Cupping', new_cupping_path %>
+</p>
+
+<% @cuppings.each do |cupping| %>
+<p>
+	<b>Cupped on:</b> <%= cupping.created_at.to_s(:long) %>
+	<%= link_to "Details", cupping %>
+</p>
+<% end %>

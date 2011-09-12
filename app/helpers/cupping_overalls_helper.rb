@@ -1,0 +1,2 @@
+module CuppingOverallsHelper
+end

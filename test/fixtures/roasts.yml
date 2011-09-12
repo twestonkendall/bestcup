@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  roasted_on: 2011-07-31
+  notes: MyText
+  roastery: 
+
+two:
+  name: MyString
+  roasted_on: 2011-07-31
+  notes: MyText
+  roastery: 

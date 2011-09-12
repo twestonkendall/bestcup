@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sample: 1
+  color: MyString
+  roast: 
+
+two:
+  sample: 1
+  color: MyString
+  roast: 

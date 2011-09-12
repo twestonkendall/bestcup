@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  variety: MyString
+  harvest_start: MyString
+  harvest_end: MyString
+  farm: 
+
+two:
+  variety: MyString
+  harvest_start: MyString
+  harvest_end: MyString
+  farm: 

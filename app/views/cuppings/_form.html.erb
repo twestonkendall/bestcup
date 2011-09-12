@@ -1,0 +1,21 @@
+<%= form_for(@cupping) do |f| %>
+  <% if @cupping.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cupping.errors.count, "error") %> prohibited this cupping from being saved:</h2>
+      <ul>
+      <% @cupping.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.fields_for :samples do |sample| %>
+		<%= render 'sample_fields', :f => sample  %>
+	<% end %>
+	<p><%= link_to_add_fields "Add Another Sample", f, :samples %></p>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

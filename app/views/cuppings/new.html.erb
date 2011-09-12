@@ -1,0 +1,7 @@
+<h1>New cupping <% if params[:roast_id] %> of <%= @roast.name%> roasted on <%= @roast.roasted_on%> from <%= @roast.roastery.name%><% end %>
+</h1>
+<p>Is your roast not on the list? Please save the cupping and create roast from the roastery's detail page.</p>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', cuppings_path %>

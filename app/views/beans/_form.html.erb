@@ -1,0 +1,38 @@
+<%= form_for(@bean) do |f| %>
+  <% if @bean.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bean.errors.count, "error") %> prohibited this bean from being saved:</h2>
+
+      <ul>
+      <% @bean.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<p>
+  <div class="field">
+    <%= f.label :variety %><br />
+    <%= f.collection_select :variety, Bean::VARIETALS,
+     :to_s, :to_s, :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :harvest_start %><br />
+    <%= f.collection_select :harvest_start, Bean::MONTHS,
+     :to_s, :to_s, :include_blank => true %>
+  </div>
+	
+  <div class="field">
+    <%= f.label :harvest_end %><br />
+    <%= f.collection_select :harvest_end, Bean::MONTHS,
+     :to_s, :to_s, :include_blank => true %>
+  </div>
+	</p>
+	<% if params[:roast_id] %>
+		<%= hidden_field_tag :roast_id, params[:roast_id] %>
+	<% end %>
+	<%= f.hidden_field :farm_id, :value => @farm.id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
