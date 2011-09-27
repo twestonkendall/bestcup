@@ -1,12 +1,17 @@
 <p>
 	
+	<h3>
 	<% if sample.sample_number.present? %>
-	<h3><b>Sample # <%= sample.sample_number %></b><br></h3>
+	<b>Sample # <%= sample.sample_number %><br>
 	<% end %>
 	
 	<% if sample.roast.present? %>
-	<h3><b>Roast Name:</b> <%= sample.roast.name %><br></h3>
+	<%= sample.roast.name %></b>
 	<% end %>
+	</h3>
+	
+	<%= render :partial => "cupping_total_scores/cupping_total_score",
+           :collection => sample.cupping_total_scores %><br>
 	
 	<% if sample.roast.present? %>
 		<b>Roastery:</b> <%= sample.roast.roastery.name %><br>
@@ -22,7 +27,7 @@
 	
 	<% if sample.cupping_dry_fragrances.present? %>
 		<%= render :partial => "cupping_dry_fragrances/cupping_dry_fragrance",
-		           :collection => sample.cupping_dry_fragrances %><br>
+		           :collection => sample.cupping_dry_fragrances %>
 	<% end %>
 	
 	<% if sample.cupping_crust_aromas.present? %>
@@ -90,12 +95,7 @@
 		<%= render :partial => "cupping_overalls/cupping_overall",
 		           :collection => sample.cupping_overalls %><br>
 	<% end %>
-		<%= render :partial => "cupping_total_scores/cupping_total_score",
-	           :collection => sample.cupping_total_scores %><br>	
-</p>
-
-
-<p>	
+	
 	<% if sample.cupping_dry_fragrances.blank? %>
 		<%= form_for(sample.cupping_dry_fragrances.build) do |f| %>
 				<b>Dry Fragrance:</b>
