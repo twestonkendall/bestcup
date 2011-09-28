@@ -1,11 +1,11 @@
 <b>Dry Fragrance:</b>
 <% if cupping_dry_fragrance.present? %>
-<b>Score:</b> <%= cupping_dry_fragrance.score %>
+Score: <%= cupping_dry_fragrance.score %>
 <% end %>
 <% if cupping_dry_fragrance.intensity.present? %>
-<b>Intensity:</b> <%= cupping_dry_fragrance.intensity %>
+Intensity: <%= cupping_dry_fragrance.intensity %>
 <% end %>
 <% if cupping_dry_fragrance.notes.present? %>
-<b>Notes:</b><%= cupping_dry_fragrance.notes %>
+Notes: <%= cupping_dry_fragrance.notes %>
 <% end %>
 <%= link_to 'Re-do', cupping_dry_fragrance, :method => :delete %>

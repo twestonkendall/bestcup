@@ -1,11 +1,11 @@
 <b>Break Aroma:</b>
 <% if cupping_break_aroma.present? %>
-<b>Score:</b> <%= cupping_break_aroma.score %>
+Score: <%= cupping_break_aroma.score %>
 <% end %>
 <% if cupping_break_aroma.intensity.present? %>
-<b>Intensity:</b> <%= cupping_break_aroma.intensity %>
+Intensity: <%= cupping_break_aroma.intensity %>
 <% end %>
 <% if cupping_break_aroma.notes.present? %>
-<b>Notes:</b><%= cupping_break_aroma.notes %>
+Notes: <%= cupping_break_aroma.notes %>
 <% end %>
 <%= link_to 'Re-do', cupping_break_aroma, :method => :delete %>

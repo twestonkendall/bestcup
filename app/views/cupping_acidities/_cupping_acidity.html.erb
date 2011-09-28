@@ -1,9 +1,9 @@
 <b>Acidity:</b>
 <% if cupping_acidity.present? %>
-<b>Score:</b> <%= cupping_acidity.score %>
+Score: <%= cupping_acidity.score %>
 <% end %>
 <% if cupping_acidity.intensity.present? %>
-<b>Intensity:</b> <%= cupping_acidity.intensity %>
+Intensity: <%= cupping_acidity.intensity %>
 <% end %>
 
 <%= link_to 'Re-do', cupping_acidity, :method => :delete %>

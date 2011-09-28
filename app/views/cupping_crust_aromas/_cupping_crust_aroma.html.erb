@@ -1,11 +1,11 @@
 <b>Crust Aroma:</b>
 <% if cupping_crust_aroma.present? %>
-<b>Score:</b> <%= cupping_crust_aroma.score %>
+Score: <%= cupping_crust_aroma.score %>
 <% end %>
 <% if cupping_crust_aroma.intensity.present? %>
-<b>Intensity:</b> <%= cupping_crust_aroma.intensity %>
+Intensity: <%= cupping_crust_aroma.intensity %>
 <% end %>
 <% if cupping_crust_aroma.notes.present? %>
-<b>Notes:</b> <%= cupping_crust_aroma.notes %>
+Notes: <%= cupping_crust_aroma.notes %>
 <% end %>
 <%= link_to 'Re-do', cupping_crust_aroma, :method => :delete %>
