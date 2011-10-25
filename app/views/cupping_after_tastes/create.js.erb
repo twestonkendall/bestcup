@@ -1,0 +1,21 @@
+if ($("div[id*=<%= @cupping_after_taste.sample.id %>]").find("div[class=another-after-taste]").length > 0){
+	
+	$("div[id*=<%= @cupping_after_taste.sample.id %>]").find("div[id*=after-tastes]").html('<b>After Taste:</b> Score: <%= @cupping_after_taste.sample.cupping_after_tastes.average(:score).to_i %> Notes: <%= @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %> <%= link_to 'Manage', cupping_after_tastes_path(:sample_id => @cupping_after_taste.sample.id) %>');
+	
+	$("div[id*=<%= @cupping_after_taste.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+	
+}
+
+else {
+	
+	$("div[id*=<%= @cupping_after_taste.sample.id %>]").find("div[id*=after-tastes]").html('<b>After Taste:</b> Score: <%= @cupping_after_taste.sample.cupping_after_tastes.average(:score).to_i %> Notes: <%= @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %> <%= link_to 'Manage', cupping_after_tastes_path(:sample_id => @cupping_after_taste.sample.id) %>');
+
+	$("div[id*=<%= @cupping_after_taste.sample.id %>]").find("form[id*=new_cupping_after_taste]").wrap('<div class="another-after-taste" />');
+
+	$("div[id*=<%= @cupping_after_taste.sample.id %>]").find("span[id*=after-taste-to-another]").html('<b>Another After Taste:</b>');
+
+	$("div[id*=<%= @cupping_after_taste.sample.id %>]").find("form[id*=after_taste]").find(":input[type=submit]").attr("value","Record another");
+
+	$("div[id*=<%= @cupping_after_taste.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+
+}

@@ -1,4 +1,6 @@
-<b>Clean Cup:</b>
-Score: <%= cupping_clean_cup.score %>
+<div id="clean-cup-show">
+	<b>Clean Cup:</b>
+	Score: <%= cupping_clean_cup.score %>
 
-<%= link_to 'Re-do', cupping_clean_cup, :method => :delete %>
+	<%= link_to 'Re-do', cupping_clean_cup, :method => :delete, :remote => true %>
+</div>

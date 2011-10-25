@@ -1,4 +1,6 @@
-<b>Sweetness:</b>
-Score: <%= cupping_sweetness.score %>
+<div id="sweetness-show">
+	<b>Sweetness:</b>
+	Score: <%= cupping_sweetness.score %>
 
-<%= link_to 'Re-do', cupping_sweetness, :method => :delete %>
+	<%= link_to 'Re-do', cupping_sweetness, :method => :delete, :remote => true %>
+</div>

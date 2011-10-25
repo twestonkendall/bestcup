@@ -19,6 +19,9 @@ class BeansController < ApplicationController
   def new
     @bean = Bean.new
     @farm = Farm.find(params[:farm_id])
+    if params[:batch_id]
+      @batch = Batch.find(params[:batch_id])
+    end
     if params[:roast_id]
       @roast = Roast.find(params[:roast_id])
     end
@@ -39,14 +42,17 @@ class BeansController < ApplicationController
   # POST /beans.json
   def create
     @bean = Bean.new(params[:bean])    
+    if params[:batch_id]
+      @batch = Batch.find(params[:batch_id])
+    end
     if params[:roast_id]
       @roast = Roast.find(params[:roast_id])
     end
 
     respond_to do |format|
       if @bean.save
-        if @roast
-          format.html { redirect_to new_blend_path(:bean_id => @bean.id, :roast_id => @roast.id, :roastery_id => @roast.roastery), :notice => 'Bean was successfully created.' }
+        if @batch
+          format.html { redirect_to new_blend_path(:bean_id => @bean.id, :batch_id => @batch.id, :roast_id => @roast.id), :notice => 'Bean was successfully created.' }
         else
           format.html { redirect_to @bean.farm, :notice => 'Bean was successfully created.' }
           format.json { render :json => @bean, :status => :created, :location => @bean }

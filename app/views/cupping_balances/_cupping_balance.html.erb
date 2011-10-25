@@ -1,4 +1,6 @@
-<b>Balance:</b>
-Score: <%= cupping_balance.score %>
+<div id="balance-show">
+	<b>Balance:</b>
+	Score: <%= cupping_balance.score %>
 
-<%= link_to 'Re-do', cupping_balance, :method => :delete %>
+	<%= link_to 'Re-do', cupping_balance, :method => :delete, :remote => true %>
+</div>

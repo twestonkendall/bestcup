@@ -48,11 +48,14 @@ class FarmsController < ApplicationController
     if params[:roast_id]
       @roast = Roast.find(params[:roast_id])
     end
+    if params[:batch_id]
+      @batch = Batch.find(params[:batch_id])
+    end
 
     respond_to do |format|
       if @farm.save
         if @roast
-          format.html { redirect_to new_bean_path(:roast_id => @roast.id, :farm_id => @farm.id), :notice => 'Farm was successfully created.' }
+          format.html { redirect_to new_bean_path(:batch_id => @batch.id, :roast_id => @roast.id, :farm_id => @farm.id), :notice => 'Farm was successfully created.' }
         else
         format.html { redirect_to @farm, :notice => 'Farm was successfully created.' }
         format.json { render :json => @farm, :status => :created, :location => @farm }
@@ -94,6 +97,7 @@ class FarmsController < ApplicationController
   
   def select
     @farms = Farm.all
+    @batch = Batch.find(params[:batch_id])
     @roast = Roast.find(params[:roast_id])
   end
 end

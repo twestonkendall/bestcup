@@ -1,10 +1,8 @@
-<h3>Add a bean to the roast</h3>
-
 <%= form_for(@blend) do |f| %>
-	<%= f.hidden_field :roast_id, :value => @roast.id %>
+	<%= f.hidden_field :batch_id, :value => @batch.id %>
 	<div class = "field">
 	<%= f.label :bean, "Variety-Producer-Country" %><br />
-	<%= collection_select(:blend, :bean_id, Bean.order('variety ASC'), :id, :bean_and_farm, :prompt => true) %> <%= link_to 'Not on the list', select_farms_path(:roast_id => @roast.id) %>
+	<%= collection_select(:blend, :bean_id, Bean.order('variety ASC'), :id, :bean_and_farm, :prompt => true) %> <%= link_to 'Not on the list', select_farms_path(:batch_id => @batch.id, :roast_id => @roast.id) %>
 	</div>
 	<div class = "field">
 		<%= f.text_field :lot_number %>

@@ -42,7 +42,9 @@ class CuppingsController < ApplicationController
   # POST /cuppings
   # POST /cuppings.json
   def create
-    @cupping = Cupping.new(params[:cupping])    
+    @cupping = Cupping.new(params[:cupping])
+    @user = current_user
+    @cupping.user_id = @user.id
 
     respond_to do |format|
       if @cupping.save

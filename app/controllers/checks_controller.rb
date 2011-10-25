@@ -4,7 +4,7 @@ class ChecksController < ApplicationController
   # GET /checks/new.json
   def new
     @check = Check.new
-    @roast = Roast.find(params[:roast_id])
+    @batch = Batch.find(params[:batch_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -15,7 +15,7 @@ class ChecksController < ApplicationController
   # GET /checks/1/edit
   def edit
     @check = Check.find(params[:id])
-    @roast = @check.roast
+    @batch = @check.batch
   end
 
   # POST /checks
@@ -25,7 +25,7 @@ class ChecksController < ApplicationController
 
     respond_to do |format|
       if @check.save
-        format.html { redirect_to @check.roast, :notice => 'Check was successfully created.' }
+        format.html { redirect_to @check.batch, :notice => 'Check was successfully created.' }
         format.json { render :json => @check, :status => :created, :location => @check }
       else
         format.html { render :action => "new" }
@@ -41,7 +41,7 @@ class ChecksController < ApplicationController
 
     respond_to do |format|
       if @check.update_attributes(params[:check])
-        format.html { redirect_to @check.roast, :notice => 'Check was successfully updated.' }
+        format.html { redirect_to @check.batch, :notice => 'Check was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -57,7 +57,7 @@ class ChecksController < ApplicationController
     @check.destroy
 
     respond_to do |format|
-      format.html { redirect_to @check.roast }
+      format.html { redirect_to @check.batch }
       format.json { head :ok }
     end
   end

@@ -1,4 +1,6 @@
-<b>Overall:</b>
-Score: <%= cupping_overall.score %>
+<div id="overall-show">
+	<b>Overall:</b>
+	Score: <%= cupping_overall.score %>
 
-<%= link_to 'Re-do', cupping_overall, :method => :delete %>
+	<%= link_to 'Re-do', cupping_overall, :method => :delete, :remote => true %>
+</div>

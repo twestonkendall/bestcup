@@ -39,6 +39,9 @@
 	<% if params[:roast_id] %>
 		<%= hidden_field_tag :roast_id, params[:roast_id] %>
 	<% end %>
+	<% if params[:batch_id] %>
+		<%= hidden_field_tag :batch_id, params[:batch_id] %>
+	<% end %>
   <div class="actions">
     <%= f.submit "Save" %>
   </div>

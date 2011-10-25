@@ -4,20 +4,20 @@
 		<%= f.text_field :sample_number, :size=> 1  %>
 		<%= f.hidden_field :_destroy %>  
 		<%= link_to_remove_fields "Remove Sample", f %><br>
-		<b><%= f.label :roast %>:</b>
-		<%= f.collection_select(:roast_id, Roast.order('roasted_on DESC'), :id, :roast_slelct, {:include_blank => 'Please Select'}) %> <br>
+		<b><%= f.label :batch %>:</b>
+		<%= f.collection_select(:batch_id, Batch.order('roasted_on DESC'), :id, :batch_slelct, {:include_blank => 'Please Select'}) %> Not on the list? Save Cupping => Create Roast => Create Batch => Edit Cupping<br>
 		<b><%= f.label :color, "Roast Level" %>:</b><br>
 		<%= f.radio_button :color, "City Roast" %>
-		<%= image_tag("city.jpg", :alt => "City Roast") %>
+		<%= image_tag("city.jpg", :alt => "City Roast", :class => "roast_level") %>
 		<%= f.radio_button :color, "City Plus" %>
-		<%= image_tag("cityplus.jpg", :alt => "City Plus") %>
+		<%= image_tag("cityplus.jpg", :alt => "City Plus", :class => "roast_level") %>
 		<%= f.radio_button :color, "Full City" %>
-		<%= image_tag("fullcity.jpg", :alt => "Full City") %>
+		<%= image_tag("fullcity.jpg", :alt => "Full City", :class => "roast_level") %>
 		<%= f.radio_button :color, "Full City Plus" %>
-		<%= image_tag("fullcityplus.jpg", :alt => "Full City Plus") %>
+		<%= image_tag("fullcityplus.jpg", :alt => "Full City Plus", :class => "roast_level") %>
 		<%= f.radio_button :color, "Light French" %>
-		<%= image_tag("lightfrench.jpg", :alt => "Light Roast") %>
+		<%= image_tag("lightfrench.jpg", :alt => "Light Roast", :class => "roast_level") %>
 		<%= f.radio_button :color, "French Roast" %>
-		<%= image_tag("fullfrench.jpg", :alt => "French Roast") %>
+		<%= image_tag("fullfrench.jpg", :alt => "French Roast", :class => "roast_level") %>
 	</p>
 </div>

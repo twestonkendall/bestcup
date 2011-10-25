@@ -4,8 +4,8 @@ class BlendsController < ApplicationController
   # GET /blends/new.json
   def new
     @blend = Blend.new
+    @batch = Batch.find(params[:batch_id])
     @roast = Roast.find(params[:roast_id])
-    @roastery = Roastery.find(params[:roastery_id])
     if params[:bean_id]
       @blend.bean = Bean.find(params[:bean_id])
     end
@@ -20,7 +20,8 @@ class BlendsController < ApplicationController
   # GET /blends/1/edit
   def edit
     @blend = Blend.find(params[:id])
-    @roast = @blend.roast
+    @batch = @blend.batch
+    @roast = @batch.roast
     
   end
 
@@ -28,13 +29,12 @@ class BlendsController < ApplicationController
   # POST /blends.json
   def create
     @blend = Blend.new(params[:blend])
-    @roast = @blend.roast
-    @roastery = @roast.roastery
+    @batch = @blend.batch
     
 
     respond_to do |format|
       if @blend.save
-        format.html { redirect_to @roast }
+        format.html { redirect_to @batch }
         format.json { render :json => @blend, :status => :created, :location => @blend }
       else
         format.html { render :action => "new" }
@@ -66,7 +66,7 @@ class BlendsController < ApplicationController
     @blend.destroy
 
     respond_to do |format|
-      format.html { redirect_to @blend.roast }
+      format.html { redirect_to @blend.batch }
       format.json { head :ok }
     end
   end

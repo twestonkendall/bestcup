@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  roasted_on: 1
+  batch_number: MyString
+
+two:
+  roasted_on: 1
+  batch_number: MyString

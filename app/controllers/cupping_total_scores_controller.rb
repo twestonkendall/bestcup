@@ -22,9 +22,9 @@ class CuppingTotalScoresController < ApplicationController
 
     respond_to do |format|
       if @cupping_total_score.save
-          format.html { redirect_to @cupping }
-        else
-          format.html { redirect_to @cupping }
+        format.html { redirect_to @cupping }
+      else
+        format.html { redirect_to @cupping }
       end
     end
   end

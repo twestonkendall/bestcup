@@ -28,9 +28,15 @@
      :to_s, :to_s, :include_blank => true %>
   </div>
 	</p>
-	<% if params[:roast_id] %>
+	
+	<% if params[:batch_id] %>
+		<%= hidden_field_tag :batch_id, params[:batch_id] %>
+	<% end %>
+	
+	<% if params[:roast_id]%>
 		<%= hidden_field_tag :roast_id, params[:roast_id] %>
 	<% end %>
+	
 	<%= f.hidden_field :farm_id, :value => @farm.id %>
   <div class="actions">
     <%= f.submit %>

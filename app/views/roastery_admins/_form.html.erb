@@ -1,0 +1,22 @@
+<% if @roastery_admin.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@roastery_admin.errors.count, "error") %> prohibited this roastery admin from being saved:</h2>
+
+    <ul>
+    <% @roastery_admin.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for(@roastery_admin) do |f| %>
+	<%= f.hidden_field :roastery_id, :value => @roastery.id %>
+	<div class = "field">
+		<%= f.label :user_id %>
+		<%= f.collection_select(:user_id, User.find(:all), :id, :email, :prompt => true)%>
+	</div>
+
+  <div class="actions">
+    <%= f.submit "Approve admin"%>
+  </div>
+<% end %>

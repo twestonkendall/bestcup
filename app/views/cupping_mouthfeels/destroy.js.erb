@@ -1,0 +1,14 @@
+if ($("div[id*=<%= @cupping_mouthfeel.sample.id %>]").find("form[id*=mouthfeel]").length > 0){
+	$("div[id*=<%= @cupping_mouthfeel.sample.id %>]").find("form[id*=mouthfeel]").show();
+
+	$("div[id*=<%= @cupping_mouthfeel.sample.id %>]").find("div[id*=mouthfeel]").hide();
+}
+
+else {
+	location.reload()
+}
+
+$("div[id*=<%= @cupping_mouthfeel.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+
+
+// alert("Ajax!!")

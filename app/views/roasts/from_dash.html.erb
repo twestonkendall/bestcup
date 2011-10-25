@@ -1,0 +1,27 @@
+<h1>New roast</h1>
+<%= form_for(@roast) do |f| %>
+  <% if @roast.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@roast.errors.count, "error") %> prohibited this roast from being saved:</h2>
+
+      <ul>
+      <% @roast.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div class="field">
+	<%= f.label :roastery_id %><br />
+  <%= f.collection_select(:roastery_id, Roastery.find(:all), :id, :name, :prompt => true)%>
+	</div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+	<div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', root_url %>

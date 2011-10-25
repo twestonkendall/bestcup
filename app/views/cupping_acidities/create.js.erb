@@ -1,0 +1,7 @@
+$("div[id*=<%= @cupping_acidity.sample.id %>]").find("form[id*=acidity]").before('<div id="acidity-show"><b>Acidity:</b> Score: <%= @cupping_acidity.score %><% if @cupping_acidity.intensity.present? %> Intensity: <%= @cupping_acidity.intensity %><% end %> <%= link_to 'Re-do', @cupping_acidity, :method => :delete, :remote => true %></div>');
+
+$("div[id*=<%= @cupping_acidity.sample.id %>]").find("form[id*=acidity]").hide();
+
+$("div[id*=<%= @cupping_acidity.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+
+// alert("Ajax!!")

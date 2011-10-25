@@ -11,16 +11,22 @@
 <% end %>
 <%= link_to 'New roast', new_roast_path(:roastery_id => @roastery.id) %>
 <% @roasts.each do |roast| %>
-	<table>
-	  <tr>
-			<td>The <b><%= roast.batch_number %></b> batch of</td>
-			<td><b><%= roast.name %></b> roasted on</td>
-			<td><b><%= roast.roasted_on.to_s(:long) %></b> was a</td>
-			<td><b><%= roast.blends.sum(:weight) %></b> pound batch</td>
-			<td><%= link_to "Details", roast %><td>
-		<tr>
-	<table>
+			<p><%= link_to roast.name, roast %></p>
 <% end %>
 <p>
-	<%= link_to "Roasteries", roasteries_url %>
+	<%= link_to "Back to Roasteries list", roasteries_url %>
 </p>
+
+<h1>Roastery Admins</h1>
+<% @roastery_admins.each do |ra| %>
+	<%= ra.user.email %> <% if ra.verified.present? %><b>Verified</b><% end %>
+	| <%= link_to 'Remove', ra, :confirm => 'Are you sure?', :method => :delete %><br>
+<% end %>
+<%= render 'roastery_admins/form' %>
+<h1>Roasters</h1>
+<% if @roasters %>
+	<% @roasters.each do |rsters| %>
+		<%= rsters.user.email %> | <%= link_to 'Remove', rsters, :confirm => 'Are you sure?', :method => :delete %><br>
+	<% end %>
+<% end %>
+<%= render 'roasters/form' %>

@@ -1,10 +1,10 @@
 <h1>Listing cupping After Tastes</h1>
 <table>
 	<% @cupping_after_tastes.each do |cupping_after_taste| %>
-	  <tr>
+	  <tr id="<%=cupping_after_taste.id%>">
 		  <td><b>Score:</b> <%= cupping_after_taste.score %><td>
 		  <td><b>Notes:</b> <%= cupping_after_taste.notes %></td>
-			<td><%= button_to 'Remove', cupping_after_taste, :method => :delete %></td>
+			<td><%= button_to 'Remove', cupping_after_taste, :method => :delete, :remote => true %></td>
 		</tr>
 	<% end %>
 </table>

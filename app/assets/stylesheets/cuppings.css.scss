@@ -1,3 +1,26 @@
 // Place all the styles related to the Cuppings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.roast_level {
+	cursor:	pointer;
+	border:	5px solid white;
+	}
+
+.shadow {
+	cursor: default;
+	-moz-box-shadow: 0px 7px 5px #ccc;
+  -webkit-box-shadow: 5px 5px 5px #ccc;
+  box-shadow: 5px 5px 5px #ccc;
+	}
+
+.another-flavor {
+	margin-left : 20px;
+	}
+
+.another-after-taste {
+	margin-left : 20px;
+	}
+

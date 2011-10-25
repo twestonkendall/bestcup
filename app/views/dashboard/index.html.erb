@@ -1,52 +1,43 @@
+<% if current_user %>
 
-<h1>Listing producers</h1>
-<p>
-	<%= link_to 'New Producer', new_farm_path %>
-</p>
-<table>
-  <tr>
-    <th>The bean producer</th>
-    <th>Humans involved</th>
-    <th>Country produced in</th>
-    <th>Region of the country</th>
-    <th>Elevation</th>
-    <th>Description of the producer</th>
-		<th>Varieties produced</th>
-  </tr>
+	<h1>Your recent Cuppings</h1>
+	<% @cuppings.each do |cupping| %>
+	<p>
+		<%= link_to cupping.created_at.to_s(:long), cupping %> 
+		<% Sample.where(:cupping_id => cupping.id).each do |samp| %>
+			<% if samp.sample_number.present? %>
+				Sample #<%= samp.sample_number %>.
+			<% end %>
+			<% Batch.where(:id => samp.batch_id).each do |batch| %>
+				<% if batch.roast.name.present? %>
+					Roast: <%= batch.roast.name %>
+				<% end %>
+				<% if batch.roast.roastery.name.present? %>
+					 from <%= batch.roast.roastery.name %>.
+				<% end %>
+			<% end %>				
+			<% CuppingTotalScore.where(:sample_id => samp.id).each do |total| %>
+				<% if total.score.present? %>
+					Total score:	<%= total.score %>
+				<% end %>
+			<% end %>
+		<br>
+		<% end %>
+	</p>
+	<% end %>
 
-<% @farms.each do |farm| %>
-  <tr>
-    <td><%= link_to farm.name, farm %></td>
-    <td><%= farm.farmer %></td>
-    <td><%= farm.country %></td>
-    <td><%= farm.region %></td>
-    <td><%= farm.elevation %></td>
-    <td><%= farm.description %></td>
-		<td><%= farm.beans.where(:farm_id => farm.id).map{ |b| b.variety }.join(", ") %></td>
-  </tr>
+
+	<h1>Roastery admin for</h1>
+	<% @adminFor.each do |ra| %>
+	<%= link_to ra.roastery.name, roastery_path(:id => ra.roastery.id) %> | <%= link_to 'Remove', ra, :confirm => 'Are you sure?', :method => :delete %><br>
+	<% end %>
+	
+	<h1>Roaster for</h1>
+	<% @roasterFor.each do |r| %>
+	<%= link_to r.roastery.name, roastery_path(:id => r.roastery.id) %> | <%= link_to 'Remove', r, :confirm => 'Are you sure?', :method => :delete %><br>
+	<% end %>
+
+<% else %>
+
+You are not logged in.
 <% end %>
-</table>
-<hr>
-<h1>Listing roasteries</h1>
-<p>
-	<%= link_to 'New Roastery', new_roastery_path %>
-</p>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Year opened</th>
-    <th>Description</th>
-    <th>Contact</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @roasteries.each do |roastery| %>
-  <tr>
-	<td><%= link_to roastery.name, roastery %></td>
-    <td><%= roastery.year_opened %></td>
-    <td><%= roastery.description %></td>
-    <td><%= roastery.contact %></td>
-  </tr>
-<% end %>
-</table>

@@ -2,7 +2,7 @@ class Sample < ActiveRecord::Base
   default_scope :order => 'sample_number'
   
   belongs_to :cupping
-  belongs_to :roast
+  belongs_to :batch
   has_many :cupping_dry_fragrances, :dependent => :destroy
   has_many :cupping_crust_aromas, :dependent => :destroy
   has_many :cupping_break_aromas, :dependent => :destroy

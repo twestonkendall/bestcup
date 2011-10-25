@@ -5,11 +5,10 @@ class RoastsController < ApplicationController
   def show
     @roast = Roast.find(params[:id])
     @roastery = @roast.roastery
-    @blends = Blend.where(:roast_id => @roast.id)
-    @checks = Check.where(:roast_id => @roast.id)
-    @weight = @blends.sum(:weight)
+    @batches = Batch.where(:roast_id => @roast.id)
     
     @blend = Blend.new
+    @batch = Batch.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -77,6 +76,14 @@ class RoastsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @roast.roastery(:roastery_id => @roast.roastery) }
       format.json { head :ok }
+    end
+  end
+  
+  def from_dash
+    @roast = Roast.new    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render :json => @roast }
     end
   end
 end

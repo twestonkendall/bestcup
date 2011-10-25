@@ -1,0 +1,21 @@
+if ($("div[id*=<%= @cupping_flavor.sample.id %>]").find("div[class=another-flavor]").length > 0){
+	
+	$("div[id*=<%= @cupping_flavor.sample.id %>]").find("div[id*=flavor]").html('<b>Flavor: </b> Score: <%= @cupping_flavor.sample.cupping_flavors.average(:score).to_i %> Notes: <%= @cupping_flavor.sample.cupping_flavors.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %> <%= link_to 'Manage', cupping_flavors_path(:sample_id => @cupping_flavor.sample.id) %>');
+	
+	$("div[id*=<%= @cupping_flavor.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+	
+}
+
+else {
+	
+	$("div[id*=<%= @cupping_flavor.sample.id %>]").find("div[id*=flavor]").html('<b>Flavor: </b> Score: <%= @cupping_flavor.sample.cupping_flavors.average(:score).to_i %> Notes: <%= @cupping_flavor.sample.cupping_flavors.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %> <%= link_to 'Manage', cupping_flavors_path(:sample_id => @cupping_flavor.sample.id) %>');
+
+	$("div[id*=<%= @cupping_flavor.sample.id %>]").find("form[id*=new_cupping_flavor]").wrap('<div class="another-flavor" />');
+
+	$("div[id*=<%= @cupping_flavor.sample.id %>]").find("span[id*=flavor-to-another]").html('<b>Another Flavor:</b>');
+
+	$("div[id*=<%= @cupping_flavor.sample.id %>]").find("form[id*=flavor]").find(":input[type=submit]").attr("value","Record another");
+
+	$("div[id*=<%= @cupping_flavor.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+
+}

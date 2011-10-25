@@ -1,0 +1,6 @@
+<p>
+	<% @roastery_admins.each do |roastery_admin| %>
+		<b><%= roastery_admin.user.email %></b> is an admin for <b><%= link_to roastery_admin.roastery.name, roastery_path(:id => roastery_admin.roastery.id) %></b>
+		| <%= link_to 'Remove', roastery_admin, :confirm => 'Are you sure?', :method => :delete %><br>
+	<% end %>
+</p>

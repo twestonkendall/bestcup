@@ -1,19 +1,58 @@
 <!DOCTYPE html>
+<!--                                                                                                         
+8888888888o   88888888888     d888888o. 88888888888888888 ,o888888o.   88888      88 8888888888o   
+88888    `88. 88888         .8888:' `88.     88888      8888     `88.  88888      88 88888    `88. 
+88888     `88 88888         8.8888.   Y8     88888    ,88888       `8. 88888      88 88888     `88 
+88888     ,88 88888         `88888.          88888    888888           88888      88 88888     ,88 
+88888.   ,88' 8888888888888  `88888.         88888    888888           88888      88 88888.   ,88' 
+88888888888   88888           `88888.        88888    888888           88888      88 8888888888P'  
+88888    `88. 88888            `8.8888.      88888    888888           88888      88 88888         
+88888      88 88888        8b   `8.8888.     88888    `88888       .8' `8888     ,8P 88888         
+88888    ,88' 88888        `8b.  ;8.8888     88888      8888     ,88'   8888   ,d8P  88888         
+8888888888P   8888888888888 `Y8888P88P'      88888       `8888888P'      `Y88888P'   88888         
+-->
 <html>
 <head>
+
+	<meta charset="utf-8">
+	
   <title>Bestcup</title>
+	<meta name="title" content="BestCup">	
+
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= link_to 'Dashboard', root_url %> | <%= link_to 'Producers', farms_url %> | <%= link_to 'Roasteries', roasteries_url %> | <%= link_to 'Cuppings', cuppings_url %>
-	<p id="notice"><%= notice %></p>
-<hr>
-<%= yield %>
+	<nav>
+		<ul>
+			<li><%= link_to 'Users', users_url%></li>
+			<li><%= link_to 'Roastery Admins', roastery_admins_url%></li>
+		</ul>
+		<br>
+		<ul>
+			<li><% if current_user %>
+				<%= link_to current_user.email, edit_user_path(current_user.id) %>
+				<%= link_to "Log Out", logout_path %>
+				<br> <!-- because of inline <ul> -->
+				<ul>
+					<li><%= link_to 'Home', root_url %></li>
+					<li><%= link_to 'Producers', farms_url %></li>
+					<li><%= link_to 'Roasteries', roasteries_url %></li>
+					<li><%= link_to 'New Roast', from_dash_roasts_path %></li>
+					<li><%= link_to 'New Cupping', new_cupping_path %></li>
+				</ul>
+			</li>
+			<li>
+				<% else %>
+					<%= link_to "Log In", login_path %> or <%= link_to "Sign Up", new_user_path %>
+				<% end %>
+			</li>
+		</ul>
+	</nav>
+	<span id="notice"><%= notice %></span>
+	<%= yield %>
 <hr>
 <%= params.inspect %>
-
-
 </body>
 </html>

@@ -1,0 +1,21 @@
+<h1>Listing roasters</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @roasters.each do |roaster| %>
+  <tr>
+    <td><%= link_to 'Show', roaster %></td>
+    <td><%= link_to 'Edit', edit_roaster_path(roaster) %></td>
+    <td><%= link_to 'Destroy', roaster, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Roaster', new_roaster_path %>

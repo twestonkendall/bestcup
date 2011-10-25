@@ -3,3 +3,7 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', farm_path(@farm) %>
+<br>
+<% if @batch %>
+Batch id:<%= @batch.id %>
+<% end %>

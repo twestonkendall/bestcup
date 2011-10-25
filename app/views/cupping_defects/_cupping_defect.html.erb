@@ -1,3 +1,5 @@
-<b>Defects:</b>
-Score: <%= cupping_defect.score %>
-<%= link_to 'Re-do', cupping_defect, :method => :delete %>
+<div id="defects-show">
+	<b>Defects:</b>
+	Score: <%= cupping_defect.score %>
+	<%= link_to 'Re-do', cupping_defect, :method => :delete, :remote => true %>
+</div>

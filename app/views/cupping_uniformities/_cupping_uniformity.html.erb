@@ -1,4 +1,6 @@
-<b>Uniformity:</b>
-Score: <%= cupping_uniformity.score %>
+<div id="uniformity-show">
+	<b>Uniformity:</b>
+	Score: <%= cupping_uniformity.score %>
 
-<%= link_to 'Re-do', cupping_uniformity, :method => :delete %>
+	<%= link_to 'Re-do', cupping_uniformity, :method => :delete, :remote => true %>
+</div>

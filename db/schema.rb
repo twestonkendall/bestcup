@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110906185133) do
+ActiveRecord::Schema.define(:version => 20111024223716) do
+
+  create_table "batches", :force => true do |t|
+    t.date     "roasted_on"
+    t.string   "batch_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "roast_id"
+  end
 
   create_table "beans", :force => true do |t|
     t.string   "variety"
@@ -25,15 +33,14 @@ ActiveRecord::Schema.define(:version => 20110906185133) do
 
   create_table "blends", :force => true do |t|
     t.integer  "bean_id"
-    t.integer  "roast_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "weight",     :precision => 3, :scale => 2
+    t.decimal  "weight"
     t.string   "lot_number"
+    t.integer  "batch_id"
   end
 
   add_index "blends", ["bean_id"], :name => "index_blends_on_bean_id"
-  add_index "blends", ["roast_id"], :name => "index_blends_on_roast_id"
 
   create_table "checks", :force => true do |t|
     t.string   "milestones"
@@ -42,9 +49,9 @@ ActiveRecord::Schema.define(:version => 20110906185133) do
     t.integer  "temp",       :limit => 3
     t.integer  "time",       :limit => 2
     t.text     "notes"
-    t.integer  "roast_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "batch_id"
   end
 
   create_table "cupping_acidities", :force => true do |t|
@@ -188,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20110906185133) do
   create_table "cuppings", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "farms", :force => true do |t|
@@ -210,6 +218,27 @@ ActiveRecord::Schema.define(:version => 20110906185133) do
     t.datetime "updated_at"
   end
 
+  create_table "roasters", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "roastery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roasters", ["roastery_id"], :name => "index_roasters_on_roastery_id"
+  add_index "roasters", ["user_id"], :name => "index_roasters_on_user_id"
+
+  create_table "roastery_admins", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "roastery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "verified"
+  end
+
+  add_index "roastery_admins", ["roastery_id"], :name => "index_roastery_admins_on_roastery_id"
+  add_index "roastery_admins", ["user_id"], :name => "index_roastery_admins_on_user_id"
+
   create_table "roasts", :force => true do |t|
     t.string   "name"
     t.date     "roasted_on"
@@ -223,15 +252,22 @@ ActiveRecord::Schema.define(:version => 20110906185133) do
 
   create_table "samples", :force => true do |t|
     t.integer  "cupping_id"
-    t.integer  "roast_id"
     t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sample_number"
     t.integer  "total"
+    t.integer  "batch_id"
   end
 
   add_index "samples", ["cupping_id"], :name => "index_samples_on_cupping_id"
-  add_index "samples", ["roast_id"], :name => "index_samples_on_roast_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "admin"
+  end
 
 end
