@@ -91,4 +91,8 @@ class RoasteriesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def select
+    @roasteries = Roastery.all
+  end
 end

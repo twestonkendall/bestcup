@@ -22,10 +22,21 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
-	<div class="field">
-    <%= f.label :admin %>
-		<%= f.check_box :admin %>
-  </div>
+	<% if current_user.admin?%>
+		<div class="field">
+	    <%= f.label :admin %>
+			<%= f.check_box :admin %>
+	  </div>
+	<% end %>
+
+	<p>
+	  <%= f.label :roles %><br />
+	  <% for role in User::ROLES %>
+	    <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
+	    <%=h role.humanize %><br />
+	  <% end %>
+	  <%= hidden_field_tag "user[roles][]", "" %>
+	</p>
   <div class="actions">
     <%= f.submit %>
   </div>

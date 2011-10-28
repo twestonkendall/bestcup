@@ -1,3 +1,7 @@
 <h1>New roast</h1>
 <%= render 'form' %>
-<%= link_to 'Back', roastery_path(@roastery) %>
+<% if @roastery.present? %>
+	<%= link_to 'Back', roastery_path(@roastery) %>
+<% else %>
+	<%= link_to 'Back', root_url %>
+<% end%>

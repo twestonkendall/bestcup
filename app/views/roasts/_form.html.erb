@@ -10,13 +10,20 @@
       </ul>
     </div>
   <% end %>
-
+	
+	<% if @roastery.present? %>
+		<%= f.hidden_field :roastery_id, :value => @roastery.id %>
+	<% else %>
+		<div class="field">
+			<%= f.label :roastery_id %><br />
+		  <%= f.collection_select(:roastery_id, Roastery.find(:all), :id, :name, :prompt => true)%> Not on the list? <%= link_to 'New Roastery', new_roastery_path() %>
+		</div>
+	<% end %>	
+	
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-
-  <%= f.hidden_field :roastery_id, :value => @roastery.id %>
 
 	<div class="actions">
     <%= f.submit %>

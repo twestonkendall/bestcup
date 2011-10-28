@@ -20,8 +20,10 @@ class RoastsController < ApplicationController
   # GET /roasts/new.json
   def new
     @roast = Roast.new
-    @roastery = Roastery.find(params[:roastery_id])
-    
+    if params[:roastery_id]
+      @roastery = Roastery.find(params[:roastery_id])
+    end
+  
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @roast }
@@ -76,14 +78,6 @@ class RoastsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @roast.roastery(:roastery_id => @roast.roastery) }
       format.json { head :ok }
-    end
-  end
-  
-  def from_dash
-    @roast = Roast.new    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @roast }
     end
   end
 end

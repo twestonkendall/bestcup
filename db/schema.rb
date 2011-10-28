@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111024223716) do
+ActiveRecord::Schema.define(:version => 20111028190837) do
 
   create_table "batches", :force => true do |t|
     t.date     "roasted_on"
@@ -268,6 +268,7 @@ ActiveRecord::Schema.define(:version => 20111024223716) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
+    t.integer  "roles_mask"
   end
 
 end
