@@ -19,6 +19,8 @@ gem 'bcrypt-ruby'
 
 gem "modernizr-rails", "~> 2.0.6"
 
+gem "cancan"
+
 
 
 

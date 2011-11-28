@@ -1,19 +1,10 @@
 class CuppingBalancesController < ApplicationController
-  
-  def new
-    @cupping_balance = CuppingBalance.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
+  load_and_authorize_resource
 
   def create
-    @cupping_balance = CuppingBalance.new(params[:cupping_balance])
     @sample = @cupping_balance.sample
     @cupping = @sample.cupping
     @cupping_total_score = @sample.cupping_total_scores.last
-
     respond_to do |format|
       if @cupping_balance.save
         if @cupping_total_score.present?
@@ -49,7 +40,6 @@ class CuppingBalancesController < ApplicationController
                                         @sample.cupping_overalls.average(:score).to_i +
                                         @sample.cupping_sweetnesses.average(:score).to_i +
                                         @sample.cupping_uniformities.average(:score).to_i
-
           @cupping_total_score.save
           format.html { redirect_to totalcreate_path(:sample_id => @sample.id) }
           format.js {@cupping_balance}
@@ -62,7 +52,6 @@ class CuppingBalancesController < ApplicationController
   end
 
   def destroy
-    @cupping_balance = CuppingBalance.find(params[:id])
     @cupping_balance.destroy
     @sample = @cupping_balance.sample
     @cupping = @sample.cupping
@@ -80,9 +69,7 @@ class CuppingBalancesController < ApplicationController
                                   @sample.cupping_overalls.average(:score).to_i +
                                   @sample.cupping_sweetnesses.average(:score).to_i +
                                   @sample.cupping_uniformities.average(:score).to_i
-
     @cupping_total_score.save
-    
     respond_to do |format|
       format.html { redirect_to totalupdate_path(:id => @cupping_total_score.id) }
       format.js {@cupping_balance}

@@ -1,54 +1,39 @@
 class RoasteriesController < ApplicationController
-  # GET /roasteries
-  # GET /roasteries.json
+load_and_authorize_resource
+
   def index
     @roasteries = Roastery.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @roasteries }
     end
   end
 
-  # GET /roasteries/1
-  # GET /roasteries/1.json
   def show
-    @roastery = Roastery.find(params[:id])
     @roasts = Roast.where(:roastery_id => @roastery.id)
     @blend = Blend.new
     @roastery_admin = RoasteryAdmin.new
     @roastery_admins = RoasteryAdmin.where(:roastery_id => @roastery.id)
     @roaster = Roaster.new
     @roasters = Roaster.where(:roastery_id => @roastery.id)
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @roastery }
     end
   end
 
-  # GET /roasteries/new
-  # GET /roasteries/new.json
   def new
-    @roastery = Roastery.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @roastery }
     end
   end
 
-  # GET /roasteries/1/edit
   def edit
-    @roastery = Roastery.find(params[:id])
   end
 
-  # POST /roasteries
-  # POST /roasteries.json
   def create
-    @roastery = Roastery.new(params[:roastery])
     @user = current_user
-
     respond_to do |format|
       if @roastery.save
         @roastery_admin = RoasteryAdmin.new
@@ -64,11 +49,7 @@ class RoasteriesController < ApplicationController
     end
   end
 
-  # PUT /roasteries/1
-  # PUT /roasteries/1.json
   def update
-    @roastery = Roastery.find(params[:id])
-
     respond_to do |format|
       if @roastery.update_attributes(params[:roastery])
         format.html { redirect_to @roastery, :notice => 'Roastery was successfully updated.' }
@@ -80,19 +61,11 @@ class RoasteriesController < ApplicationController
     end
   end
 
-  # DELETE /roasteries/1
-  # DELETE /roasteries/1.json
   def destroy
-    @roastery = Roastery.find(params[:id])
     @roastery.destroy
-
     respond_to do |format|
       format.html { redirect_to roasteries_url }
       format.json { head :ok }
     end
-  end
-  
-  def select
-    @roasteries = Roastery.all
   end
 end

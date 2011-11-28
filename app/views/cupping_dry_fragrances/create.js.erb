@@ -1,7 +1,9 @@
-$("div[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("form[id*=dry_fragrance]").before('<div id="dry-fragrance-show"><b>Dry Fragrance:</b> Score: <%= @cupping_dry_fragrance.score %><% if @cupping_dry_fragrance.intensity.present? %> Intensity: <%= @cupping_dry_fragrance.intensity %><% end %><% if @cupping_dry_fragrance.notes.present? %> Notes: <%= @cupping_dry_fragrance.notes %><% end %> <%= link_to 'Re-do', @cupping_dry_fragrance, :method => :delete, :remote => true %></div>');
+$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("form[id*=dry_fragrance]").before('<section id="dry-fragrance-show"><h1>Dry Fragrance:</h1>Score: <%= @cupping_dry_fragrance.score %><% if @cupping_dry_fragrance.intensity.present? %><br>Intensity: <%= @cupping_dry_fragrance.intensity %><% end %><% if @cupping_dry_fragrance.notes.present? %><br>Notes: <%= @cupping_dry_fragrance.notes %><% end %><br><%= button_to 'Re-do', @cupping_dry_fragrance, :method => :delete, :remote => true %></section>');
 
-$("div[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("form[id*=dry_fragrance]").hide();
+$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("form[id*=dry_fragrance]").hide();
 
-$("div[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("section[id=total]").html("<h1>Total Score:</h1> <%= @cupping_total_score.score %>");
+
+
 
 // alert("Ajax!!")

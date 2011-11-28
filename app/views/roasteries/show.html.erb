@@ -1,32 +1,74 @@
-<h1>Show Roastery</h1>
-<p>
-  <b>Name:</b> <%= @roastery.name %><br>
-	<b>Year opened:</b> <%= @roastery.year_opened %><br>
-  <b>Description:</b> <%= @roastery.description %><br>
-  <b>Contact:</b> <%= @roastery.contact %><br>
-	<%= link_to 'Edit', edit_roastery_path(@roastery) %>
-</p>
+<header>
+	<%= link_to "Back", roasteries_path %>
+</header>
+<% if can? :create, Roast %>
+	<section>
+		<%= link_to 'New roast', new_roast_path(:roastery_id => @roastery.id) %>
+	</section>
+<% end %>
+<section>
+	<h1><%= @roastery.name.titleize %></h1>
+</section>
 <% if @roasts.present? %>
-<b>Roasts:</b>
+	<section>
+		<h1>Roasts:</h1>
+		<% @roasts.each do |roast| %>
+			<% if can? :read, Roast %>
+				<p>
+					<%= link_to roast.name.titleize, roast %>
+				</p>
+			<% else %>
+				<p>
+					<%= roast.name.titleize %>
+				</p>
+			<% end %>
+		<% end %>
+	</section>
 <% end %>
-<%= link_to 'New roast', new_roast_path(:roastery_id => @roastery.id) %>
-<% @roasts.each do |roast| %>
-			<p><%= link_to roast.name, roast %></p>
-<% end %>
-<p>
-	<%= link_to "Back to Roasteries list", roasteries_url %>
-</p>
-
-<h1>Roastery Admins</h1>
-<% @roastery_admins.each do |ra| %>
-	<%= ra.user.email %> <% if ra.verified.present? %><b>Verified</b><% end %>
-	| <%= link_to 'Remove', ra, :confirm => 'Are you sure?', :method => :delete %><br>
-<% end %>
-<%= render 'roastery_admins/form' %>
-<h1>Roasters</h1>
-<% if @roasters %>
-	<% @roasters.each do |rsters| %>
-		<%= rsters.user.email %> | <%= link_to 'Remove', rsters, :confirm => 'Are you sure?', :method => :delete %><br>
+<section>
+	<h1>Details</h1>
+	<% if @roastery.year_opened.present? %>
+		Year opened: <%= @roastery.year_opened %>
 	<% end %>
+	<% if @roastery.description.present? %>
+	  <br>Description: <%= @roastery.description.camelcase %>
+	<% end %>
+	
+	<% if @roastery.website.present? %>
+	  <br>Website: <%= link_to @roastery.get_host_without_www(@roastery.website), @roastery.website %>
+	<% end %>
+	<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+	<br><%= link_to 'Edit Roastery Details', edit_roastery_path(@roastery) %>
+	<% end %>
+</section>
+<% if current_user.admin?  || @roastery.is_radmin?(current_user) %>
+	<section>
+		<% if @roasters %>
+			<h1>Roasters</h1>
+			<% @roasters.each do |rsters| %>
+				<p>
+					<%= rsters.user.email %> | <%= link_to 'Remove', rsters, :confirm => 'Are you sure?', :method => :delete %>
+				</p>
+			<% end %>
+		<% end %>
+		<%= render 'roasters/form' %>
+	</section>
+	<section>
+		<h1>Roastery Admins</h1>
+		<% @roastery_admins.each do |ra| %>
+			<%= ra.user.email %> <% if ra.verified.present? %><b>Verified</b><% end %>
+			| <%= link_to 'Remove', ra, :confirm => 'Are you sure?', :method => :delete %><br>
+		<% end %>
+		<%= render 'roastery_admins/form' %>
+	</section>
 <% end %>
-<%= render 'roasters/form' %>
+<% if current_user.nil? %>
+	<footer>
+		<nav>
+			<%= link_to "Log In", root_url %>
+			<menu>
+				<%= link_to 'Producers', farms_url %> 
+			</menu>
+		</nav>
+	</footer>
+<% end %>

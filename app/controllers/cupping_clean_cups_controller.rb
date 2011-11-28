@@ -1,19 +1,10 @@
 class CuppingCleanCupsController < ApplicationController
-
-  def new
-    @cupping_clean_cup = CuppingCleanCup.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
+  load_and_authorize_resource
 
   def create
-    @cupping_clean_cup = CuppingCleanCup.new(params[:cupping_clean_cup])
     @sample = @cupping_clean_cup.sample
     @cupping = @sample.cupping
     @cupping_total_score = @sample.cupping_total_scores.last
-
     respond_to do |format|
       if @cupping_clean_cup.save
         if @cupping_total_score.present?
@@ -62,7 +53,6 @@ class CuppingCleanCupsController < ApplicationController
   end
 
   def destroy
-    @cupping_clean_cup = CuppingCleanCup.find(params[:id])
     @cupping_clean_cup.destroy
     @sample = @cupping_clean_cup.sample
     @cupping = @sample.cupping
@@ -80,9 +70,7 @@ class CuppingCleanCupsController < ApplicationController
                                   @sample.cupping_overalls.average(:score).to_i +
                                   @sample.cupping_sweetnesses.average(:score).to_i +
                                   @sample.cupping_uniformities.average(:score).to_i
-
     @cupping_total_score.save
-    
     respond_to do |format|
       format.html { redirect_to totalupdate_path(:id => @cupping_total_score.id) }
       format.js {@cupping_clean_cup}

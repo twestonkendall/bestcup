@@ -1,3 +1,30 @@
-<h1>New user</h1>
-
-<%= render 'form' %>
+<header>
+	<%= link_to_function "Back", "history.back()" %>
+</header>
+<section>
+	<%= form_for(@user) do |f| %>
+	  <% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+	      <ul>
+	      <% @user.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	    <%= f.label :email %><br>
+	    <%= f.email_field :email %><br>
+	    <%= f.label :password %><br>
+	    <%= f.password_field :password %><br>
+	    <%= f.label :password_confirmation %><br>
+	    <%= f.password_field :password_confirmation %><br>
+	    <%= f.submit "Sign Up" %>
+	<% end %>
+</section>
+<footer>
+	<nav>
+		<%= link_to 'Producers', farms_url %>
+		<%= link_to 'Roasteries', roasteries_url %>
+	</nav>
+</footer>

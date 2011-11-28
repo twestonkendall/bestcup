@@ -1,7 +1,7 @@
-<h1>Editing bean</h1>
+<header>
+	<%= link_to 'Back', farm_path(@bean.farm) %>
+</header>
 <%= render 'form' %>
-<p>
+<% if can? :destroy, @bean %>
 	<%= button_to 'Destroy', @bean, :confirm => 'Are you sure?', :method => :delete %>
-<p>
-<%= link_to 'Back', @bean %>
-
+<% end %>

@@ -1,7 +1,6 @@
 <% if @roaster.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@roaster.errors.count, "error") %> prohibited this roaster from being saved:</h2>
-
     <ul>
     <% @roaster.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -11,12 +10,7 @@
 <% end %>
 <%= form_for(@roaster) do |f| %>
 	<%= f.hidden_field :roastery_id, :value => @roastery.id %>
-	<div class = "field">
-		<%= f.label :user_id %>
-		<%= f.collection_select(:user_id, User.find(:all), :id, :email, :prompt => true)%>
-	</div>
-
-  <div class="actions">
-    <%= f.submit "Add Roaster"%>
-  </div>
+	<%= f.label :user_id %>
+	<%= f.collection_select(:user_id, User.find(:all), :id, :email, :prompt => true)%>
+  <%= f.submit "Add Roaster"%>
 <% end %>

@@ -1,0 +1,17 @@
+<section class="list_checks">
+	<% @checks.each do |ch| %>
+		<p>
+			<%= ch.milestones %> @ <%= ch.time %> minutes.
+			<% if ch.temp.present? %>
+				Temp: <%= ch.temp %> degrees.
+			<% end %>	
+			<% if ch.gas_flow.present? %>
+				Gas flow: <%= ch.gas_flow %>
+			<% end %>
+			<% if ch.air_flow.present? %> 
+				Air flow: <%= ch.air_flow %>.
+			<% end %>
+			<%= link_to 'Edit', edit_check_path(ch), :confirm => 'Leaving this page will reset the Stopwatch' %>
+		</p>
+	<% end %>
+</section>

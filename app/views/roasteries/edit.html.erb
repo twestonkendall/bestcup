@@ -1,6 +1,7 @@
-<h1>Editing roastery</h1>
+<header>
+	<%= link_to 'Back', roastery_path(@roastery) %>
+</header>
 <%= render 'form' %>
 <p>
 	<%= button_to 'Destroy', @roastery, :confirm => 'Are you sure?', :method => :delete %>
 </p>
-<%= link_to 'Back', roastery_path(@roastery) %>

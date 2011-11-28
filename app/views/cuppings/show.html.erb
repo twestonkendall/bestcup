@@ -1,8 +1,17 @@
-<h1>Show Cupping</h1>
-<b>Cupped on:</b> <%= @cupping.created_at.to_s(:long) %><br>
-
+<header>
+	<%= link_to_function "Back", "history.back()" %>
+</header>
+<% if can? :update, Cupping %>
+	<section>
+		<%= link_to 'Edit Samples', edit_cupping_path(@cupping) %>
+	</section>
+<% end %>
+<section>
+	<p>
+		Cupped on: <%= @cupping.created_at.to_date.to_formatted_s(:long_ordinal) %>
+	</p>
+</section>
+<noscript><p>These forms are designed to work best with JavaScript.<p></noscript>
+	
 <%= render :partial => "samples/sample",
            :collection => @cupping.samples %>
-
-<%= link_to 'Edit', edit_cupping_path(@cupping) %> |
-<%= link_to 'Back', cuppings_path %>

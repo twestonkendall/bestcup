@@ -9,35 +9,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-	<div class="field">
+    <%= f.text_field :email %><br>
     <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-	<div class="field">
+    <%= f.password_field :password %><br>
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+    <%= f.password_field :password_confirmation %><br>
 	<% if current_user.admin?%>
-		<div class="field">
 	    <%= f.label :admin %>
-			<%= f.check_box :admin %>
-	  </div>
+			<%= f.check_box :admin %><br>
 	<% end %>
-
-	<p>
-	  <%= f.label :roles %><br />
-	  <% for role in User::ROLES %>
-	    <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
-	    <%=h role.humanize %><br />
-	  <% end %>
-	  <%= hidden_field_tag "user[roles][]", "" %>
-	</p>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit "Update your Account" %>
 <% end %>
+<section>
+	<%= button_to 'Destroy your Account', @user, :confirm => 'Are you sure?', :method => :delete %>
+</section>

@@ -1,6 +1,4 @@
-<h1>New cupping <% if params[:roast_id] %> of <%= @roast.name%> roasted on <%= @roast.roasted_on%> from <%= @roast.roastery.name%><% end %>
-</h1>
-
+<header>
+	<%= link_to "Home", root_url %>
+</header>
 <%= render 'form' %>
-
-<%= link_to 'Back', cuppings_path %>

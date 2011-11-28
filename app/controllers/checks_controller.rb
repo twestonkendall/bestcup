@@ -1,44 +1,24 @@
 class ChecksController < ApplicationController
+  load_and_authorize_resource
 
-  # GET /checks/new
-  # GET /checks/new.json
-  def new
-    @check = Check.new
-    @batch = Batch.find(params[:batch_id])
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @check }
-    end
-  end
-
-  # GET /checks/1/edit
   def edit
-    @check = Check.find(params[:id])
     @batch = @check.batch
   end
 
-  # POST /checks
-  # POST /checks.json
   def create
-    @check = Check.new(params[:check])
-
+    @batch = @check.batch
+    @checks = Check.where(:batch_id => @batch.id)
     respond_to do |format|
       if @check.save
-        format.html { redirect_to @check.batch, :notice => 'Check was successfully created.' }
-        format.json { render :json => @check, :status => :created, :location => @check }
+        format.html { redirect_to @check.batch, :notice => 'Check was successfully created.'}
+        format.js {@checks}
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @check.errors, :status => :unprocessable_entity }
+        format.html { redirect_to @check.batch, :alert => 'You didnt add any information.' }
       end
     end
   end
 
-  # PUT /checks/1
-  # PUT /checks/1.json
   def update
-    @check = Check.find(params[:id])
-
     respond_to do |format|
       if @check.update_attributes(params[:check])
         format.html { redirect_to @check.batch, :notice => 'Check was successfully updated.' }
@@ -50,12 +30,8 @@ class ChecksController < ApplicationController
     end
   end
 
-  # DELETE /checks/1
-  # DELETE /checks/1.json
   def destroy
-    @check = Check.find(params[:id])
     @check.destroy
-
     respond_to do |format|
       format.html { redirect_to @check.batch }
       format.json { head :ok }

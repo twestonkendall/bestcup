@@ -1,57 +1,47 @@
 class FarmsController < ApplicationController
-  
-  # GET /farms
-  # GET /farms.json
+  load_and_authorize_resource
+
   def index
     @farms = Farm.all
-    
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @farms }
     end
   end
 
-  # GET /farms/1
-  # GET /farms/1.json
   def show
-    @farm = Farm.find(params[:id])
     @beans = Bean.where(:farm_id => @farm.id)
-    
-
+    @producer_admin = ProducerAdmin.new
+    @producer_admins = ProducerAdmin.where(:farm_id => @farm.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @farm }
     end
   end
 
-  # GET /farms/new
-  # GET /farms/new.json
   def new
-    @farm = Farm.new
-
+    if params[:batch_id]
+      @batch = Batch.find(params[:batch_id])
+    end
+    if params[:roast_id]
+      @roast = Roast.find(params[:roast_id])
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @farm }
     end
   end
 
-  # GET /farms/1/edit
   def edit
-    @farm = Farm.find(params[:id])
   end
 
-  # POST /farms
-  # POST /farms.json
   def create
-    @farm = Farm.new(params[:farm])
     if params[:roast_id]
       @roast = Roast.find(params[:roast_id])
     end
     if params[:batch_id]
       @batch = Batch.find(params[:batch_id])
     end
-
     respond_to do |format|
       if @farm.save
         if @roast
@@ -67,11 +57,7 @@ class FarmsController < ApplicationController
     end
   end
 
-  # PUT /farms/1
-  # PUT /farms/1.json
   def update
-    @farm = Farm.find(params[:id])
-
     respond_to do |format|
       if @farm.update_attributes(params[:farm])
         format.html { redirect_to @farm, :notice => 'Farm was successfully updated.' }
@@ -83,21 +69,11 @@ class FarmsController < ApplicationController
     end
   end
 
-  # DELETE /farms/1
-  # DELETE /farms/1.json
   def destroy
-    @farm = Farm.find(params[:id])
     @farm.destroy
-
     respond_to do |format|
       format.html { redirect_to farms_url }
       format.json { head :ok }
     end
-  end
-  
-  def select
-    @farms = Farm.all
-    @batch = Batch.find(params[:batch_id])
-    @roast = Roast.find(params[:roast_id])
   end
 end

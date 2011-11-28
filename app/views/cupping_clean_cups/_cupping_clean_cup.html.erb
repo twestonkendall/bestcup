@@ -1,6 +1,5 @@
-<div id="clean-cup-show">
-	<b>Clean Cup:</b>
+<section id="clean-cup-show">
+	<h1>Clean Cup:</h1>
 	Score: <%= cupping_clean_cup.score %>
-
-	<%= link_to 'Re-do', cupping_clean_cup, :method => :delete, :remote => true %>
-</div>
+	<br><%= button_to 'Re-do', cupping_clean_cup, :method => :delete, :remote => true %>
+</section>

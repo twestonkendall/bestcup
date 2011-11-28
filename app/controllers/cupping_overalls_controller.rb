@@ -1,7 +1,8 @@
 class CuppingOverallsController < ApplicationController
+ load_and_authorize_resource
  
   def new
-    @cupping_overall = CuppingOverall.new
+    # @cupping_overall = CuppingOverall.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -9,7 +10,7 @@ class CuppingOverallsController < ApplicationController
   end
 
   def create
-    @cupping_overall = CuppingOverall.new(params[:cupping_overall])
+    # @cupping_overall = CuppingOverall.new(params[:cupping_overall])
     @sample = @cupping_overall.sample
     @cupping = @sample.cupping
     @cupping_total_score = @sample.cupping_total_scores.last
@@ -62,7 +63,7 @@ class CuppingOverallsController < ApplicationController
   end
 
   def destroy
-    @cupping_overall = CuppingOverall.find(params[:id])
+  #   @cupping_overall = CuppingOverall.find(params[:id])
     @cupping_overall.destroy
     @sample = @cupping_overall.sample
     @cupping = @sample.cupping

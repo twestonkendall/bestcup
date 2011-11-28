@@ -1,21 +1,11 @@
 <%= form_for(@blend) do |f| %>
 	<%= f.hidden_field :batch_id, :value => @batch.id %>
-	<div class = "field">
-	<%= f.label :bean, "Variety-Producer-Country" %><br />
-	<%= collection_select(:blend, :bean_id, Bean.order('variety ASC'), :id, :bean_and_farm, :prompt => true) %> <%= link_to 'Not on the list', select_farms_path(:batch_id => @batch.id, :roast_id => @roast.id) %>
-	</div>
-	<div class = "field">
-		<%= f.text_field :lot_number %>
-		<%= f.label :lot_number %>
-		
-	</div>
-	<div class = "field">
-		<%= f.text_field :weight %>
-    <%= f.label :weght, "Pounds" %>
-	</div>
-	
-  
-	<div class = "actions">
-		<%= f.submit "Save" %>
-	</div>
+	<%= f.label :bean, "Variety-Producer-Country" %><br>
+	<%= collection_select(:blend, :bean_id, Bean.order('variety ASC'), :id, :bean_and_farm, :prompt => true) %> <%= link_to 'Not on the list', new_bean_path(:batch_id => @batch.id, :roast_id => @roast.id) %><br>
+	<%= f.text_field :lot_number %>
+	<%= f.label :lot_number %><br>
+	<%= f.text_field :weight %>
+  <%= f.label :weght, "Pounds" %><br>
+	<%= f.submit "Save" %>
 <% end %>
+

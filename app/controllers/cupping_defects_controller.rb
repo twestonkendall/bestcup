@@ -1,20 +1,11 @@
 class CuppingDefectsController < ApplicationController
-  
-  def new
-    @cupping_defect = CuppingDefect.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
+  load_and_authorize_resource
 
   def create
-    @cupping_defect = CuppingDefect.new(params[:cupping_defect])
-    @cupping_defect.score = @cupping_defect.number_of_cups * @cupping_defect.intensity
+    @cupping_defect.score = (@cupping_defect.number_of_cups * @cupping_defect.intensity) 
     @sample = @cupping_defect.sample
     @cupping = @sample.cupping
     @cupping_total_score = @sample.cupping_total_scores.last
-
     respond_to do |format|
       if @cupping_defect.save
         if @cupping_total_score.present?
@@ -63,7 +54,6 @@ class CuppingDefectsController < ApplicationController
   end
 
   def destroy
-    @cupping_defect = CuppingDefect.find(params[:id])
     @cupping_defect.destroy
     @sample = @cupping_defect.sample
     @cupping = @sample.cupping
@@ -81,9 +71,7 @@ class CuppingDefectsController < ApplicationController
                                   @sample.cupping_overalls.average(:score).to_i +
                                   @sample.cupping_sweetnesses.average(:score).to_i +
                                   @sample.cupping_uniformities.average(:score).to_i
-
     @cupping_total_score.save
-    
     respond_to do |format|
       format.html { redirect_to totalupdate_path(:id => @cupping_total_score.id) }
       format.js {@cupping_defect}

@@ -1,8 +1,7 @@
 class CuppingTotalScoresController < ApplicationController
-
-  def create
-    @cupping_total_score = CuppingTotalScore.new
-    
+  load_and_authorize_resource
+  
+  def create    
     @sample = Sample.find(params[:sample_id])
     @cupping_total_score.sample_id = @sample.id
     @cupping = Cupping.find(@sample.cupping_id)
@@ -19,7 +18,6 @@ class CuppingTotalScoresController < ApplicationController
                                   @sample.cupping_overalls.average(:score).to_i +
                                   @sample.cupping_sweetnesses.average(:score).to_i +
                                   @sample.cupping_uniformities.average(:score).to_i
-
     respond_to do |format|
       if @cupping_total_score.save
         format.html { redirect_to @cupping }
@@ -29,10 +27,7 @@ class CuppingTotalScoresController < ApplicationController
     end
   end
 
-
   def update
-    @cupping_total_score = CuppingTotalScore.find(params[:id])
-    
     @sample = @cupping_total_score.sample
     @cupping_total_score.sample_id = @sample.id
     @cupping = Cupping.find(@sample.cupping_id)
@@ -49,12 +44,10 @@ class CuppingTotalScoresController < ApplicationController
                                   @sample.cupping_overalls.average(:score).to_i +
                                   @sample.cupping_sweetnesses.average(:score).to_i +
                                   @sample.cupping_uniformities.average(:score).to_i
-
     respond_to do |format|
       if @cupping_total_score.update_attributes(params[:cupping_total_score])
         format.html { redirect_to @cupping }
       end
     end
   end
-
 end

@@ -1,6 +1,6 @@
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
-  $(link).closest(".fields").hide();
+  $(link).closest(".newsamplefields").hide();
 }
 
 function add_fields(link, association, content) {
@@ -21,9 +21,9 @@ $(document).ready(function() {
 	
 	$("img[class=roast_level]").click(function () { 
 		$(this).prev("form input:radio").attr("checked", "checked")
-		$(this).parent("p").find("img").not($(this)).removeClass("shadow")
-		$(this).addClass("shadow")
-  });
+	 	$(this).parent("section").find("img").not($(this)).removeClass("shadow")
+	 	$(this).addClass("shadow")
+	});
 })
 
 // .css({background:"yellow", border:"3px red solid"})

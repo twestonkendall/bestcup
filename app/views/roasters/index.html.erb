@@ -1,21 +1,6 @@
-<h1>Listing roasters</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @roasters.each do |roaster| %>
-  <tr>
-    <td><%= link_to 'Show', roaster %></td>
-    <td><%= link_to 'Edit', edit_roaster_path(roaster) %></td>
-    <td><%= link_to 'Destroy', roaster, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Roaster', new_roaster_path %>
+<p>
+	<% @roasters.each do |roaster| %>
+		<b><%= roaster.user.email %></b> is a roaster for <b><%= link_to roaster.roastery.name, roastery_path(:id => roaster.roastery.id) %></b>
+		| <%= link_to 'Remove', roaster, :confirm => 'Are you sure?', :method => :delete %><br>
+	<% end %>
+</p>

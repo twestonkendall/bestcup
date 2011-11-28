@@ -9,13 +9,10 @@
       </ul>
     </div>
   <% end %>
-
 	<%= f.fields_for :samples do |sample| %>
 		<%= render 'sample_fields', :f => sample  %>
 	<% end %>
-	<p><%= link_to_add_fields "Add Another Sample", f, :samples %></p>
-  <div class="actions">
+	<noscript><p>To add or remove samples you must enable JavaScript.</p></noscript><p><%= link_to_add_fields "Add Another Sample", f, :samples %></p>
     <%= f.submit %>
-  </div>
 <% end %>
 

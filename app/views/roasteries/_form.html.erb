@@ -1,33 +1,25 @@
-<%= form_for(@roastery) do |f| %>
-  <% if @roastery.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@roastery.errors.count, "error") %> prohibited this roastery from being saved:</h2>
-
-      <ul>
-      <% @roastery.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :year_opened %><br />
-    <%= select_year(Date.today, :start_year => 2011, :end_year => 1835, :prefix => "roastery", :field_name => 'year_opened') %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :rows => 8 %>
-  </div>
-  <div class="field">
-    <%= f.label :contact %><br />
-    <%= f.text_field :contact %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<section>
+	<%= form_for(@roastery) do |f| %>
+	  <% if @roastery.errors.any? %>
+	  	<div id="error_explanation">
+	      <h2><%= pluralize(@roastery.errors.count, "error") %> prohibited this roastery from being saved:</h2>
+	      <ul>
+	      <% @roastery.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %><br>
+		<% if current_user.admin? || @roastery.is_radmin?(current_user) %>
+			<%= f.label :year_opened %><br>
+			<%= select_year(Date.today, :start_year => 2011, :end_year => 1835, :prefix => "roastery", :field_name => 'year_opened') %><br>
+			<%= f.label :description %><br>
+			<%= f.text_area :description, :rows => 8 %><br>
+			<%= f.label :website %><br>
+			<%= f.url_field :website, :placeholder => "http://" %><br>
+		<% end %>
+		<%= f.submit %>
+	<% end %>
+</section>

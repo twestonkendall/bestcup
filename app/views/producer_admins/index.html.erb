@@ -1,0 +1,5 @@
+<p>
+	<% @producer_admins.each do |producer_admin| %>
+		<b><%= producer_admin.user.email %></b> - <b><%= link_to producer_admin.farm.name, farm_path(:id => producer_admin.farm.id) %></b> | <%= link_to 'Remove', producer_admin, :confirm => 'Are you sure?', :method => :delete %><br>
+	<% end %>
+</p>

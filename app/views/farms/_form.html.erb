@@ -1,48 +1,33 @@
-<%= form_for(@farm) do |f| %>
-  <% if @farm.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@farm.errors.count, "error") %> prohibited this farm from being saved:</h2>
-
-      <ul>
-      <% @farm.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name, "The name of the producer"%><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :farmer, "Name of the humans involved in the production" %><br />
-    <%= f.text_field :farmer %>
-  </div>
-  <div class="field">
-    <%= f.label :country, "Country produced in" %><br />
-    <%= f.collection_select :country, Farm::COUNTRIES,
-		 :to_s, :to_s, :include_blank => true %>
-  </div>
-  <div class="field">
-    <%= f.label :region, "Region of the country selected" %><br />
-    <%= f.text_field :region %>
-  </div>
-  <div class="field">
-    <%= f.label :elevation, "Elevation or elevation's of the land that the beans are grown on" %><br />
-    <%= f.text_field :elevation %>
-  </div>
-  <div class="field">
-    <%= f.label :description, "The story of the producers and how they farm and process there beans" %><br />
-    <%= f.text_area :description, :rows => 8 %>
-  </div>
-	<% if params[:roast_id] %>
-		<%= hidden_field_tag :roast_id, params[:roast_id] %>
+<section>
+	<%= form_for(@farm) do |f| %>
+	  <% if @farm.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@farm.errors.count, "error") %> prohibited this farm from being saved:</h2>
+	      <ul>
+	      <% @farm.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+		<%= f.label :name, "The name of the producer"%><br>
+		<%= f.text_field :name %><br>
+		<%= f.label :farmer, "Name of the humans involved in the production" %><br>
+		<%= f.text_field :farmer %><br>
+		<%= f.label :country, "Country produced in" %><br>
+		<%= f.collection_select :country, Farm::COUNTRIES, :to_s, :to_s, :include_blank => true %><br>
+		<%= f.label :region, "Region of the country selected" %><br>
+		<%= f.text_field :region %><br>
+		<%= f.label :elevation, "Elevation or elevation's of the land that the beans are grown on" %><br>
+		<%= f.text_field :elevation %><br>
+		<%= f.label :description, "The story of the producers and how they farm and process there beans" %><br>
+		<%= f.text_area :description, :rows => 8 %><br>
+		<% if params[:roast_id] %>
+			<%= hidden_field_tag :roast_id, params[:roast_id] %>
+		<% end %>
+		<% if params[:batch_id] %>
+			<%= hidden_field_tag :batch_id, params[:batch_id] %>
+		<% end %>
+	  <%= f.submit "Save" %>
 	<% end %>
-	<% if params[:batch_id] %>
-		<%= hidden_field_tag :batch_id, params[:batch_id] %>
-	<% end %>
-  <div class="actions">
-    <%= f.submit "Save" %>
-  </div>
-<% end %>
+</section>

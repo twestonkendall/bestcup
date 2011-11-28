@@ -1,11 +1,11 @@
-<div id="crust-aroma-show">
-	<b>Crust Aroma:</b>
+<section id="crust-aroma-show">
+	<h1>Crust Aroma:</h1>
 	Score: <%= cupping_crust_aroma.score %>
 	<% if cupping_crust_aroma.intensity.present? %>
-	Intensity: <%= cupping_crust_aroma.intensity %>
+	<br>Intensity: <%= cupping_crust_aroma.intensity %>
 	<% end %>
 	<% if cupping_crust_aroma.notes.present? %>
-	Notes: <%= cupping_crust_aroma.notes %>
-	<% end %>
-	<%= link_to 'Re-do', cupping_crust_aroma, :method => :delete, :remote => true %>
-</div>
+	<br>Notes: <%= cupping_crust_aroma.notes %>
+	<% end %><br>
+	<%= button_to 'Re-do', cupping_crust_aroma, :method => :delete, :remote => true %>
+</section>

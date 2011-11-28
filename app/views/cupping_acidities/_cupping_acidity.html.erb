@@ -1,9 +1,8 @@
-<div id="acidity-show">
-	<b>Acidity:</b>
+<section id="acidity-show">
+	<h1>Acidity:</h1>
 	Score: <%= cupping_acidity.score %>
 	<% if cupping_acidity.intensity.present? %>
-	Intensity: <%= cupping_acidity.intensity %>
+		<br>Intensity: <%= cupping_acidity.intensity %>
 	<% end %>
-
-	<%= link_to 'Re-do', cupping_acidity, :method => :delete, :remote => true %>
-</div>
+	<br><%= button_to 'Re-do', cupping_acidity, :method => :delete, :remote => true %>
+</section>

@@ -1,31 +1,28 @@
-<%= form_for(@roast) do |f| %>
-  <% if @roast.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@roast.errors.count, "error") %> prohibited this roast from being saved:</h2>
-
-      <ul>
-      <% @roast.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-	
-	<% if @roastery.present? %>
-		<%= f.hidden_field :roastery_id, :value => @roastery.id %>
-	<% else %>
-		<div class="field">
-			<%= f.label :roastery_id %><br />
-		  <%= f.collection_select(:roastery_id, Roastery.find(:all), :id, :name, :prompt => true)%> Not on the list? <%= link_to 'New Roastery', new_roastery_path() %>
-		</div>
-	<% end %>	
-	
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-
-	<div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<section>
+	<%= form_for(@roast) do |f| %>
+	  <% if @roast.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@roast.errors.count, "error") %> prohibited this roast from being saved:</h2>
+	      <ul>
+	      <% @roast.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>	
+		<% if @roastery.present? %>
+			<h1><%= @roastery.name.titleize %></h1>
+			<%= f.hidden_field :roastery_id, :value => @roastery.id %>
+		<% else %>
+			<%= f.label :roastery_id %><br>
+		  <%= f.collection_select(:roastery_id, Roastery.find(:all), :id, :name, :prompt => true)%> Not on the list? <%= link_to 'New Roastery', new_roastery_path() %><br>
+		<% end %>	
+	  <%= f.label :name, "Roast Name" %><br>
+	  <%= f.text_field :name %><br>
+		<% if current_user.admin? || @roastery.is_radmin?(current_user) %>
+			<%= f.label :description %><br>
+			<%= f.text_area :description, :rows => 8 %><br>
+		<% end%>
+	  <%= f.submit %>
+	<% end %>
+</section>

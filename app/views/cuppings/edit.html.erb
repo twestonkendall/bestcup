@@ -1,8 +1,8 @@
-<h1>Editing cupping</h1>
-<p>Is your roast not on the list? Please save the cupping and create roast from the roastery's detail page.</p>
+<header>
+	<%= link_to 'Back', cupping_path %>
+</header>
+<section>
+	<h1>Edit Samples</h1>
+</section>
 <%= render 'form' %>
-
-	<%= button_to 'Destroy', @cupping, :confirm => 'Are you sure?', :method => :delete %>
-
-<%= link_to 'Show', @cupping %> |
-<%= link_to 'Back', cupping_path %>
+<%= button_to 'Destroy', @cupping, :confirm => 'Are you sure?', :method => :delete %>

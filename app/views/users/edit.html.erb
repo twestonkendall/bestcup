@@ -1,6 +1,27 @@
-<h1>Editing <%= @user.email %></h1>
-
+<header>
+	<%= link_to "Home", root_url %>
+</header>
 <%= render 'form' %>
 
-<%= link_to 'Destroy', @user, :confirm => 'Are you sure?', :method => :delete %> |
-<%= link_to 'Back', users_path %>
+<% if @roasterFor.present? %>
+	<section>	
+		<h1>Roaster For</h1>
+		<% @roasterFor.each do |r| %>
+			<section>
+				<h2><%= r.roastery.name %></h2>
+				<%= button_to 'Remove your self from this roastery.', r, :confirm => 'Are you sure?', :method => :delete %>
+			</section>
+		<% end %>
+	</section>
+<% end %>
+<% if @radminFor.present? %>
+	<section>
+		<h1>Roastery Admin For</h1>
+		<% @radminFor.each do |r| %>
+			<section>
+				<h2><%= r.roastery.name %></h2>
+				<%= button_to 'Remove your self from this roastery.', r, :confirm => 'Are you sure?', :method => :delete %>
+			</section>
+		<% end %>
+	</section>
+<% end %>

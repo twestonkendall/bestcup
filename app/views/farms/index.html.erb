@@ -1,16 +1,24 @@
-<h1>Listing producers</h1>
-<p>
-	<%= link_to 'New Producer', new_farm_path %>
-</p>
-
-<% @farms.each do |farm| %>
-<p>
-  <b>The bean producer:</b> <%= farm.name %><br>
-  <b>Humans involved:</b> <%= farm.farmer %><br>
-  <b>Country produced in:</b> <%= farm.country %><br>
-  <b>Region of the country:</b> <%= farm.region %><br>
-  <b>Elevation:</b> <%= farm.elevation %><br>
-  <b>Description of the producer:</b> <%= farm.description %><br>
-	<%= link_to 'Details', farm %>
-</p>
+<header>
+	<%= link_to "Home", root_url %>
+</header>
+<% if can? :create, Farm %>
+	<section>
+		<%= link_to 'New Producer', new_farm_path %>
+	</section>
+<% end %>
+<section>
+	<h1>Producers</h1>
+	<% @farms.each do |farm| %>
+		<%= link_to farm.name_and_country, farm %><br>
+	<% end %>
+</section>
+<% if current_user.nil? %>
+	<footer>
+		<nav>
+			<%= link_to "Log In", root_url %>
+			<menu>
+				<%= link_to 'Roasteries', roasteries_url %>
+			</menu>
+		</nav>
+	</footer>
 <% end %>

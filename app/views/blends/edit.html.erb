@@ -1,5 +1,6 @@
-<h1>Editing blend</h1>
-
+<header>
+	<%= link_to 'Back', @batch %>
+</header>
 <%= render 'form' %>
+<%= button_to 'Remove', @blend, :confirm => 'Are you sure?', :method => :delete %>
 
-<%= link_to 'Back', @batch %>

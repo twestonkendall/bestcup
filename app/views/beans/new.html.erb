@@ -1,9 +1,16 @@
-<h1>New bean</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', farm_path(@farm) %>
-<br>
-<% if @batch %>
-Batch id:<%= @batch.id %>
+<% if @batch.blank? %>
+	<header>
+		<%= link_to "Back", farm_path(@farm) %>
+	</header>
 <% end %>
+<% if @farm.blank? %>
+	<header>
+		<%= link_to "Back", new_blend_path(:batch_id => @batch.id, :roast_id => @roast.id)   %>
+	</header>
+<% end %>
+<% if @farm.present? && @batch.present? %>
+	<header>
+		<%= link_to "Back", new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id) %>
+	</header>
+<% end %>
+<%= render 'form' %>

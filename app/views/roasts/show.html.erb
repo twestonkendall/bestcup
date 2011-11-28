@@ -1,21 +1,32 @@
-<h1>Show Roast</h1>
-<p>
-  <b>Name:</b> <%= @roast.name %><br>
-	<%= link_to 'Edit', edit_roast_path(@roast) %>
-</p>
-<h1>New batch</h1>
-
-<%= render 'batches/form' %>
-<% @batches.each do |batch| %>
-	<%= link_to batch.roasted_on.to_s(:long), batch %> Batch #<%= batch.batch_number %> 
-	<br>
-<% end %>
-
-
-
-
-<p>
-	<%= link_to(@roastery) do %>
-		Back to <%= @roastery.name %>
+<header>
+	<%= link_to "Back", roastery_path(@roastery) %>
+</header>
+<section>
+	<h1><%= @roastery.name.titleize %> | <%= @roast.name.titleize %></h1>
+	<% if @roast.description.present?%>
+	<p><%= @roast.description.camelcase %></p>
 	<% end %>
-</p>
+	<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+			<%= link_to 'Edit', edit_roast_path(@roast) %>
+	<% end %>
+</section>
+<section>
+	<h1>New Batch</h1>
+	<%= render 'batches/form' %>
+</section>
+<% if @batches.present? %>
+	<section>
+		<h1>Batches</h1>
+		<% @batches.each do |batch| %>
+			<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+				<p>
+					<%= link_to batch.roasted_on.to_date.to_formatted_s(:long_ordinal), batch %> Batch #<%= batch.batch_number %> <%= link_to 'Remove', batch, :confirm => 'Are you sure?', :method => :delete %>
+				</p>
+			<% else %>
+				<p>
+					<%= batch.roasted_on.to_s(:long) %> Batch #<%= batch.batch_number %>
+				</p>
+			<% end %>
+		<% end %>
+	</section>
+<% end %>

@@ -2,7 +2,6 @@
   <% if @batch.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@batch.errors.count, "error") %> prohibited this batch from being saved:</h2>
-
       <ul>
       <% @batch.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,11 +10,7 @@
     </div>
   <% end %>
 	<%= f.hidden_field :roast_id, :value => @roast.id %>
-  <div class="field">
-    <%= f.label :roasted_on %><br />
-    <%= f.date_select :roasted_on %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.label :roasted_on %>
+  <%= f.date_select :roasted_on %>
+  <%= f.submit %>
 <% end %>

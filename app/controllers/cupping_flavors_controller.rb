@@ -1,29 +1,20 @@
 class CuppingFlavorsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @sample = Sample.find(params[:sample_id])
     @cupping = @sample.cupping
     @cupping_flavors = CuppingFlavor.where(:sample_id => @sample.id)    
     @cupping_total_score = @sample.cupping_total_scores.last
-
     respond_to do |format|
       format.html # index.html.erb
     end
   end
 
-  def new
-    @cupping_flavor = CuppingFlavor.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
-  
   def create
-    @cupping_flavor = CuppingFlavor.new(params[:cupping_flavor])
     @sample = @cupping_flavor.sample
     @cupping = @sample.cupping
     @cupping_total_score = @sample.cupping_total_scores.last
-
     respond_to do |format|
       if @cupping_flavor.save
         if @cupping_total_score.present?
@@ -72,7 +63,6 @@ class CuppingFlavorsController < ApplicationController
   end
 
   def destroy
-    @cupping_flavor = CuppingFlavor.find(params[:id])
     @cupping_flavor.destroy
     @sample = @cupping_flavor.sample
     @cupping = @sample.cupping
@@ -90,9 +80,7 @@ class CuppingFlavorsController < ApplicationController
                                   @sample.cupping_overalls.average(:score).to_i +
                                   @sample.cupping_sweetnesses.average(:score).to_i +
                                   @sample.cupping_uniformities.average(:score).to_i
-
     @cupping_total_score.save
-
     respond_to do |format|
       format.html { redirect_to cupping_flavors_path(:sample_id => @cupping_flavor.sample.id) }
       format.js {@cupping_flavor}

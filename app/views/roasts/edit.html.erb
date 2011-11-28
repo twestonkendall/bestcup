@@ -1,6 +1,7 @@
-<h1>Editing roast</h1>
+<header>
+	<%= link_to 'Back', @roast %>
+</header>
 <%= render 'form' %>
 <p>
 	<%= button_to 'Destroy', @roast, :confirm => 'Are you sure?', :method => :delete %>
 </p>
-<%= link_to 'Back', @roast %>

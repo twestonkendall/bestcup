@@ -1,14 +1,10 @@
-if ($("div[id*=<%= @cupping_overall.sample.id %>]").find("form[id*=overall]").length > 0){
-	$("div[id*=<%= @cupping_overall.sample.id %>]").find("form[id*=overall]").show();
+if ($("section[id*=<%= @cupping_overall.sample.id %>]").find("form[id*=overall]").length > 0){
+	$("section[id*=<%= @cupping_overall.sample.id %>]").find("form[id*=overall]").show();
 
-	$("div[id*=<%= @cupping_overall.sample.id %>]").find("div[id*=overall]").hide();
+	$("section[id*=<%= @cupping_overall.sample.id %>]").find("section[id*=overall]").hide();
 }
-
 else {
 	location.reload()
 }
-
-$("div[id*=<%= @cupping_overall.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
-
-
+$("section[id*=<%= @cupping_overall.sample.id %>]").find("section[id=total]").html("<h1>Total Score:</h1><%= @cupping_total_score.score %>");
 // alert("Ajax!!")

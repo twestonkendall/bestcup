@@ -7,5 +7,11 @@ class Roaster < ActiveRecord::Base
   validates :user_id,   
             :presence => true,   
             :uniqueness => {:scope => :roastery_id}
-  
+  def is_radmin? (user)
+    not roastery_admining_for(user).nil?
+  end
+
+  def roastery_admining_for (user)
+    roastery.roastery_admins.where(:verified => true).find_by_user_id(user)
+  end  
 end

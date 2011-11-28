@@ -1,7 +1,7 @@
-$("div[id*=<%= @cupping_crust_aroma.sample.id %>]").find("form[id*=crust_aroma]").before('<div id="crust-aroma-show"><b>Crust Aroma:</b> Score: <%= @cupping_crust_aroma.score %><% if @cupping_crust_aroma.intensity.present? %> Intensity: <%= @cupping_crust_aroma.intensity %><% end %><% if @cupping_crust_aroma.notes.present? %> Notes: <%= @cupping_crust_aroma.notes %><% end %> <%= link_to 'Re-do', @cupping_crust_aroma, :method => :delete, :remote => true %></div>');
+$("section[id*=<%= @cupping_crust_aroma.sample.id %>]").find("form[id*=crust_aroma]").before('<section id="crust-aroma-show"><h1>Crust Aroma:</h1> Score: <%= @cupping_crust_aroma.score %><% if @cupping_crust_aroma.intensity.present? %><br>Intensity: <%= @cupping_crust_aroma.intensity %><% end %><% if @cupping_crust_aroma.notes.present? %><br>Notes: <%= @cupping_crust_aroma.notes %><% end %><br><%= button_to 'Re-do', @cupping_crust_aroma, :method => :delete, :remote => true %></section>');
 
-$("div[id*=<%= @cupping_crust_aroma.sample.id %>]").find("form[id*=crust_aroma]").hide();
+$("section[id*=<%= @cupping_crust_aroma.sample.id %>]").find("form[id*=crust_aroma]").hide();
 
-$("div[id*=<%= @cupping_crust_aroma.sample.id %>]").find("div[id=total]").html("<b>Total Score:</b> <%= @cupping_total_score.score %>");
+$("section[id*=<%= @cupping_crust_aroma.sample.id %>]").find("section[id=total]").html("<h1>Total Score:</h1> <%= @cupping_total_score.score %>");
 
 // alert("Ajax!!")

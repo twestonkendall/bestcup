@@ -1,24 +1,10 @@
 class BeansController < ApplicationController
-  # GET /beans/1
-  # GET /beans/1.json
-  def show
-    @bean = Bean.find(params[:id])
-    @farm = @bean.farm
-    @blends = Blend.where(:bean_id => @bean.id)
-    
-    
+  load_and_authorize_resource
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @bean }
-    end
-  end
-
-  # GET /beans/new
-  # GET /beans/new.json
   def new
-    @bean = Bean.new
-    @farm = Farm.find(params[:farm_id])
+    if params[:farm_id]
+      @farm = Farm.find(params[:farm_id])
+    end
     if params[:batch_id]
       @batch = Batch.find(params[:batch_id])
     end
@@ -31,24 +17,18 @@ class BeansController < ApplicationController
     end
   end
 
-  # GET /beans/1/edit
   def edit
-    @bean = Bean.find(params[:id])
-    @farm = @bean.farm
-    
+    @farm = @bean.farm    
   end
-
-  # POST /beans
-  # POST /beans.json
+  
   def create
-    @bean = Bean.new(params[:bean])    
     if params[:batch_id]
       @batch = Batch.find(params[:batch_id])
     end
     if params[:roast_id]
       @roast = Roast.find(params[:roast_id])
     end
-
+    @farm = @bean.farm
     respond_to do |format|
       if @bean.save
         if @batch
@@ -64,11 +44,7 @@ class BeansController < ApplicationController
     end
   end
 
-  # PUT /beans/1
-  # PUT /beans/1.json
   def update
-    @bean = Bean.find(params[:id])
-
     respond_to do |format|
       if @bean.update_attributes(params[:bean])
         format.html { redirect_to @bean.farm, :notice => 'Bean was successfully updated.' }
@@ -80,19 +56,11 @@ class BeansController < ApplicationController
     end
   end
 
-  # DELETE /beans/1
-  # DELETE /beans/1.json
   def destroy
-    @bean = Bean.find(params[:id])
     @bean.destroy
-
     respond_to do |format|
       format.html { redirect_to @bean.farm(:farm_id => @bean.farm_id) }
       format.json { head :ok }
     end
   end
-  
-  
 end
-
-

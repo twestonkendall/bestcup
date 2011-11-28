@@ -18,5 +18,4 @@ class Sample < ActiveRecord::Base
   has_many :cupping_overalls, :dependent => :destroy
   has_many :cupping_total_scores, :dependent => :destroy
   
-  
 end

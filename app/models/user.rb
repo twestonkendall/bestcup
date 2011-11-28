@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  before_validation :downcase_email
   default_scope :order => 'email'
   
   attr_accessible :email, :password, :password_confirmation, :admin, :roles
@@ -7,20 +8,17 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates :email,   
             :presence => true,   
-            :uniqueness => true,   
+            :uniqueness => true, 
             :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
   
   
   has_many :roastery_admins, :dependent => :destroy
   has_many :roasters, :dependent => :destroy
   
-  ROLES = %w[roaster barista] #make sure to add additinal roles to the end of the array so that is dosent mess up the rest
+  private
 
-  def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+  def downcase_email
+    self.email = self.email.downcase if self.email.present?
   end
-
-  def roles
-    ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
-  end
+  
 end

@@ -1,181 +1,186 @@
-<div class="sample" id="sample_<%= sample.id %>">
+<section class="sample" id="sample_<%= sample.id %>">
+	<p>
 	<% if sample.sample_number.present? %>
-	<b>Sample # <%= sample.sample_number %><br>
+		Sample # <%= sample.sample_number %><br>
 	<% end %>
-	
 	<% if sample.batch.present? %>
-	<%= sample.batch.roast.name %></b>
+		Roast: <%= sample.batch.roast.name %><br>
 	<% end %>
-	<br>
-	
 	<% if sample.batch.present? %>
-		<b>Roastery:</b> <%= sample.batch.roast.roastery.name %><br>
+		Roastery: <%= sample.batch.roast.roastery.name %><br>
 	<% end %>
-	
 	<% if sample.batch.present? %>
-		<b>Roasted on:</b> <%= sample.batch.roasted_on.to_s(:long) %><br>
+		Roasted on: <%= sample.batch.roasted_on.to_s(:long) %><br>
 	<% end %>
-	
 	<% if sample.color.present? %>
-		<b>Roast Level:</b> <%= sample.color %><br>
+		Roast Level: <%= sample.color %><br>
 	<% end %>
-	
+	</p>
 <!-- Dry Fragrances	 -->
 	<% if sample.cupping_dry_fragrances.present? %>
 		<%= render :partial => "cupping_dry_fragrances/cupping_dry_fragrance",
 		           :collection => sample.cupping_dry_fragrances %>
 	<% else %>
-		<%= form_for(sample.cupping_dry_fragrances.build, :remote => true) do |f| %>
-			<b>Dry Fragrance:</b>
-			<%= f.hidden_field :sample_id, :value => sample.id %>
-		  <%= f.label :score %>
-			<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
-	    <%= f.label :intensity %>
-	    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %>
-	    <%= f.label :notes %>
-	    <%= f.text_field :notes %>
-	    <%= f.submit "Record" %>
-		<% end %>
+		<section>
+			<%= form_for(sample.cupping_dry_fragrances.build, :remote => true) do |f| %>
+				<h1>Dry Fragrance:</h1>
+				<%= f.hidden_field :sample_id, :value => sample.id %>
+			  <%= f.label :score %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
+		    <%= f.label :intensity %>
+		    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
+		    <%= f.label :notes %>
+		    <%= f.text_field :notes %><br>
+		    <%= f.submit "Record" %>
+			<% end %>
+		</section>
 	<% end %>
 <!-- Crust Aromas	 -->
 	<% if sample.cupping_crust_aromas.present? %>
 		<%= render :partial => "cupping_crust_aromas/cupping_crust_aroma",
 		           :collection => sample.cupping_crust_aromas %>
 	<% else %>
-		<%= form_for(sample.cupping_crust_aromas.build, :remote => true) do |f| %>
-				<b>Crust Aroma:</b>
+		<section>
+			<%= form_for(sample.cupping_crust_aromas.build, :remote => true) do |f| %>
+				<h1>Crust Aroma:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-		    <%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+		    <%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.label :intensity %>
-		    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %>
+		    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
 		    <%= f.label :notes %>
-		    <%= f.text_field :notes %>
+		    <%= f.text_field :notes %><br>
 		    <%= f.submit "Record" %>
-		<% end %>
+			<% end %>
+		</section>
 	<% end %>
 <!-- Break Aromas	 -->
 	<% if sample.cupping_break_aromas.present? %>
 		<%= render :partial => "cupping_break_aromas/cupping_break_aroma",
 		           :collection => sample.cupping_break_aromas %>
 	<% else %>
-		<%= form_for(sample.cupping_break_aromas.build, :remote => true) do |f| %>
-				<b>Break Aroma:</b>
-				<%= f.hidden_field :sample_id, :value => sample.id %>
-			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>		    <%= f.label :intensity %>
-		    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %>
-		    <%= f.label :notes %>
-		    <%= f.text_field :notes %>
-		    <%= f.submit "Record" %>
-		<% end %>
+		<section>
+			<%= form_for(sample.cupping_break_aromas.build, :remote => true) do |f| %>
+					<h1>Break Aroma:</h1>
+					<%= f.hidden_field :sample_id, :value => sample.id %>
+				  <%= f.label :score %>
+					<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
+					<%= f.label :intensity %>
+			    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
+			    <%= f.label :notes %>
+			    <%= f.text_field :notes %><br>
+			    <%= f.submit "Record" %>
+			<% end %>
+		</section>
 	<% end %>
 <!-- Defects	 -->
 	<% if sample.cupping_defects.present? %>
 		<%= render :partial => "cupping_defects/cupping_defect",
 		           :collection => sample.cupping_defects %>
 	<% else %>
-		<%= form_for(sample.cupping_defects.build, :remote => true) do |f| %>
-				<b>Defects:</b>
+	<section>
+			<%= form_for(sample.cupping_defects.build, :remote => true) do |f| %>
+				<h1>Defects:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 		    <%= f.label :number_of_cups %>
-			  <%= f.select :number_of_cups, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]], selected = ["0", "0"]) %> X 
+			  <%= f.select :number_of_cups, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]], selected = ["0", "0"]) %><br>
 				<%= f.label :intensity %>
-				<%= f.select :intensity, options_for_select([["Fault(4)", "4"], ["Taint(2)", "2"], ["0", "0"]], selected = ["0", "0"]) %>
-		    <%= f.submit "Record" %>
-		<% end %>
+				<%= f.select :intensity, options_for_select([["Fault(4)", "4"], ["Taint(2)", "2"], ["0", "0"]], selected = ["0", "0"]) %><br>
+			  <%= f.submit "Record" %>
+			<% end %>
+		</section>
 	<% end %>
 
 
 <!-- flavors	 -->
 	<% if sample.cupping_flavors.present? %>
-		<div id="flavor-show">
-			<b>Flavor: </b>
-			Score:
-		 	<%= sample.cupping_flavors.average(:score).to_i %>
-			Notes:
-				<%= sample.cupping_flavors.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %>
-				<%= link_to 'Manage', cupping_flavors_path(:sample_id => sample.id) %>
-		</div>
-		<div class="another-flavor">
-			<%= form_for(sample.cupping_flavors.build, :remote => true) do |f| %>
-					<b>Another Flavor:</b>
-					<%= f.hidden_field :sample_id, :value => sample.id %>
-				  <%= f.label :score %>
-					<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>	    
-					<%= f.label :notes %>
-			    <%= f.text_field :notes %>
-			    <%= f.submit "Record another" %>
+		<section id="flavor-show">
+			<h1>Flavor: </h1>
+			Score: <%= sample.cupping_flavors.average(:score).to_i %>
+			<% if sample.cupping_flavors.map(&:notes).compact.reject(&:blank?).to_sentence.downcase.present? %>
+				<br>Notes: <%= sample.cupping_flavors.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %>
 			<% end %>
-		</div>
-	<% else %>
-	<div id="flavor-show">
-	</div>
-		<%= form_for(sample.cupping_flavors.build, :remote => true) do |f| %>
-				<span id="flavor-to-another">
-					<b>Flavor:</b>
-				</span>
+			<br><%= link_to 'Manage', cupping_flavors_path(:sample_id => sample.id) %>
+		</section>
+		<section class="another-flavor">
+			<%= form_for(sample.cupping_flavors.build, :remote => true) do |f| %>
+				<h1>Another Flavor:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>	    
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 				<%= f.label :notes %>
-		    <%= f.text_field :notes %>
-		    <%= f.submit "Record" %>
+		    <%= f.text_field :notes %><br>
+		    <%= f.submit "Record another" %>
+			<% end %>
+		</section>
+	<% else %>
+		<section id="flavor-show"></section>
+		<%= form_for(sample.cupping_flavors.build, :remote => true) do |f| %>
+			<span id="flavor-to-another">
+				<h1>Flavor:</h1>
+			</span>
+			<%= f.hidden_field :sample_id, :value => sample.id %>
+		  <%= f.label :score %>
+			<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>	    
+			<%= f.label :notes %>
+	    <%= f.text_field :notes %><br>
+	    <%= f.submit "Record" %>
 		<% end %>
 	<% end %>
 
 
 <!-- After taste	 -->
 	<% if sample.cupping_after_tastes.present? %>
-		<div id="after-tastes-show">
-			<b>After Taste:</b>
-			Score:
-		 	<%= sample.cupping_after_tastes.average(:score).to_i %>
-			Notes:
-				<%= sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %>
-				<%= link_to 'Manage', cupping_after_tastes_path(:sample_id => sample.id) %>
-		</div>
-		<div class="another-after-taste">
-			<%= form_for(sample.cupping_after_tastes.build, :remote => true) do |f| %>
-					<b>Another After Taste:</b>
-					<%= f.hidden_field :sample_id, :value => sample.id %>
-				  <%= f.label :score %>
-					<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
-			    <%= f.label :notes %>
-			    <%= f.text_field :notes %>
-			    <%= f.submit "Record another" %>
+		<section id="after-tastes-show">
+			<h1>After Taste:</h1>
+			Score: <%= sample.cupping_after_tastes.average(:score).to_i %>
+			<% if sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase.present? %>
+				<br>Notes: <%= sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %>
 			<% end %>
-		</div>
+			<br><%= link_to 'Manage', cupping_after_tastes_path(:sample_id => sample.id) %>
+		</section>
+		<section class="another-after-taste">
+			<%= form_for(sample.cupping_after_tastes.build, :remote => true) do |f| %>
+				<h1>Another After Taste:</h1>
+				<%= f.hidden_field :sample_id, :value => sample.id %>
+			  <%= f.label :score %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
+		    <%= f.label :notes %>
+		    <%= f.text_field :notes %><br>
+		    <%= f.submit "Record another" %>
+			<% end %>
+		</section>
 	<% else %>
-	<div id="after-tastes-show">
-	</div>
+		<section id="after-tastes-show"></section>
 		<%= form_for(sample.cupping_after_tastes.build, :remote => true) do |f| %>
 			<span id="after-taste-to-another">
-				<b>After Taste:</b>
+				<h1>After Taste:</h1>
 			</span>
 			<%= f.hidden_field :sample_id, :value => sample.id %>
-			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
-		    <%= f.label :notes %>
-		    <%= f.text_field :notes %>
-		    <%= f.submit "Record" %>
+		  <%= f.label :score %>
+			<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
+	    <%= f.label :notes %>
+	    <%= f.text_field :notes %><br>
+	    <%= f.submit "Record" %>
 		<% end %>
 	<% end %>
 	
-<!-- acidities	 -->
+<!-- Acidities	 -->
 	<% if sample.cupping_acidities.present? %>
 		<%= render :partial => "cupping_acidities/cupping_acidity",
 		           :collection => sample.cupping_acidities %>
 	<% else %>
-	<%= form_for(sample.cupping_acidities.build, :remote => true) do |f| %>
-			<b>Acidity:</b>
+	<section>
+		<%= form_for(sample.cupping_acidities.build, :remote => true) do |f| %>
+			<h1>Acidity:</h1>
 			<%= f.hidden_field :sample_id, :value => sample.id %>
 		  <%= f.label :score %>
-	    <%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+	    <%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 	    <%= f.label :intensity %>
-	    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %>
+	    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
 	    <%= f.submit "Record" %>
-	<% end %>
+		<% end %>
+	</section>
 <% end %>
 
 <!-- Mouthfeels	 -->
@@ -183,15 +188,17 @@
 		<%= render :partial => "cupping_mouthfeels/cupping_mouthfeel",
 		           :collection => sample.cupping_mouthfeels %>
 	<% else %>
-		<%= form_for(sample.cupping_mouthfeels.build, :remote => true) do |f| %>
-				<b>Mouthfeel:</b>
+		<section>
+			<%= form_for(sample.cupping_mouthfeels.build, :remote => true) do |f| %>
+				<h1>Mouthfeel:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.label :weight %>
-				<%= f.select :weight, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %>
+				<%= f.select :weight, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
 		    <%= f.submit "Record" %>
-		<% end %>
+			<% end %>
+		</section>
 	<% end %>
 	
 <!-- Balance	 -->
@@ -199,13 +206,15 @@
 		<%= render :partial => "cupping_balances/cupping_balance",
 		           :collection => sample.cupping_balances %>
 	<% else %>
-		<%= form_for(sample.cupping_balances.build, :remote => true) do |f| %>
-				<b>Balance:</b>
+		<section>
+			<%= form_for(sample.cupping_balances.build, :remote => true) do |f| %>
+				<h1>Balance:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.submit "Record" %>
-		<% end %>
+			<% end %>
+		</section>
 	<% end %>
 	
 <!-- Sweetness	 -->
@@ -213,41 +222,47 @@
 		<%= render :partial => "cupping_sweetnesses/cupping_sweetness",
 		           :collection => sample.cupping_sweetnesses %>
 	<% else %>
-	<%= form_for(sample.cupping_sweetnesses.build, :remote => true) do |f| %>
-			<b>Sweetness:</b>
-			<%= f.hidden_field :sample_id, :value => sample.id %>
-		  <%= f.label :score %>
-			<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
-	    <%= f.submit "Record" %>
+		<section>
+			<%= form_for(sample.cupping_sweetnesses.build, :remote => true) do |f| %>
+				<h1>Sweetness:</h1>
+				<%= f.hidden_field :sample_id, :value => sample.id %>
+			  <%= f.label :score %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><h1>
+		    <%= f.submit "Record" %>
+			<% end %>
+		</section>
 	<% end %>
-<% end %>
 
 <!-- Uniformity	 -->
 	<% if sample.cupping_uniformities.present? %>
 		<%= render :partial => "cupping_uniformities/cupping_uniformity",
 		           :collection => sample.cupping_uniformities %>
 	<% else %>
-		<%= form_for(sample.cupping_uniformities.build, :remote => true) do |f| %>
-				<b>Uniformity:</b>
+		<section>
+			<%= form_for(sample.cupping_uniformities.build, :remote => true) do |f| %>
+				<h1>Uniformity:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.submit "Record" %>
-		<% end %>
+			<% end %>
+		</section>
 	<% end %>
 	
 <!-- Clean Cup	 -->
 	<% if sample.cupping_clean_cups.present? %>
 		<%= render :partial => "cupping_clean_cups/cupping_clean_cup",
 		           :collection => sample.cupping_clean_cups %>
-	<% else %>
-		<%= form_for(sample.cupping_clean_cups.build, :remote => true) do |f| %>
-				<b>Clean Cup:</b>
+	<% else %>	
+		<section>
+			<%= form_for(sample.cupping_clean_cups.build, :remote => true) do |f| %>
+				<h1>Clean Cup:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.submit "Record" %>
-		<% end %>
+			<% end %>
+		</section>
 	<% end %>
 	
 <!-- Overall	 -->
@@ -255,16 +270,19 @@
 		<%= render :partial => "cupping_overalls/cupping_overall",
 		           :collection => sample.cupping_overalls %>
 	<% else %>
-		<%= form_for(sample.cupping_overalls.build, :remote => true) do |f| %>
-				<b>Overall:</b>
+		<section>
+			<%= form_for(sample.cupping_overalls.build, :remote => true) do |f| %>
+				<h1>Overall:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.submit "Record" %>
-		<% end %>
+			<% end %>
+		</section>
 	<% end %>
-	<div id="total">
-		<%= render :partial => "cupping_total_scores/cupping_total_score",
-	           :collection => sample.cupping_total_scores %>
-	</div>
-</div>
+	
+<!-- total score -->
+	<section id="total">		
+		<%= render "cupping_total_scores/cupping_total_score", :sample => sample %>
+	</section>
+</section>

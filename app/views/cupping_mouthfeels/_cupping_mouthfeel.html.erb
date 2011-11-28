@@ -1,9 +1,8 @@
-<div id="mouthfeel-show">
-	<b>Mouthfeel:</b>
+<section id="mouthfeel-show">
+	<h1>Mouthfeel:</h1>
 	Score: <%= cupping_mouthfeel.score %>
 	<% if cupping_mouthfeel.weight.present? %>
-	Weight: <%= cupping_mouthfeel.weight %>
+		<br>Weight: <%= cupping_mouthfeel.weight %>
 	<% end %>
-
-	<%= link_to 'Re-do', cupping_mouthfeel, :method => :delete, :remote => true %>
-</div>
+	<br><%= button_to 'Re-do', cupping_mouthfeel, :method => :delete, :remote => true %>
+</section>

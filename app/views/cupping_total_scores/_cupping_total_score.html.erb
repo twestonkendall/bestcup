@@ -1,2 +1,4 @@
-<b>Total Score:</b>
-<%= cupping_total_score.score %>
+<% if sample.cupping_total_scores.present? %>
+	<h1>Total Score:</h1>
+	<%= sample.cupping_total_scores.last.score %>
+<% end %>

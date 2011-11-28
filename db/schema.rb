@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028190837) do
+ActiveRecord::Schema.define(:version => 20111128201711) do
 
   create_table "batches", :force => true do |t|
     t.date     "roasted_on"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20111028190837) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roast_id"
+    t.integer  "user_id"
   end
 
   create_table "beans", :force => true do |t|
@@ -116,11 +117,11 @@ ActiveRecord::Schema.define(:version => 20111028190837) do
 
   create_table "cupping_defects", :force => true do |t|
     t.integer  "sample_id"
-    t.integer  "number_of_cups"
     t.integer  "intensity"
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "number_of_cups"
   end
 
   add_index "cupping_defects", ["sample_id"], :name => "index_cupping_defects_on_sample_id"
@@ -209,13 +210,23 @@ ActiveRecord::Schema.define(:version => 20111028190837) do
     t.datetime "updated_at"
   end
 
+  create_table "producer_admins", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "farm_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "producer_admins", ["farm_id"], :name => "index_producer_admins_on_farm_id"
+  add_index "producer_admins", ["user_id"], :name => "index_producer_admins_on_user_id"
+
   create_table "roasteries", :force => true do |t|
     t.string   "name"
     t.integer  "year_opened"
     t.text     "description"
-    t.string   "contact"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website"
   end
 
   create_table "roasters", :force => true do |t|
@@ -241,11 +252,10 @@ ActiveRecord::Schema.define(:version => 20111028190837) do
 
   create_table "roasts", :force => true do |t|
     t.string   "name"
-    t.date     "roasted_on"
     t.integer  "roastery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "batch_number"
+    t.text     "description"
   end
 
   add_index "roasts", ["roastery_id"], :name => "index_roasts_on_roastery_id"
@@ -256,7 +266,6 @@ ActiveRecord::Schema.define(:version => 20111028190837) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sample_number"
-    t.integer  "total"
     t.integer  "batch_id"
   end
 
@@ -268,7 +277,6 @@ ActiveRecord::Schema.define(:version => 20111028190837) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
-    t.integer  "roles_mask"
   end
 
 end

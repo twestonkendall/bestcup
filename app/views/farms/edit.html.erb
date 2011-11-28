@@ -1,6 +1,4 @@
-<h1>Editing Producer</h1>
-<%= render 'form' %>
-<p>
-	<%= button_to 'Destroy', @farm, :confirm => 'Are you sure?', :method => :delete %>
-</p>
-<%= link_to 'Back', farm_path(@farm) %>
+<header>
+	<%= link_to 'Back', farm_path(@farm) %>
+</header>
+	<%= render 'form' %>

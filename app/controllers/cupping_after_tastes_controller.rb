@@ -1,29 +1,20 @@
 class CuppingAfterTastesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @sample = Sample.find(params[:sample_id])
     @cupping = @sample.cupping
     @cupping_after_tastes = CuppingAfterTaste.where(:sample_id => @sample.id)
     @cupping_total_score = @sample.cupping_total_scores.last
-
     respond_to do |format|
       format.html # index.html.erb
     end
   end
 
-  def new
-    @cupping_after_taste = CuppingAfterTaste.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
-
   def create
-    @cupping_after_taste = CuppingAfterTaste.new(params[:cupping_after_taste])
     @sample = @cupping_after_taste.sample
     @cupping = @sample.cupping
     @cupping_total_score = @sample.cupping_total_scores.last
-
     respond_to do |format|
       if @cupping_after_taste.save
         if @cupping_total_score.present?
@@ -59,7 +50,6 @@ class CuppingAfterTastesController < ApplicationController
                                         @sample.cupping_overalls.average(:score).to_i +
                                         @sample.cupping_sweetnesses.average(:score).to_i +
                                         @sample.cupping_uniformities.average(:score).to_i
-
           @cupping_total_score.save
           format.html { redirect_to totalcreate_path(:sample_id => @sample.id) }
           format.js {@cupping_after_taste}
@@ -72,7 +62,6 @@ class CuppingAfterTastesController < ApplicationController
   end
 
   def destroy
-    @cupping_after_taste = CuppingAfterTaste.find(params[:id])
     @cupping_after_taste.destroy
     @sample = @cupping_after_taste.sample
     @cupping = @sample.cupping
@@ -90,9 +79,7 @@ class CuppingAfterTastesController < ApplicationController
                                   @sample.cupping_overalls.average(:score).to_i +
                                   @sample.cupping_sweetnesses.average(:score).to_i +
                                   @sample.cupping_uniformities.average(:score).to_i
-
     @cupping_total_score.save
-  
     respond_to do |format|
       format.html { redirect_to cupping_after_tastes_path(:sample_id => @cupping_after_taste.sample.id) }
       format.js {@cupping_after_taste}

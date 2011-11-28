@@ -1,11 +1,25 @@
-<h1>Listing cuppings</h1>
-<p>
-	<%= link_to 'New Cupping', new_cupping_path %>
-</p>
-
-<% @cuppings.each do |cupping| %>
-<p>
-	<b>Cupped on:</b> <%= cupping.created_at.to_s(:long) %>
-	<%= link_to "Details", cupping %>
-</p>
-<% end %>
+<header>
+	<%= link_to "Home", root_url %>
+</header>
+<section>
+	<h1>Cuppings</h1>
+	<% if @cuppings.present? %>
+		<% @cuppings.each do |cupping| %>
+			<aside>
+				<h2><%= link_to cupping.created_at.to_date.to_formatted_s(:long_ordinal), cupping %></h2>
+				<p>
+					<%= Sample.where(:cupping_id => cupping.id).length %> Sample Cupping
+				<p>
+				<% Sample.where(:cupping_id => cupping.id).each do |samp| %>
+					<% Batch.where(:id => samp.batch_id).each do |batch| %>
+						<%= Sample.where(:cupping_id => cupping.id, :batch_id => batch.id).length %>
+						<%= link_to batch.roast_from_roastery, batch.roast %>
+						- <%= batch.roasted_on.to_formatted_s(:long_ordinal) %><br>
+					<% end %>				
+				<% end %>
+			</aside>
+		<% end %>
+	<% else %>
+	You haven't cupped any coffees.
+	<% end %>
+</section>

@@ -1,44 +1,32 @@
-<h1>Batch Show</h1>
-<b>Roasted on:</b>
-<%= @batch.roasted_on %><br>
-<b>Batch number:</b>
-<%= @batch.batch_number %>
-
-
-<p>
-	<% if @blends.present? %>
-		<b>Beans in this batch:</b>
-	<% end %>
-	<%= link_to 'Add a Bean', new_blend_path(:roast_id => @roast.id, :batch_id => @batch.id) %><br>
-
-	<% @blends.each do |bl| %>
-		<b><%= bl.weight %></b> pounds of <b><%= bl.bean.variety%></b> from <b><%= bl.bean.farm.name %></b>. 
-				<% if bl.lot_number.present? %>
-					Lot number <b><%= bl.lot_number %></b>. 
-				<% end %>
-				<%= link_to 'Edit', edit_blend_path(bl) %> 
-				<%= button_to 'Remove', bl, :confirm => 'Are you sure?', 
-				:method => :delete %><br>
-	<% end %>
-</p>
-
-<p>
-<% if @checks.present? %>
-	<b>Checks:</b> 
+<header>
+	<%= link_to 'Back', roast_path(@roast) %>
+</header>
+<section>
+	<h1><%= @roastery.name.titleize %> | <%= @roast.name.titleize %></h1>
+	<h2><%= @batch.batch_number.to_i.ordinalize %> batch from <%= @batch.roasted_on.to_date.to_formatted_s(:long_ordinal) %></h2>
+</section>
+<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+<%= link_to 'Add a Bean', new_blend_path(:roast_id => @roast.id, :batch_id => @batch.id), :confirm => 'Leaving this page will reset the Stopwatch'  %>
 <% end %>
+
 <% if @blends.present? %>
-	<%= link_to 'Add a Check', new_check_path(:batch_id => @batch.id) %>
+	<section>
+		<h1>Beans</h1>
+		<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+			<%= render 'blends/list' %>
+		<% end %>
+	</section>
+	<section>
+		<h1>Stopwatch</h1>
+		<div id="clock1"></div>
+		<noscript>JavaScript required for stopwatch.</noscript>
+	</section>
+	<section>
+		<h1>Checks</h1>
+		<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+				<%= render 'checks/form' %>
+				<%= render 'checks/list' %>
+		<% end %>
+	</section>
 <% end %>
-	<% @checks.each do |ch| %>
-		<p>
-			<b>Time:</b> <%= ch.time %> minutes. <b>Temp:</b> <%= ch.temp %> degrees. <b>Milestone:</b> <%= ch.milestones %>.<% if ch.air_flow.present? %> <b>Air flow:</b> <%= ch.air_flow %>.<% end %><% if ch.gas_flow.present? %> <b>Gas flow:</b> <%= ch.gas_flow %><% end %> <%= link_to 'Edit', edit_check_path(ch) %> <%= button_to 'Remove', ch, :confirm => 'Are you sure?', :method => :delete %>
-	</p>
-	<% end %>
-</p>
-
-
-<p>
-	<%= link_to(@roast) do %>
-		Back to <%= @roast.name %>
-	<% end %>
-</p>
+<script type="text/javascript">$(function() {$('#clock1').stopwatch();});</script>
