@@ -1,24 +1,21 @@
-<header>
-	<%= link_to "Home", root_url %>
+<header class="clearfix">
+	<h1>Producers</h1>
 </header>
 <% if can? :create, Farm %>
-	<section>
-		<%= link_to 'New Producer', new_farm_path %>
-	</section>
+	<%= link_to 'New Producer', new_farm_path , :class => "button" %>
 <% end %>
-<section>
-	<h1>Producers</h1>
+<section class="list">
 	<% @farms.each do |farm| %>
-		<%= link_to farm.name_and_country, farm %><br>
+		<p>
+			<%= link_to farm.name_and_country , farm %>
+		</p>
 	<% end %>
 </section>
 <% if current_user.nil? %>
 	<footer>
 		<nav>
-			<%= link_to "Log In", root_url %>
-			<menu>
-				<%= link_to 'Roasteries', roasteries_url %>
-			</menu>
+			<div><%= link_to "Log In", root_url %></div>
+			<div><%= link_to 'Roasteries', roasteries_url %></div>
 		</nav>
 	</footer>
 <% end %>

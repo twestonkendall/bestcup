@@ -1,4 +1,4 @@
-<section>
+<section class="section">
 	<%= form_for(@bean) do |f| %>
 	  <% if @bean.errors.any? %>
 	    <div id="error_explanation">
@@ -14,21 +14,21 @@
 			<h1><%= @farm.name_and_country %></h1>
 			<%= f.hidden_field :farm_id, :value => @farm.id %>
 		<% else %>
-			<%= f.label :farm_id %><br>
-		  <%= f.collection_select(:farm_id, Farm.find(:all), :id, :name, :prompt => true)%> <%= link_to 'Not on the list', new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id) %><br>
+			<%= link_to 'Farm not on the list', new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "redlink"  %><%= f.label :farm_id %>
+		  <%= f.collection_select(:farm_id, Farm.find(:all), :id, :name, :prompt => true)%>
 		<% end %>
-		<%= f.label :variety %><br>
-	  <%= f.collection_select :variety, Bean::VARIETALS, :to_s, :to_s, :prompt => true %><br>
-	  <%= f.label :harvest_start %><br>
-	  <%= f.collection_select :harvest_start, Bean::MONTHS, :to_s, :to_s, :include_blank => true %><br>
-	  <%= f.label :harvest_end %><br>
-	  <%= f.collection_select :harvest_end, Bean::MONTHS, :to_s, :to_s, :include_blank => true %><br>
+		<%= f.label :variety %>
+	  <%= f.collection_select :variety, Bean::VARIETALS, :to_s, :to_s, :prompt => true %>
+	  <%= f.label :harvest_start %>
+	  <%= f.collection_select :harvest_start, Bean::MONTHS, :to_s, :to_s, :include_blank => true %>
+	  <%= f.label :harvest_end %>
+	  <%= f.collection_select :harvest_end, Bean::MONTHS, :to_s, :to_s, :include_blank => true %>
 		<% if params[:batch_id] %>
 			<%= hidden_field_tag :batch_id, params[:batch_id] %>
 		<% end %>
 		<% if params[:roast_id]%>
 			<%= hidden_field_tag :roast_id, params[:roast_id] %>
 		<% end %>
-	  <%= f.submit "Save" %>
+	  <%= f.submit "Save", :class => "button"  %>
 	<% end %>
 </section>

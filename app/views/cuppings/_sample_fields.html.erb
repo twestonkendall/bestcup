@@ -1,21 +1,28 @@
 <section class="newsamplefields">
 	<%= f.hidden_field :_destroy %>  
-	<%= f.label :sample_number %>:
-	<%= f.text_field :sample_number, :size=> 1  %>
-	<noscript><p>To add or remove samples you must enable JavaScript.</p></noscript><%= link_to_remove_fields "Remove Sample", f %><br>
-	<%= f.label :batch %>:
-	<%= f.collection_select(:batch_id, Batch.order('roasted_on DESC'), :id, :batch_slelct, {:include_blank => 'Please Select'}) %> Not on the list? Save Cupping => Create Roast => Create Batch => Edit Cupping<br>
-	<%= f.label :color, "Roast Level" %>:<br>
+	<%= f.label :sample_number, "Sample Number:" %>
+	<%= f.number_field :sample_number, :size=> 1  %>
+	<%= f.label :batch, "Batch:" %>
+	<%= f.collection_select(:batch_id, Batch.order('roasted_on DESC'), :id, :batch_slelct, {:include_blank => 'Please Select'}) %>
+	<%= f.label :color, "Roast Level:" %><br>
+	
 	<%= f.radio_button :color, "City Roast" %>
-	<%= image_tag("city.jpg", :alt => "City Roast", :class => "roast_level") %>
+	<div id="city_roast", alt="City Roast", class="roast_level"></div>
+	
 	<%= f.radio_button :color, "City Plus" %>
-	<%= image_tag("cityplus.jpg", :alt => "City Plus", :class => "roast_level") %>
+	<div id="city_plus_roast", alt="City Plus", class="roast_level"></div>
+	
 	<%= f.radio_button :color, "Full City" %>
-	<%= image_tag("fullcity.jpg", :alt => "Full City", :class => "roast_level") %>
+	<div id="full_city_roast", alt="Full Plus", class="roast_level"></div><br>
+	
 	<%= f.radio_button :color, "Full City Plus" %>
-	<%= image_tag("fullcityplus.jpg", :alt => "Full City Plus", :class => "roast_level") %>
+	<div id="full_city_plus_roast", alt="Full City Plus", class="roast_level"></div>
+	
 	<%= f.radio_button :color, "Light French" %>
-	<%= image_tag("lightfrench.jpg", :alt => "Light Roast", :class => "roast_level") %>
+	<div id="light_roast", alt="Light Roast", class="roast_level"></div>
+	
 	<%= f.radio_button :color, "French Roast" %>
-	<%= image_tag("fullfrench.jpg", :alt => "French Roast", :class => "roast_level") %>
+	<div id="french_roast", alt="French Roast", class="roast_level"></div>
+	
+	<noscript><p>To add or remove samples you must enable JavaScript.</p></noscript><%= link_to_remove_fields "Remove Sample", f %>
 </section>

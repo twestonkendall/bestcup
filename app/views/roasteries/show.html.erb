@@ -1,74 +1,66 @@
 <header>
-	<%= link_to "Back", roasteries_path %>
+	<h1>Roastery</h1>
+	<% if can? :create, Roast %>
+		<%= link_to "Back", roasteries_path, :class => "leftbutton"  %>
+		<%= link_to 'New Roast', new_roast_path(:roastery_id => @roastery.id), :class => "rightbutton" %>
+	<% else %>
+		<%= link_to "Back", roasteries_path, :class => "button" %>
+	<% end %>
 </header>
-<% if can? :create, Roast %>
-	<section>
-		<%= link_to 'New roast', new_roast_path(:roastery_id => @roastery.id) %>
-	</section>
-<% end %>
-<section>
-	<h1><%= @roastery.name.titleize %></h1>
-</section>
+<h2><%= @roastery.name.titleize %></h2>
 <% if @roasts.present? %>
-	<section>
-		<h1>Roasts:</h1>
+	<section class="sectionlist">
+		<h2>Roasts</h2>
+		<section>
 		<% @roasts.each do |roast| %>
 			<% if can? :read, Roast %>
-				<p>
-					<%= link_to roast.name.titleize, roast %>
-				</p>
+				<p><%= link_to roast.name.titleize, roast %></p>
 			<% else %>
-				<p>
-					<%= roast.name.titleize %>
-				</p>
+				<p><%= roast.name.titleize %></p>
 			<% end %>
 		<% end %>
+		</section>
 	</section>
 <% end %>
-<section>
-	<h1>Details</h1>
+<section class="section">
+	<h2>Details</h2>
+	<% if current_user && current_user.admin? || @roastery.is_radmin?(current_user) %>
+	<%= link_to 'Edit', edit_roastery_path(@roastery), :class => "redlink" %>
+	<% end %>
 	<% if @roastery.year_opened.present? %>
-		Year opened: <%= @roastery.year_opened %>
+		<h2>Year opened</h2> 
+		<p><%= @roastery.year_opened %></p>
 	<% end %>
 	<% if @roastery.description.present? %>
-	  <br>Description: <%= @roastery.description.camelcase %>
+	  <h2>Description</h2> 
+		<p><%= @roastery.description.camelcase %></p>
 	<% end %>
-	
 	<% if @roastery.website.present? %>
-	  <br>Website: <%= link_to @roastery.get_host_without_www(@roastery.website), @roastery.website %>
-	<% end %>
-	<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
-	<br><%= link_to 'Edit Roastery Details', edit_roastery_path(@roastery) %>
+	  <h2>Website</h2> 
+		<p id="weblink"><%= link_to @roastery.get_host_without_www(@roastery.website).camelcase, @roastery.website %></p>
 	<% end %>
 </section>
-<% if current_user.admin?  || @roastery.is_radmin?(current_user) %>
-	<section>
-		<% if @roasters %>
-			<h1>Roasters</h1>
-			<% @roasters.each do |rsters| %>
-				<p>
-					<%= rsters.user.email %> | <%= link_to 'Remove', rsters, :confirm => 'Are you sure?', :method => :delete %>
-				</p>
-			<% end %>
-		<% end %>
-		<%= render 'roasters/form' %>
+<% if current_user && current_user.admin?  || @roastery.is_radmin?(current_user) %>
+	<section class="sectionlist">
+			<h2>Roasters</h2>
+			<%= render 'roasters/form' %>
+			<%= render 'roasters/list' %>
 	</section>
-	<section>
-		<h1>Roastery Admins</h1>
-		<% @roastery_admins.each do |ra| %>
-			<%= ra.user.email %> <% if ra.verified.present? %><b>Verified</b><% end %>
-			| <%= link_to 'Remove', ra, :confirm => 'Are you sure?', :method => :delete %><br>
-		<% end %>
+	
+	
+	<section class="sectionlist">
+		<h2>Roastery Admins</h2>
 		<%= render 'roastery_admins/form' %>
+		<%= render 'roastery_admins/list' %>
 	</section>
+	
+	
 <% end %>
 <% if current_user.nil? %>
 	<footer>
 		<nav>
-			<%= link_to "Log In", root_url %>
-			<menu>
-				<%= link_to 'Producers', farms_url %> 
-			</menu>
+			<div><%= link_to "Log In", root_url %></div>
+			<div><%= link_to 'Producers', farms_url %></div>
 		</nav>
 	</footer>
 <% end %>

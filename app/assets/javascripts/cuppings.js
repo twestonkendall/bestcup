@@ -8,9 +8,10 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g")
   $(link).parent().before(content.replace(regexp, new_id));
 	$("form input:radio").hide()
-	$("img[class=roast_level]").click(function () { 
+	$("form input:radio:checked").next().addClass("shadow")
+	$("div").click(function () { 
 		$(this).prev("form input:radio").attr("checked", "checked")
-		$(this).parent("p").find("img").not($(this)).removeClass("shadow")
+		$(this).parent("section").find("div").not($(this)).removeClass("shadow")
 		$(this).addClass("shadow")
   });
 }
@@ -18,12 +19,9 @@ function add_fields(link, association, content) {
 $(document).ready(function() {
 	$("form input:radio").hide()
 	$("form input:radio:checked").next().addClass("shadow")
-	
-	$("img[class=roast_level]").click(function () { 
+	$("div").click(function () {
 		$(this).prev("form input:radio").attr("checked", "checked")
-	 	$(this).parent("section").find("img").not($(this)).removeClass("shadow")
+	 	$(this).parent("section").find("div").not($(this)).removeClass("shadow")
 	 	$(this).addClass("shadow")
 	});
 })
-
-// .css({background:"yellow", border:"3px red solid"})

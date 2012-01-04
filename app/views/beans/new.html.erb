@@ -1,16 +1,19 @@
 <% if @batch.blank? %>
-	<header>
-		<%= link_to "Back", farm_path(@farm) %>
+	<header class="clearfix">
+		<h1>Bean</h1>
+		<%= link_to "Back", farm_path(@farm), :class => "button" %>
 	</header>
 <% end %>
 <% if @farm.blank? %>
-	<header>
-		<%= link_to "Back", new_blend_path(:batch_id => @batch.id, :roast_id => @roast.id)   %>
+	<header class="clearfix">
+		<h1>Bean</h1>
+		<%= link_to "Back", new_blend_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "button" %>
 	</header>
 <% end %>
 <% if @farm.present? && @batch.present? %>
-	<header>
-		<%= link_to "Back", new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id) %>
+	<header class="clearfix">
+		<h1>Bean</h1>
+		<%= link_to "Back", new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "button" %>
 	</header>
 <% end %>
 <%= render 'form' %>

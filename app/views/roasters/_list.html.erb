@@ -1,0 +1,10 @@
+<section class="list_roasters">
+	<% if @roasters %>
+		<% @roasters.each do |rsters| %>
+			<p>
+				<%= link_to 'Remove', rsters, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
+				<%= rsters.user.email %> 
+			</p>
+		<% end %>
+	<% end %>
+</section>

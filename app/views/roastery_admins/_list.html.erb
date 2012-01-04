@@ -1,0 +1,8 @@
+<section class="list_radmins">
+	<% @roastery_admins.each do |ra| %>
+		<p>
+			<%= link_to 'Remove', ra, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
+			<%= ra.user.email %>
+		</p>
+	<% end %>
+</section>

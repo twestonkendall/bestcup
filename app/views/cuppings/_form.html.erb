@@ -9,10 +9,12 @@
       </ul>
     </div>
   <% end %>
+<section>
 	<%= f.fields_for :samples do |sample| %>
 		<%= render 'sample_fields', :f => sample  %>
 	<% end %>
-	<noscript><p>To add or remove samples you must enable JavaScript.</p></noscript><p><%= link_to_add_fields "Add Another Sample", f, :samples %></p>
-    <%= f.submit %>
+	<noscript><p>To add or remove samples you must enable JavaScript.</p></noscript><p id="addsample"><%= link_to_add_fields "Add Another Sample", f, :samples %></p>
+  <%= f.submit "Save", :class => "button"  %>
+</section>
 <% end %>
 

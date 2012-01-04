@@ -1,30 +1,30 @@
 <header>
-	<%= link_to_function "Back", "history.back()" %>
+	<div class="logo">
+		<%= image_tag("bestcuplogo.jpg", :alt => "Logo") %>
+	</div>
 </header>
-<section>
+<section class="section" id="session">
 	<%= form_for(@user) do |f| %>
 	  <% if @user.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-	      <ul>
-	      <% @user.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
-	    <%= f.label :email %><br>
-	    <%= f.email_field :email %><br>
-	    <%= f.label :password %><br>
-	    <%= f.password_field :password %><br>
-	    <%= f.label :password_confirmation %><br>
-	    <%= f.password_field :password_confirmation %><br>
-	    <%= f.submit "Sign Up" %>
+			    <div id="error_explanation">
+			      <% @user.errors.full_messages.each do |msg| %>
+							<%= msg %>.<br>
+						<% end %>
+			    </div>
+			  <% end %>
+	    <%= f.label :email %>
+	    <%= f.email_field :email %>
+	    <%= f.label :password %>
+	    <%= f.password_field :password %>
+	    <%= f.label :password_confirmation %>
+	    <%= f.password_field :password_confirmation %>
+	    <%= f.submit "Sign Up", :class => "button" %>
 	<% end %>
 </section>
+<%= link_to "Back", root_url, :class => "button" %>
 <footer>
 	<nav>
-		<%= link_to 'Producers', farms_url %>
-		<%= link_to 'Roasteries', roasteries_url %>
+		<div><%= link_to 'Producers', farms_url %></div>
+		<div><%= link_to 'Roasteries', roasteries_url %></div>
 	</nav>
 </footer>

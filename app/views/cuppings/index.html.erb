@@ -1,11 +1,30 @@
 <header>
-	<%= link_to "Home", root_url %>
+	<h1>Cuppings</h1>
+	<%= link_to "Home", root_url, :class => "button" %>
 </header>
 <section>
-	<h1>Cuppings</h1>
 	<% if @cuppings.present? %>
 		<% @cuppings.each do |cupping| %>
-			<aside>
+			<section class="cupping">
+				<%= link_to(cupping) do %>
+					<h1><%= cupping.created_at.to_date.to_formatted_s(:long_ordinal) %></h1>
+				  <h2><%= Sample.where(:cupping_id => cupping.id).length %> Sample Cupping</h2>
+					<% Sample.where(:cupping_id => cupping.id).each do |samp| %>
+						<% Batch.where(:id => samp.batch_id).each do |batch| %>
+							<p><%= batch.roast_from_roastery %></p>
+						<% end %>				
+					<% end %>
+				<% end %>
+			</section>
+		<% end %>
+	<% else %>
+	You haven't cupped any coffees.
+	<% end %>
+	
+	
+	<!-- <% if @cuppings.present? %>
+		<% @cuppings.each do |cupping| %>
+			<section class="cupping">
 				<h2><%= link_to cupping.created_at.to_date.to_formatted_s(:long_ordinal), cupping %></h2>
 				<p>
 					<%= Sample.where(:cupping_id => cupping.id).length %> Sample Cupping
@@ -17,9 +36,9 @@
 						- <%= batch.roasted_on.to_formatted_s(:long_ordinal) %><br>
 					<% end %>				
 				<% end %>
-			</aside>
+			</section>
 		<% end %>
 	<% else %>
 	You haven't cupped any coffees.
-	<% end %>
+	<% end %> -->
 </section>

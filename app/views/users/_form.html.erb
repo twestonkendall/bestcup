@@ -1,26 +1,25 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <%= f.label :email %>
-    <%= f.text_field :email %><br>
-    <%= f.label :password %>
-    <%= f.password_field :password %><br>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %><br>
-	<% if current_user.admin?%>
-	    <%= f.label :admin %>
-			<%= f.check_box :admin %><br>
+<section class="section">
+	<%= form_for(@user) do |f| %>
+	  <% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+	      <ul>
+	      <% @user.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	    <%= f.label :email %>
+	    <%= f.text_field :email %><br>
+	    <%= f.label :password %>
+	    <%= f.password_field :password %><br>
+	    <%= f.label :password_confirmation %>
+	    <%= f.password_field :password_confirmation %><br>
+		<% if current_user.admin?%>
+		    <%= f.label :admin %>
+				<%= f.check_box :admin %><br>
+		<% end %>
+	    <%= f.submit "Update your Account", :class => "button" %>
 	<% end %>
-    <%= f.submit "Update your Account" %>
-<% end %>
-<section>
-	<%= button_to 'Destroy your Account', @user, :confirm => 'Are you sure?', :method => :delete %>
 </section>

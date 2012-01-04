@@ -1,32 +1,48 @@
-<header>
-	<%= link_to "Back", roastery_path(@roastery) %>
-</header>
+<% if current_user.admin? || @roastery.is_radmin?(current_user) # || @roastery.is_roaster?(current_user) %>
+		<header>
+			<h1>Roast</h1>
+			<%= link_to "Back", roastery_path(@roastery), :class => "leftbutton" %>
+			<%= link_to 'Edit', edit_roast_path(@roast), :class => "rightbutton" %>
+		</header>
+<% else %>
+	<header>
+		<h1>Roast</h1>
+		<%= link_to "Back", roastery_path(@roastery), :class => "button" %>
+	</header>
+<% end %>
+<h2><%= @roastery.name.titleize %></h2>
+<h2><%= @roast.name.titleize %></h2>
 <section>
-	<h1><%= @roastery.name.titleize %> | <%= @roast.name.titleize %></h1>
 	<% if @roast.description.present?%>
 	<p><%= @roast.description.camelcase %></p>
-	<% end %>
-	<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
-			<%= link_to 'Edit', edit_roast_path(@roast) %>
-	<% end %>
+	<% end %>	
 </section>
-<section>
-	<h1>New Batch</h1>
+<section class="section batch">
+	<h2>New Batch</h2>
 	<%= render 'batches/form' %>
 </section>
 <% if @batches.present? %>
-	<section>
-		<h1>Batches</h1>
-		<% @batches.each do |batch| %>
-			<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+	<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
+		<section class="sectionlist">
+			<h2>Batches</h2>
+			<section>
+			<% @batches.each do |batch| %>
 				<p>
-					<%= link_to batch.roasted_on.to_date.to_formatted_s(:long_ordinal), batch %> Batch #<%= batch.batch_number %> <%= link_to 'Remove', batch, :confirm => 'Are you sure?', :method => :delete %>
+					<%= link_to 'Remove', batch, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %><%= link_to batch.roasted_on.to_date.to_formatted_s(:long_ordinal), batch %>Batch #<%= batch.batch_number %>
 				</p>
-			<% else %>
+			<% end %>
+			</section>
+		</section>
+	<% else %>
+		<section class="sectionlist">
+			<h2>Batches</h2>
+			<section>
+			<% @batches.each do |batch| %>
 				<p>
 					<%= batch.roasted_on.to_s(:long) %> Batch #<%= batch.batch_number %>
 				</p>
 			<% end %>
-		<% end %>
-	</section>
+			</section>
+		</section>
+	<% end %>
 <% end %>

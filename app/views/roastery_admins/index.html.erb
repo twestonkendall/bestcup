@@ -1,5 +1,11 @@
-<p>
-	<% @roastery_admins.each do |roastery_admin| %>
-		<b><%= roastery_admin.user.email %></b> is<% if roastery_admin.verified.present? %> a <b>Verified</b> admin for<% else %> the creator of<%end%>  <b><%= link_to roastery_admin.roastery.name, roastery_path(:id => roastery_admin.roastery.id) %></b> | <%= link_to 'Remove', roastery_admin, :confirm => 'Are you sure?', :method => :delete %><br>
-	<% end %>
-</p>
+<section class="sectionlist">
+	<h2>Roastery Admins</h2>
+	<section>
+		<% @roastery_admins.each do |roastery_admin| %>
+			<p>
+				<%= link_to 'Remove', roastery_admin, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
+				<b><%= roastery_admin.user.email %></b> for <b><%= link_to roastery_admin.roastery.name, roastery_path(:id => roastery_admin.roastery.id) %></b>
+			</p>
+		<% end %>
+	</section>
+</section>

@@ -1,6 +1,11 @@
-<p>
-	<% @roasters.each do |roaster| %>
-		<b><%= roaster.user.email %></b> is a roaster for <b><%= link_to roaster.roastery.name, roastery_path(:id => roaster.roastery.id) %></b>
-		| <%= link_to 'Remove', roaster, :confirm => 'Are you sure?', :method => :delete %><br>
-	<% end %>
-</p>
+<section class="sectionlist">
+	<h2>Roasters</h2>
+	<section>
+		<% @roasters.each do |roaster| %>
+			<p>
+				<%= link_to 'Remove', roaster, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
+				<b><%= roaster.user.email %></b> for <b><%= link_to roaster.roastery.name, roastery_path(:id => roaster.roastery.id) %></b>
+			</p>
+		<% end %>
+	</section>
+</section>

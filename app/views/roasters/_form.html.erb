@@ -10,7 +10,7 @@
 <% end %>
 <%= form_for(@roaster) do |f| %>
 	<%= f.hidden_field :roastery_id, :value => @roastery.id %>
-	<%= f.label :user_id %>
-	<%= f.collection_select(:user_id, User.find(:all), :id, :email, :prompt => true)%>
-  <%= f.submit "Add Roaster"%>
+	<!-- <%= f.label :user_id %> -->
+	<%= f.collection_select(:user_id, User.find(:all), :id, :email, :prompt => "Select User")%>
+  <%= f.submit "Add Roaster", :class => "button"%>
 <% end %>

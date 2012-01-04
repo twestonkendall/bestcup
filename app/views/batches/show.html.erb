@@ -1,31 +1,37 @@
-<header>
-	<%= link_to 'Back', roast_path(@roast) %>
-</header>
-<section>
-	<h1><%= @roastery.name.titleize %> | <%= @roast.name.titleize %></h1>
-	<h2><%= @batch.batch_number.to_i.ordinalize %> batch from <%= @batch.roasted_on.to_date.to_formatted_s(:long_ordinal) %></h2>
-</section>
 <% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
-<%= link_to 'Add a Bean', new_blend_path(:roast_id => @roast.id, :batch_id => @batch.id), :confirm => 'Leaving this page will reset the Stopwatch'  %>
+<header>
+	<h1>Batch</h1>
+	<%= link_to 'Back', roast_path(@roast), :class => "leftbutton" %>
+	<%= link_to 'Add a Bean', new_blend_path(:roast_id => @roast.id, :batch_id => @batch.id), :class => "rightbutton" %>
+</header>
+<% else %>
+<header>
+	<h1>Batch</h1>
+	<%= link_to 'Back', roast_path(@roast), :class => "button" %>
+</header>
 <% end %>
-
+<h2><%= @roastery.name.titleize %></h2>
+<h2><%= @roast.name.titleize %></h2>
+<h3><%= @batch.batch_number.to_i.ordinalize %> batch from <%= @batch.roasted_on.to_date.to_formatted_s(:long_ordinal) %></h3>
 <% if @blends.present? %>
-	<section>
-		<h1>Beans</h1>
+<section class="sectionlist">
+		<h2>Beans</h2>
 		<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
 			<%= render 'blends/list' %>
 		<% end %>
 	</section>
-	<section>
-		<h1>Stopwatch</h1>
+	<section class="section clearfix">
+		<h2>Stopwatch</h2>
 		<div id="clock1"></div>
 		<noscript>JavaScript required for stopwatch.</noscript>
 	</section>
-	<section>
-		<h1>Checks</h1>
+	<section class="sectionlist">
+		<h2>Checks</h2>
 		<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
 				<%= render 'checks/form' %>
+				<% if @checks.present? %>
 				<%= render 'checks/list' %>
+				<% end %>
 		<% end %>
 	</section>
 <% end %>

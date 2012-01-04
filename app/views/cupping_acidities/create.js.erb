@@ -1,7 +1,7 @@
-$("section[id*=<%= @cupping_acidity.sample.id %>]").find("form[id*=acidity]").before('<section id="acidity-show"><h1>Acidity:</h1>Score: <%= @cupping_acidity.score %><% if @cupping_acidity.intensity.present? %><br>Intensity: <%= @cupping_acidity.intensity %><% end %><br><%= button_to 'Re-do', @cupping_acidity, :method => :delete, :remote => true %></div>');
+$("section[id*=<%= @cupping_acidity.sample.id %>]").find("form[id*=acidity]").before('<section id="acidity-show"><h1>Acidity:</h1><h2>Score: <%= @cupping_acidity.score %></h2><% if @cupping_acidity.intensity.present? %><h2>Intensity: <%= @cupping_acidity.intensity %></h2><% end %><%= button_to 'Re-do', @cupping_acidity, :method => :delete, :remote => true, :class => "button" %></div>');
 
 $("section[id*=<%= @cupping_acidity.sample.id %>]").find("form[id*=acidity]").hide();
 
-$("section[id*=<%= @cupping_acidity.sample.id %>]").find("section[id=total]").html("<h1>Total Score:</h1> <%= @cupping_total_score.score %>");
+$("section[id*=<%= @cupping_acidity.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
 
 // alert("Ajax!!")

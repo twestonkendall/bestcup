@@ -1,31 +1,31 @@
 <header>
-	<%= link_to 'Back', @batch %>
+	<%= link_to 'Back', @batch, :class => "button" %>
 </header>
-<%= form_for(@check) do |f| %>
-  <% if @check.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@check.errors.count, "error") %> prohibited this check from being saved:</h2>
-      <ul>
-      <% @check.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-		<%= f.hidden_field :batch_id, :value => @batch.id %>
-    <%= f.label :milestones, "Type" %>
-		<%= f.collection_select :milestones, Check::MILESTONES,
-     :to_s, :to_s %><br>
-    <%= f.label :time, "Min." %>
-    <%= f.select :time, options_for_select((0..20).to_a.map{|s| ["#{s}", s]}, :selected => @check.time)%><br>
-    <%= f.label :temp, "Temp." %>
-    <%= f.number_field :temp %>º<br>
-    <%= f.label :gas_flow %>
-		<%= f.collection_select :gas_flow, Check::GAS,
-     :to_s, :to_s, :include_blank => true %><br>
-    <%= f.label :air_flow %>
-    <%= f.text_field :air_flow %><br>
-    <%= f.submit %>
-<% end %>
+<section class="section inline clearfix">
+	<%= form_for(@check) do |f| %>
+	  <% if @check.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@check.errors.count, "error") %> prohibited this check from being saved:</h2>
+	      <ul>
+	      <% @check.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+			<%= f.hidden_field :batch_id, :value => @batch.id %>
+			<%= f.collection_select :milestones, Check::MILESTONES, :to_s, :to_s , :prompt => "Type of Check" %>
+			<%= f.label :milestones, "Type" %>
+	    <%= f.select :time, options_for_select((0..20).to_a.map{|s| ["#{s}", s]}, :selected => @check.time), :prompt => "Minute" %>
+			<%= f.label :time, "Min." %>
+	    <%= f.number_field :temp, :placeholder => "Temperature" %>
+	    <%= f.label :temp, "Temp." %>
+			<%= f.collection_select :gas_flow, Check::GAS, :to_s, :to_s, :prompt => "Gas Flow" %>
+			<%= f.label :gas_flow, "Gas" %>
+	    <%= f.text_field :air_flow, :placeholder => "Air Flow" %>
+	    <%= f.label :air_flow, "Air" %>
+			<%= f.submit "Save", :class => "button"  %>
+	<% end %>
+	<%= button_to 'Destroy', @check, :method => :delete, :class => "button" %>
+</section>
 
-<%= button_to 'Destroy', @check, :method => :delete %>

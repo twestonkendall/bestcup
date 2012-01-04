@@ -7,5 +7,5 @@
 	<% if cupping_break_aroma.notes.present? %>
 	<br>Notes: <%= cupping_break_aroma.notes %>
 	<% end %><br>
-	<%= button_to 'Re-do', cupping_break_aroma, :method => :delete, :remote => true %>
+	<%= button_to 'Re-do', cupping_break_aroma, :method => :delete, :remote => true, :class => "button" %>
 </section>

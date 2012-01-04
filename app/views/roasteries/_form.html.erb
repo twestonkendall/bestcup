@@ -1,4 +1,4 @@
-<section>
+<section  class="section">
 	<%= form_for(@roastery) do |f| %>
 	  <% if @roastery.errors.any? %>
 	  	<div id="error_explanation">
@@ -10,16 +10,16 @@
 	      </ul>
 	    </div>
 	  <% end %>
-		<%= f.label :name %><br>
-		<%= f.text_field :name %><br>
+		<%= f.label :name, "Roastery Name:" %>
+		<%= f.text_field :name %>
 		<% if current_user.admin? || @roastery.is_radmin?(current_user) %>
-			<%= f.label :year_opened %><br>
-			<%= select_year(Date.today, :start_year => 2011, :end_year => 1835, :prefix => "roastery", :field_name => 'year_opened') %><br>
-			<%= f.label :description %><br>
-			<%= f.text_area :description, :rows => 8 %><br>
-			<%= f.label :website %><br>
-			<%= f.url_field :website, :placeholder => "http://" %><br>
+			<%= f.label :year_opened %>
+			<%= select_year(Date.today, :start_year => 2011, :end_year => 1835, :prefix => "roastery", :field_name => 'year_opened') %>
+			<%= f.label :description %>
+			<%= f.text_area :description, :rows => 8 %>
+			<%= f.label :website %>
+			<%= f.url_field :website, :placeholder => "http://" %>
 		<% end %>
-		<%= f.submit %>
+	  <%= f.submit "Save", :class => "button"  %>
 	<% end %>
 </section>

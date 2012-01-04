@@ -1,3 +1,14 @@
 // Place all the styles related to the Roasts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.batch form input{
+	text-align: center;
+}
+.batch form select {
+	display: inline;
+	width: auto;
+	margin: 0 3%;
+}

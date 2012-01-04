@@ -4,7 +4,10 @@ class Roastery < ActiveRecord::Base
             :presence => true,   
             :uniqueness => { :case_sensitive => false }
             
-  validates_format_of :website, :with => URI::regexp, :message => "must start with http://"
+  validates_format_of :website, 
+                      :with => URI::regexp, 
+                      :message => "must start with http://", 
+                      :on => :update
   
   has_many :roasts , :dependent => :destroy
   has_many :roastery_admins, :dependent => :destroy

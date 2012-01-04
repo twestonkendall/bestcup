@@ -1,0 +1,8 @@
+<section class="list_padmins">
+	<% @producer_admins.each do |pa| %>
+		<p>
+			<%= link_to 'Remove', pa, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton"  %>
+			<%= pa.user.email %>
+		</p>
+	<% end %>
+</section>

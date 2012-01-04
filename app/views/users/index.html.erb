@@ -1,9 +1,13 @@
-<p>
-	<% @users.each do |user| %>
-		<%= link_to user.email, edit_user_path(user) %>
-		<% if user.admin.present? %>
-			<b>ADMIN!!!</b>
+<section class="sectionlist">
+	<h2>Users</h2>
+	<section>
+		<% @users.each do |user| %>
+			<p>
+				<%= link_to user.email, edit_user_path(user) %>
+				<% if user.admin.present? %>
+					<b>ADMIN!!!</b>
+				<% end %>
+			</p>
 		<% end %>
-		<br>
-	<% end %>
-</p>
+	</section>
+</section>

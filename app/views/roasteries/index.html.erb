@@ -1,13 +1,10 @@
 <header>
-	<%= link_to "Home", root_url %>
+	<h1>Roasteries</h1>
 </header>
 <% if can? :create, Roastery %>
-	<section>
-		<%= link_to 'New Roastery', new_roastery_path %>
-	</section>
+	<%= link_to 'New Roastery', new_roastery_path, :class => "button"  %>
 <% end %>
-<section>
-	<h1>Roasteries</h1>
+<section class="list">
 	<% @roasteries.each do |roastery| %>
 		<p>
 			<%= link_to roastery.name.titleize, roastery %>
@@ -17,10 +14,8 @@
 <% if current_user.nil? %>
 	<footer>
 		<nav>
-			<%= link_to "Log In", root_url %>
-			<menu>
-				<%= link_to 'Producers', farms_url %>
-			</menu>
+			<div><%= link_to "Log In", root_url %></div>
+			<div><%= link_to 'Producers', farms_url %></div>
 		</nav>
 	</footer>
 <% end %>

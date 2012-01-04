@@ -1,21 +1,19 @@
 <section class="sample" id="sample_<%= sample.id %>">
-	<p>
 	<% if sample.sample_number.present? %>
-		Sample # <%= sample.sample_number %><br>
+		<h2>Sample # <%= sample.sample_number %></h2>
 	<% end %>
 	<% if sample.batch.present? %>
-		Roast: <%= sample.batch.roast.name %><br>
+		<h2>Roast: <%= sample.batch.roast.name %></h2>
 	<% end %>
 	<% if sample.batch.present? %>
-		Roastery: <%= sample.batch.roast.roastery.name %><br>
+		<h3>Roastery: <%= sample.batch.roast.roastery.name %></h3>
 	<% end %>
 	<% if sample.batch.present? %>
-		Roasted on: <%= sample.batch.roasted_on.to_s(:long) %><br>
+		<h3>Roasted on: <%= sample.batch.roasted_on.to_s(:long) %></h3>
 	<% end %>
 	<% if sample.color.present? %>
-		Roast Level: <%= sample.color %><br>
+		<h3>Roast Level: <%= sample.color %></h3>
 	<% end %>
-	</p>
 <!-- Dry Fragrances	 -->
 	<% if sample.cupping_dry_fragrances.present? %>
 		<%= render :partial => "cupping_dry_fragrances/cupping_dry_fragrance",
@@ -31,7 +29,7 @@
 		    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
 		    <%= f.label :notes %>
 		    <%= f.text_field :notes %><br>
-		    <%= f.submit "Record" %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -50,7 +48,7 @@
 		    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
 		    <%= f.label :notes %>
 		    <%= f.text_field :notes %><br>
-		    <%= f.submit "Record" %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -69,7 +67,7 @@
 			    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
 			    <%= f.label :notes %>
 			    <%= f.text_field :notes %><br>
-			    <%= f.submit "Record" %>
+			    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -86,7 +84,7 @@
 			  <%= f.select :number_of_cups, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]], selected = ["0", "0"]) %><br>
 				<%= f.label :intensity %>
 				<%= f.select :intensity, options_for_select([["Fault(4)", "4"], ["Taint(2)", "2"], ["0", "0"]], selected = ["0", "0"]) %><br>
-			  <%= f.submit "Record" %>
+			  <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -110,22 +108,22 @@
 				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 				<%= f.label :notes %>
 		    <%= f.text_field :notes %><br>
-		    <%= f.submit "Record another" %>
+		    <%= f.submit "Record another", :class => "button" %>
 			<% end %>
 		</section>
 	<% else %>
 		<section id="flavor-show"></section>
-		<%= form_for(sample.cupping_flavors.build, :remote => true) do |f| %>
-			<span id="flavor-to-another">
-				<h1>Flavor:</h1>
-			</span>
-			<%= f.hidden_field :sample_id, :value => sample.id %>
-		  <%= f.label :score %>
-			<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>	    
-			<%= f.label :notes %>
-	    <%= f.text_field :notes %><br>
-	    <%= f.submit "Record" %>
-		<% end %>
+			<%= form_for(sample.cupping_flavors.build, :remote => true) do |f| %>
+				<span id="flavor-to-another">
+					<h1>Flavor:</h1>
+				</span>
+				<%= f.hidden_field :sample_id, :value => sample.id %>
+			  <%= f.label :score %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>	    
+				<%= f.label :notes %>
+		    <%= f.text_field :notes %><br>
+		    <%= f.submit "Record", :class => "button" %>
+			<% end %>
 	<% end %>
 
 
@@ -147,7 +145,7 @@
 				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.label :notes %>
 		    <%= f.text_field :notes %><br>
-		    <%= f.submit "Record another" %>
+		    <%= f.submit "Record another", :class => "button" %>
 			<% end %>
 		</section>
 	<% else %>
@@ -161,7 +159,7 @@
 			<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 	    <%= f.label :notes %>
 	    <%= f.text_field :notes %><br>
-	    <%= f.submit "Record" %>
+	    <%= f.submit "Record", :class => "button" %>
 		<% end %>
 	<% end %>
 	
@@ -178,7 +176,7 @@
 	    <%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 	    <%= f.label :intensity %>
 	    <%= f.select :intensity, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
-	    <%= f.submit "Record" %>
+	    <%= f.submit "Record", :class => "button" %>
 		<% end %>
 	</section>
 <% end %>
@@ -196,7 +194,7 @@
 				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
 		    <%= f.label :weight %>
 				<%= f.select :weight, options_for_select([["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"], ["0", "0"]]), :prompt => true %><br>
-		    <%= f.submit "Record" %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -212,7 +210,7 @@
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
 				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
-		    <%= f.submit "Record" %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -227,8 +225,8 @@
 				<h1>Sweetness:</h1>
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
-				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><h1>
-		    <%= f.submit "Record" %>
+				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -244,7 +242,7 @@
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
 				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
-		    <%= f.submit "Record" %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -260,7 +258,7 @@
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
 				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
-		    <%= f.submit "Record" %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>
@@ -276,7 +274,7 @@
 				<%= f.hidden_field :sample_id, :value => sample.id %>
 			  <%= f.label :score %>
 				<%= f.select :score, options_for_select([["Exceptional(10)", "10"], ["Outstanding(9)", "9"], ["Excellent(8)", "8"], ["Very good(7)", "7"], ["Good(6)", "6"], ["Average(5)", "5"], ["Fair(4)", "4"], ["Poor(3)", "3"], ["Very poor(2)", "2"], ["Unacceptable(1)", "1"], ["Not present(0)", "0"]], selected = ["Good(6)", "6"]) %><br>
-		    <%= f.submit "Record" %>
+		    <%= f.submit "Record", :class => "button" %>
 			<% end %>
 		</section>
 	<% end %>

@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def edit
     @roasterFor = Roaster.where(:user_id => @user.id)
+    @padminFor = ProducerAdmin.where(:user_id => @user.id)
     @unverifyed = RoasteryAdmin.where(:user_id => @user.id)
     @radminFor = @unverifyed.where(:verified => true)
   end

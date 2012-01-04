@@ -1,7 +1,7 @@
 <header>
-	<%= link_to 'Back', farm_path(@bean.farm) %>
+	<%= link_to 'Back', farm_path(@bean.farm), :class => "button" %>
 </header>
 <%= render 'form' %>
-<% if can? :destroy, @bean %>
-	<%= button_to 'Destroy', @bean, :confirm => 'Are you sure?', :method => :delete %>
-<% end %>
+<!-- <% if can? :destroy, @bean %>
+	<%= button_to 'Destroy', @bean, :confirm => 'Are you sure?', :method => :delete, :class => "button" %>
+<% end %> -->

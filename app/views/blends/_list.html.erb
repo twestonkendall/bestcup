@@ -1,6 +1,7 @@
 <section>
 	<% @blends.each do |bl| %>
 		<p>
+			<%= link_to 'Edit', edit_blend_path(bl), :class => "redlink"  %>
 			<% if bl.weight.present? %>
 			<%= bl.weight %> pounds of 
 			<% end %>
@@ -8,7 +9,6 @@
 			<% if bl.lot_number.present? %>
 				Lot number <%= bl.lot_number %>. 
 			<% end %>
-			<%= link_to 'Edit', edit_blend_path(bl), :confirm => 'Leaving this page will reset the Stopwatch' %>
 		</p>
 	<% end %>
 </section>

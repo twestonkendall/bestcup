@@ -14,42 +14,38 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-	  <title>BestCup | Drink Confidently</title>
-		<meta name="title" content="BestCup | Drink Confidently">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	  <title>BestCup</title>
+		<meta name="title" content="BestCup">
+		<link rel="apple-touch-icon-precomposed" href="images/icon.png"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />  
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />  		
+		<link href='http://fonts.googleapis.com/css?family=Coustard' rel='stylesheet' type='text/css'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"/>
 		<%= stylesheet_link_tag    "application" %>
 	  <%= javascript_include_tag "application" %>
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-		<% if notice %>
-			<span id="notice">
-				<%= notice %>
-			</span>
-		<% end %>
-		<% if alert %>
-			<span id="alert">
-				<%= alert %>
-			</span>
-		<% end %>
 		<%= yield %>
 		<% if current_user %>
 			<footer>
 				<nav>
-						<%= link_to 'Home', root_url %>
+						<div><%= link_to 'Home', root_url %></div>
 						<% if current_user.admin? %>
-						<%= link_to "Users", users_url %>
-						<%= link_to "Roasters", roasters_url %>
-						<%= link_to "Producer Admins", producer_admins_url %>
-						<%= link_to "Roastery Admins", roastery_admins_url %>
+							<div><%= link_to "Users", users_url %></div>
+							<div><%= link_to "Roasters", roasters_url %></div>
+							<div><%= link_to "Producer Admins", producer_admins_url %></div>
+							<div><%= link_to "Roastery Admins", roastery_admins_url %></div>
 						<% end %>
-						<%= link_to 'New Cupping', new_cupping_path %>
-						<%= link_to "Cuppings", cuppings_url %>
-						<%= link_to 'Producers', farms_url %>
-						<%= link_to 'Roasteries', roasteries_url %>
-						You are currently logged in with <%= current_user.email.camelcase %>
-						<%= link_to 'Edit Your Info', edit_user_path(current_user.id) %>
-						<%= link_to 'Log Out', logout_path %>
+						<div><%= link_to 'New Cupping', new_cupping_path %></div>
+						<div><%= link_to "Cuppings", cuppings_url %></div>
+						<div><%= link_to 'Producers', farms_url %></div>
+						<div><%= link_to 'Roasteries', roasteries_url %></div>
+						<div>
+							<p>You are currently logged in with<br><%= current_user.email.camelcase %></p>
+							<%= link_to 'Edit Your Info', edit_user_path(current_user.id), :class => "navbutton"  %>
+							<%= link_to 'Log Out', logout_path, :class => "logoutlink"  %>
+						</div>
 				</nav>
 			</footer>
 		<% end %>

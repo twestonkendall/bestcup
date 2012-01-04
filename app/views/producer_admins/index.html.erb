@@ -1,5 +1,11 @@
-<p>
-	<% @producer_admins.each do |producer_admin| %>
-		<b><%= producer_admin.user.email %></b> - <b><%= link_to producer_admin.farm.name, farm_path(:id => producer_admin.farm.id) %></b> | <%= link_to 'Remove', producer_admin, :confirm => 'Are you sure?', :method => :delete %><br>
-	<% end %>
-</p>
+<section class="sectionlist">
+	<h2>Producer Admins</h2>
+	<section>
+		<% @producer_admins.each do |producer_admin| %>
+			<p>
+				<%= link_to 'Remove', producer_admin, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
+				<b><%= producer_admin.user.email %></b> for <b><%= link_to producer_admin.farm.name, farm_path(:id => producer_admin.farm.id) %></b>
+			</p>
+		<% end %>
+	</section>
+</section>

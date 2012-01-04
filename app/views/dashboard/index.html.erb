@@ -1,73 +1,73 @@
-<p>BestCup logo</p>
+<header>
+	<div class="logo">
+		<%= image_tag("bestcuplogo.jpg", :alt => "Logo") %>
+	</div>
+</header>
 <% if current_user %>
-	<section>
-		<h1>Cuppings</h1>
 		<% if @cuppings.present? %>
-			<% @cuppings.each do |cupping| %>
-				<section>
-					<h2><%= link_to cupping.created_at.to_date.to_formatted_s(:long_ordinal), cupping %></h2>
-					<p>
-						<%= Sample.where(:cupping_id => cupping.id).length %> Sample Cupping
-					</p>
-					<ul>
-						<% Sample.where(:cupping_id => cupping.id).each do |samp| %>
-							<% Batch.where(:id => samp.batch_id).each do |batch| %>
-								<li>
-									<%= Sample.where(:cupping_id => cupping.id, :batch_id => batch.id).length %>
-									<%= link_to batch.roast_from_roastery, batch.roast %>
-									- <%= batch.roasted_on.to_formatted_s(:long_ordinal) %>
-								</li>
-								<br>
-							<% end %>				
-						<% end %>
-					</ul>
-				</section>
-			<% end %>
+		<section class="sectionlist">
+			<h2>Cuppings</h2>
+			<section>
+				<% @cuppings.each do |cupping| %>
+						<p><%= link_to(cupping) do %>
+							<%= cupping.created_at.to_date.to_formatted_s(:long_ordinal) %>
+							<br><%= Sample.where(:cupping_id => cupping.id).length %> Sample Cupping
+							<% Sample.where(:cupping_id => cupping.id).each do |samp| %>
+								<% Batch.where(:id => samp.batch_id).each do |batch| %>
+									<br><%= batch.roast_from_roastery %>
+								<% end %>				
+							<% end %>
+						<% end %></p>
+				<% end %>
+			</section>
 		<% else %>
-		You haven't cupped any coffees.
+		<section class="sectionlist">
+			<h2>Cuppings</h2>
+			<section>
+				<p>You haven't cupped any coffees.</p>
+			</section>
+		</section>
 		<% end %>
 	</section>
-	<% if @roasterFor.present? %>
-		<section>	
-			<h1>Roaster</h1>
-			<% @roasterFor.each do |r| %>
+	<% if @padminFor.present? %>
+		<section class="sectionlist">
+			<h2>Producer Admin For</h2>
+			<% @padminFor.each do |pa| %>
 				<section>
-					<h2><%= link_to r.roastery.name, roastery_path(:id => r.roastery.id) %></h2>
+					<p><%= link_to pa.farm.name, farm_path(:id => pa.farm.id) %></p>
 				</section>
 			<% end %>
 		</section>
 	<% end %>
 	<% if @radminFor.present? %>
-		<section>
-			<h1>Roastery Admin</h1>
+		<section class="sectionlist">
+			<h2>Roastery Admin For</h2>
 			<% @radminFor.each do |ra| %>
 				<section>
-					<h2><%= link_to ra.roastery.name, roastery_path(:id => ra.roastery.id) %></h2>
+					<p><%= link_to ra.roastery.name, roastery_path(:id => ra.roastery.id) %></p>
 				</section>
 			<% end %>
 		</section>
 	<% end %>
-	<% if @padminFor.present? %>
-		<section>
-			<h1>Producer Admin</h1>
-			<% @padminFor.each do |pa| %>
+	<% if @roasterFor.present? %>
+	<section class="sectionlist">
+			<h2>Roaster For</h2>
+			<% @roasterFor.each do |r| %>
 				<section>
-					<h2><%= link_to pa.farm.name, farm_path(:id => pa.farm.id) %></h2>
+					<p><%= link_to r.roastery.name, roastery_path(:id => r.roastery.id) %></p>
 				</section>
 			<% end %>
 		</section>
 	<% end %>
 <% else %>
-	<section>
-		<%= link_to "Sign Up", new_user_path %>
-	</section>
-	<section>
+	<section class="section" id="session">
 		<%= render 'sessions/form' %>
 	</section>
+		<%= link_to "Sign Up", new_user_path, :id => "signup", :class => "button" %>
 	<footer>
 		<nav>
-			<%= link_to 'Producers', farms_url %>
-			<%= link_to 'Roasteries', roasteries_url %>
+			<div><%= link_to 'Producers', farms_url %></div>
+			<div><%= link_to 'Roasteries', roasteries_url %></div>
 		</nav>
 	</footer>
 <% end %>

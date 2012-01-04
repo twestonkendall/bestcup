@@ -1,27 +1,51 @@
-<header>
-	<%= link_to "Home", root_url %>
-</header>
+<% if current_user.admin? %>
+	<header class="clearfix">
+	<%= link_to 'Back', users_url, :class => "leftbutton" %>
+	<%= link_to "Home", root_url, :class => "rightbutton"  %>
+	</header>
+<% else %>
+	<header>
+		<%= link_to "Home", root_url, :class => "button"  %>
+	</header>
+<% end %>
+
+
 <%= render 'form' %>
 
-<% if @roasterFor.present? %>
-	<section>	
-		<h1>Roaster For</h1>
-		<% @roasterFor.each do |r| %>
+
+<% if @padminFor.present? %>
+	<section class="section">
+		<h2>Producer Admin For</h2>
+		<% @padminFor.each do |p| %>
 			<section>
-				<h2><%= r.roastery.name %></h2>
-				<%= button_to 'Remove your self from this roastery.', r, :confirm => 'Are you sure?', :method => :delete %>
+				<p><h2><%= p.farm.name %></h2>
+				<%= button_to 'Remove your self.', p, :confirm => 'Are you sure?', :method => :delete, :class => "button" %></p>
 			</section>
 		<% end %>
 	</section>
 <% end %>
 <% if @radminFor.present? %>
-	<section>
-		<h1>Roastery Admin For</h1>
+	<section class="section">
+		<h2>Roastery Admin For</h2>
 		<% @radminFor.each do |r| %>
 			<section>
-				<h2><%= r.roastery.name %></h2>
-				<%= button_to 'Remove your self from this roastery.', r, :confirm => 'Are you sure?', :method => :delete %>
+				<p><h2><%= r.roastery.name %></h2>
+				<%= button_to 'Remove your self.', r, :confirm => 'Are you sure?', :method => :delete, :class => "button" %></p>
 			</section>
 		<% end %>
 	</section>
 <% end %>
+<% if @roasterFor.present? %>
+	<section class="section">
+		<h2>Roaster For</h2>
+		<% @roasterFor.each do |r| %>
+			<section>
+				<p><h2><%= r.roastery.name %></h2>
+				<%= button_to 'Remove your self.', r, :confirm => 'Are you sure?', :method => :delete, :class => "button" %></p>
+			</section>
+		<% end %>
+	</section>
+<% end %>
+<section>
+	<%= button_to 'Destroy your Account', @user, :confirm => 'Are you sure?', :method => :delete, :class => "button" %>
+</section>

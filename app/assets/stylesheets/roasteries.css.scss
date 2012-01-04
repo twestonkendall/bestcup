@@ -1,3 +1,21 @@
 // Place all the styles related to the Roasteries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#weblink a {
+	color: rgb(121,39,22);
+	text-decoration: underline;
+}
+section .list_radmins p {
+	min-height: 2.2em;
+}
+section .list_radmins p:first-child {
+	border-top: 2px solid #792616;
+}
+section .list_roasters p {
+	min-height: 2.2em;
+}
+section .list_roasters p:first-child {
+	border-top: 2px solid #792616;
+}

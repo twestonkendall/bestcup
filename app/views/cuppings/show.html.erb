@@ -1,15 +1,15 @@
-<header>
-	<%= link_to_function "Back", "history.back()" %>
-</header>
 <% if can? :update, Cupping %>
-	<section>
-		<%= link_to 'Edit Samples', edit_cupping_path(@cupping) %>
-	</section>
+	<header>
+		<%= link_to "Home", root_url, :class => "leftbutton" %>
+		<%= link_to 'Edit Samples', edit_cupping_path(@cupping), :class => "rightbutton"  %>
+	</header>
+<% else %>
+	<header>
+		<%= link_to "Home", root_url, :class => "button" %>
+	</header>
 <% end %>
 <section>
-	<p>
-		Cupped on: <%= @cupping.created_at.to_date.to_formatted_s(:long_ordinal) %>
-	</p>
+	<h2><%= @cupping.created_at.to_date.to_formatted_s(:long_ordinal) %></h2>
 </section>
 <noscript><p>These forms are designed to work best with JavaScript.<p></noscript>
 	

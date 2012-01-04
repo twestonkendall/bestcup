@@ -4,5 +4,5 @@
 	<% if cupping_mouthfeel.weight.present? %>
 		<br>Weight: <%= cupping_mouthfeel.weight %>
 	<% end %>
-	<br><%= button_to 'Re-do', cupping_mouthfeel, :method => :delete, :remote => true %>
+	<br><%= button_to 'Re-do', cupping_mouthfeel, :method => :delete, :remote => true, :class => "button" %>
 </section>

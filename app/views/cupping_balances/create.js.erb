@@ -1,7 +1,7 @@
-$("section[id*=<%= @cupping_balance.sample.id %>]").find("form[id*=balance]").before('<section id="balance-show"><h1>Balance:</h1>Score: <%= @cupping_balance.score %><br><%= button_to 'Re-do', @cupping_balance, :method => :delete, :remote => true %></section>');
+$("section[id*=<%= @cupping_balance.sample.id %>]").find("form[id*=balance]").before('<section id="balance-show"><h1>Balance:</h1>Score: <%= @cupping_balance.score %><br><%= button_to 'Re-do', @cupping_balance, :method => :delete, :remote => true, :class => "button" %></section>');
 
 $("section[id*=<%= @cupping_balance.sample.id %>]").find("form[id*=balance]").hide();
 
-$("section[id*=<%= @cupping_balance.sample.id %>]").find("section[id=total]").html("<h1>Total Score:</h1><%= @cupping_total_score.score %>");
+$("section[id*=<%= @cupping_balance.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
 
 // alert("Ajax!!")

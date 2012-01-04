@@ -12,17 +12,12 @@ gem 'json'
 gem 'sass-rails', "~> 3.1.0"
 gem 'coffee-script'
 gem 'uglifier'
-
 gem 'jquery-rails'
 gem 'sprockets', "~> 2.0.2"
 gem 'bcrypt-ruby'
-
 gem "modernizr-rails", "~> 2.0.6"
-
 gem "cancan"
-
-
-
+# gem 'jquery_mobile_rails'
 
 
 # Use unicorn as the web server

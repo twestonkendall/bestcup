@@ -1,3 +1,10 @@
 // Place all the styles related to the Farms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+section .list_padmins p {
+	min-height: 2.2em;
+}
+section .list_padmins p:first-child {
+	border-top: 2px solid #792616;
+}

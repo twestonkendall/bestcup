@@ -2,7 +2,7 @@ class RoasteryAdminsController < ApplicationController
   load_and_authorize_resource  
 
   def index
-    @roastery_admins = RoasteryAdmin.all
+    @roastery_admins = RoasteryAdmin.where(:verified => true)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @roastery_admins }

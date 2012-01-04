@@ -1,7 +1,7 @@
 <header>
-	<%= link_to 'Back', @batch %>
+	<%= link_to 'Back', @batch, :class => "button" %>
 </header>
-<h1>Add a bean to <%= @batch.roast.name %></h1>
-
+<section class="section">
+<h2>Add a bean to <%= @batch.roast.name %></h2>
 <%= render 'form' %>
-
+</section>
