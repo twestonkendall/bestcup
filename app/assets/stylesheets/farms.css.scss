@@ -8,3 +8,9 @@ section .list_padmins p {
 section .list_padmins p:first-child {
 	border-top: 2px solid #792616;
 }
+.inline input {
+	width: 68%;
+}
+.inline select {
+	width: 69%;
+}

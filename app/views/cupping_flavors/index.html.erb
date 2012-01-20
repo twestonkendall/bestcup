@@ -1,15 +1,13 @@
 <header>
-	<%= link_to 'Back', totalupdate_path(:id => @cupping_total_score.id)  %>
+	<h1>Flavors</h1>
+	<%= link_to 'Back', totalupdate_path(:id => @cupping_total_score.id), :class => "button"  %>
 </header>
-<section>
-	<h1>Listing Flavors</h1>
-	<table>
+<section class="cuppingattributes">
 		<% @cupping_flavors.each do |flavor| %>
-		  <tr id="<%=flavor.id%>">
-			  <td><b>Score:</b> <%= flavor.score %></td>
-			  <td><b>Notes:</b> <%= flavor.notes %></td>
-				<td><%= button_to 'Remove', flavor, :method => :delete, :remote => true %></td>
-			</tr>
+		  <section class="attributesample clearfix" id="<%=flavor.id%>">
+			<%= button_to 'Remove', flavor, :method => :delete, :remote => true, :class => "redo" %>
+		  Score: <%= flavor.score %>
+			<br>Notes: <%= flavor.notes %>
+			</section>
 		<% end %>
-	</table>
 </section>

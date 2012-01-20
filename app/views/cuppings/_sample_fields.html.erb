@@ -1,9 +1,9 @@
 <section class="newsamplefields">
 	<%= f.hidden_field :_destroy %>  
-	<%= f.label :sample_number, "Sample Number:" %>
 	<%= f.number_field :sample_number, :size=> 1  %>
-	<%= f.label :batch, "Batch:" %>
+	<%= f.label :sample_number, "Sample #" %>
 	<%= f.collection_select(:batch_id, Batch.order('roasted_on DESC'), :id, :batch_slelct, {:include_blank => 'Please Select'}) %>
+	<%= f.label :batch, "Batch:" %>
 	<%= f.label :color, "Roast Level:" %><br>
 	
 	<%= f.radio_button :color, "City Roast" %>
@@ -13,7 +13,7 @@
 	<div id="city_plus_roast", alt="City Plus", class="roast_level"></div>
 	
 	<%= f.radio_button :color, "Full City" %>
-	<div id="full_city_roast", alt="Full Plus", class="roast_level"></div><br>
+	<div id="full_city_roast", alt="Full Plus", class="roast_level"></div>
 	
 	<%= f.radio_button :color, "Full City Plus" %>
 	<div id="full_city_plus_roast", alt="Full City Plus", class="roast_level"></div>
@@ -24,5 +24,5 @@
 	<%= f.radio_button :color, "French Roast" %>
 	<div id="french_roast", alt="French Roast", class="roast_level"></div>
 	
-	<noscript><p>To add or remove samples you must enable JavaScript.</p></noscript><%= link_to_remove_fields "Remove Sample", f %>
+	<noscript><p>To add or remove samples you must enable JavaScript.</p></noscript><p><%= link_to_remove_fields "Remove Sample", f %></p>
 </section>

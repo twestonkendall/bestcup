@@ -6,5 +6,5 @@ if ($("section[id*=<%= @cupping_overall.sample.id %>]").find("form[id*=overall]"
 else {
 	location.reload()
 }
-$("section[id*=<%= @cupping_overall.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
+$("section[id*=<%= @cupping_overall.sample.id %>]").find("section[id=total]").html("<h2>Total Score: <%= @cupping_total_score.score %></h2>");
 // alert("Ajax!!")

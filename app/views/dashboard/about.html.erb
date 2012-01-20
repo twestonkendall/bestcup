@@ -1,0 +1,28 @@
+<header>
+	<h1>About</h1>
+</header>
+<section class="sectionlist">
+	<h2>Contact</h2>
+	<p><a href="tel:707-636-4552">Phone: 707-636-4552</a></p>
+	<p><a href="mailto:get@bestcup.co">Email: Get@BestCup.Co</a></p>
+	<p><a href="https://twitter.com/BestCupCo" data-show-count="false">Follow @BestCupCo on Twitter.</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+	<p><a href="https://twitter.com/intent/tweet?screen_name=BestCupCo">Tweet to @BestCupCo</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</section>
+<section class="section">
+	<h2>Credits</h2>
+<p>Inspiration and energy by Coffee.<br>Paper by Moleskin. Pens by Zebra.<br>Music by Pandora.<br>Computers by Apple.<br>Education by Railscast.com, A Book Apart, and Lynda.com.<br>Written in Ruby.<br>Framed by Ruby on Rails.</p>
+	<h2>All of these things were free or bootstrapped by Britton.</h2>
+</section>
+<% if current_user.nil? %>
+	<footer>
+		<nav>
+			<div><%= link_to 'Log In', root_url %></div>
+			<div><%= link_to 'Producers', farms_url %></div>
+			<div><%= link_to 'Roasteries', roasteries_url %></div>
+			<div><%= link_to 'About', about_path %></div>
+		</nav>
+	</footer>
+<% end %>
+

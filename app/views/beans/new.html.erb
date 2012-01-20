@@ -8,6 +8,7 @@
 	<header class="clearfix">
 		<h1>Bean</h1>
 		<%= link_to "Back", new_blend_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "button" %>
+		<%= link_to 'Farm not on the list', new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "redlink"  %>
 	</header>
 <% end %>
 <% if @farm.present? && @batch.present? %>
@@ -16,4 +17,7 @@
 		<%= link_to "Back", new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "button" %>
 	</header>
 <% end %>
+
+
+
 <%= render 'form' %>

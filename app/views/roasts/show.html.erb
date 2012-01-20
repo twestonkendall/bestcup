@@ -1,20 +1,20 @@
-<% if current_user.admin? || @roastery.is_radmin?(current_user) # || @roastery.is_roaster?(current_user) %>
-		<header>
-			<h1>Roast</h1>
-			<%= link_to "Back", roastery_path(@roastery), :class => "leftbutton" %>
-			<%= link_to 'Edit', edit_roast_path(@roast), :class => "rightbutton" %>
-		</header>
-<% else %>
-	<header>
-		<h1>Roast</h1>
-		<%= link_to "Back", roastery_path(@roastery), :class => "button" %>
-	</header>
-<% end %>
-<h2><%= @roastery.name.titleize %></h2>
+<header>
+	<h1>Roast</h1>
+	<%= link_to "Back", roastery_path(@roastery), :class => "button" %>
+</header>
 <h2><%= @roast.name.titleize %></h2>
-<section>
+<section class="section">
+	<h2>Details</h2>
+	<% if current_user && current_user.admin? || @roastery.is_radmin?(current_user) %>
+		<%= link_to 'Edit', edit_roast_path(@roast), :class => "redlink_section" %>
+	<% end %>	
+	<% if @roastery.name.present?%>
+		<h2>Roastery</h2>
+		<p><%= @roastery.name.titleize %></p>
+	<% end %>
 	<% if @roast.description.present?%>
-	<p><%= @roast.description.camelcase %></p>
+		<h2>Description</h2>
+		<p><%= @roast.description.camelcase %></p>
 	<% end %>	
 </section>
 <section class="section batch">

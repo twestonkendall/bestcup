@@ -3,6 +3,9 @@
 		<%= image_tag("bestcuplogo.jpg", :alt => "Logo") %>
 	</div>
 </header>
+<section id="disclaimer">
+	<p id="error_explanation">Disclaimer: This website is currently designed to look best on mobile devices.</p>
+</section>
 <% if current_user %>
 		<% if @cuppings.present? %>
 		<section class="sectionlist">
@@ -60,7 +63,7 @@
 		</section>
 	<% end %>
 <% else %>
-	<section class="section" id="session">
+	<section class="section clearfix" id="session">
 		<%= render 'sessions/form' %>
 	</section>
 		<%= link_to "Sign Up", new_user_path, :id => "signup", :class => "button" %>
@@ -68,6 +71,7 @@
 		<nav>
 			<div><%= link_to 'Producers', farms_url %></div>
 			<div><%= link_to 'Roasteries', roasteries_url %></div>
+			<div><%= link_to 'About', about_path %></div>
 		</nav>
 	</footer>
 <% end %>

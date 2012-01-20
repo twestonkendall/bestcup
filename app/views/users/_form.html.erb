@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section clearfix" id="session">
 	<%= form_for(@user) do |f| %>
 	  <% if @user.errors.any? %>
 	    <div id="error_explanation">
@@ -10,15 +10,15 @@
 	      </ul>
 	    </div>
 	  <% end %>
+	    <%= f.text_field :email %>
 	    <%= f.label :email %>
-	    <%= f.text_field :email %><br>
-	    <%= f.label :password %>
-	    <%= f.password_field :password %><br>
-	    <%= f.label :password_confirmation %>
-	    <%= f.password_field :password_confirmation %><br>
-		<% if current_user.admin?%>
+	    <%= f.password_field :password %>
+	    <%= f.label :password, "Pass." %>
+	    <%= f.password_field :password_confirmation %>
+		  <%= f.label :password_confirmation, "Pass. Confirmation" %>
+	  <% if current_user.admin?%>
+				<%= f.check_box :admin %>
 		    <%= f.label :admin %>
-				<%= f.check_box :admin %><br>
 		<% end %>
 	    <%= f.submit "Update your Account", :class => "button" %>
 	<% end %>

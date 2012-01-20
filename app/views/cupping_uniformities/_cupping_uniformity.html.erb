@@ -1,5 +1,5 @@
-<section id="uniformity-show">
-	<h1>Uniformity:</h1>
-	Score: <%= cupping_uniformity.score %>
-	<br><%= button_to 'Re-do', cupping_uniformity, :method => :delete, :remote => true, :class => "button" %>
+<section class="attributesample" id="cupping_uniformity_<%= cupping_uniformity.id %>">
+	<%= button_to 'Re-do', cupping_uniformity, :method => :delete, :remote => true, :class => "redo"%>
+	<h2># <%= cupping_uniformity.sample.sample_number %></h2>
+		<p>Score: <%= cupping_uniformity.score %></p>
 </section>

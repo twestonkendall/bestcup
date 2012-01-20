@@ -1,8 +1,7 @@
 <header>
+	<h1>Edit Bean</h1>
 	<%= link_to 'Back', @batch, :class => "button" %>
 </header>
-<section class="section">
 <%= render 'form' %>
 <%= button_to 'Remove', @blend, :confirm => 'Are you sure?', :method => :delete, :class => "button" %>
-</section>
 

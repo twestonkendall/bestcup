@@ -11,15 +11,16 @@ section .list_checks p:first-child {
 	text-align:center;
 }
 .stopwatch .start, .stopwatch .stop, {
-	font-size: 1.5em;
+	font-size: 1em;
 	letter-spacing:0.06em;
 	color: #ffffff;
 	display: inline-block;
-	margin: 0.3em 0 0.3em 0.3em ;
+/*	margin: 0.3em 0 0.3em 0.3em ;*/
+	margin: 0.3em;
+	padding: .5em 0;
 	width: 45%;
 	text-align: center;	
 	float: left;
-	padding: .3em 0;
 	background: -moz-linear-gradient(
 		top,
 		#a3a3a3 0%,
@@ -48,15 +49,17 @@ section .list_checks p:first-child {
 
 }
 .stopwatch .reset {
-	font-size: 1.5em;
+	font-size: 1em;
 	letter-spacing:0.06em;
 	color: #ffffff;
 	display: block;
 	width: 45%;
-	margin: 0.3em 0.3em 0.3em 0.3em;
+/*	margin: 0.3em 0.3em 0.3em 0.3em;*/
+	margin: 0.3em;
+	padding: .5em 0;
 	text-align: center;	
 	float: right;
-	padding: .3em 0;
+/*	padding: .3em 0;*/
 	background: -moz-linear-gradient(
 		top,
 		#a3a3a3 0%,
@@ -113,8 +116,9 @@ section .list_checks p:first-child {
 	width: 76%;
 }
 .inline input[type=submit]{
-	font-size: 1.5em;
+	font-size: 1em;
 	width: 98%;
-	margin: .5em auto .5em;
-	padding: .3em;
+	margin: 0.3em;
+	padding: .5em 0;
+	
 }

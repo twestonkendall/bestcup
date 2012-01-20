@@ -3,7 +3,7 @@
 		<%= image_tag("bestcuplogo.jpg", :alt => "Logo") %>
 	</div>
 </header>
-<section class="section" id="session">
+<section class="section clearfix" id="session">
 	<%= form_for(@user) do |f| %>
 	  <% if @user.errors.any? %>
 			    <div id="error_explanation">
@@ -12,19 +12,20 @@
 						<% end %>
 			    </div>
 			  <% end %>
-	    <%= f.label :email %>
 	    <%= f.email_field :email %>
-	    <%= f.label :password %>
+	    <%= f.label :email %>
 	    <%= f.password_field :password %>
-	    <%= f.label :password_confirmation %>
+	    <%= f.label :password, "Pass." %>
 	    <%= f.password_field :password_confirmation %>
+	    <%= f.label :password_confirmation, "Pass. Confirmation" %>
 	    <%= f.submit "Sign Up", :class => "button" %>
 	<% end %>
 </section>
-<%= link_to "Back", root_url, :class => "button" %>
+<%= link_to "Back", root_url, :class => "button", :id => "signup" %>
 <footer>
 	<nav>
 		<div><%= link_to 'Producers', farms_url %></div>
 		<div><%= link_to 'Roasteries', roasteries_url %></div>
+		<div><%= link_to 'About', about_path %></div>
 	</nav>
 </footer>

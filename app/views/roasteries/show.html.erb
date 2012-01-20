@@ -25,7 +25,7 @@
 <section class="section">
 	<h2>Details</h2>
 	<% if current_user && current_user.admin? || @roastery.is_radmin?(current_user) %>
-	<%= link_to 'Edit', edit_roastery_path(@roastery), :class => "redlink" %>
+	<%= link_to 'Edit', edit_roastery_path(@roastery), :class => "redlink_section" %>
 	<% end %>
 	<% if @roastery.year_opened.present? %>
 		<h2>Year opened</h2> 
@@ -61,6 +61,7 @@
 		<nav>
 			<div><%= link_to "Log In", root_url %></div>
 			<div><%= link_to 'Producers', farms_url %></div>
+			<div><%= link_to 'About', about_path %></div>
 		</nav>
 	</footer>
 <% end %>

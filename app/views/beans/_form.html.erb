@@ -1,8 +1,11 @@
-<section class="section">
+<section class="section inline clearfix">
+	<% if @farm.present? %>
+	<h2><%= @farm.name.titleize %></h2>
+	<% end %>
 	<%= form_for(@bean) do |f| %>
 	  <% if @bean.errors.any? %>
 	    <div id="error_explanation">
-	      <h2><%= pluralize(@bean.errors.count, "error") %> prohibited this bean from being saved:</h2>
+	      <h3><%= pluralize(@bean.errors.count, "error") %> prohibited this bean from being saved:</h3>
 	      <ul>
 	      <% @bean.errors.full_messages.each do |msg| %>
 	        <li><%= msg %></li>
@@ -11,18 +14,17 @@
 	    </div>
 	  <% end %>
 		<% if @farm.present? %>
-			<h1><%= @farm.name_and_country %></h1>
 			<%= f.hidden_field :farm_id, :value => @farm.id %>
 		<% else %>
-			<%= link_to 'Farm not on the list', new_farm_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "redlink"  %><%= f.label :farm_id %>
 		  <%= f.collection_select(:farm_id, Farm.find(:all), :id, :name, :prompt => true)%>
+			<%= f.label :farm_id %>
 		<% end %>
-		<%= f.label :variety %>
 	  <%= f.collection_select :variety, Bean::VARIETALS, :to_s, :to_s, :prompt => true %>
-	  <%= f.label :harvest_start %>
+		<%= f.label :variety %>
 	  <%= f.collection_select :harvest_start, Bean::MONTHS, :to_s, :to_s, :include_blank => true %>
-	  <%= f.label :harvest_end %>
+	  <%= f.label :harvest_start %>
 	  <%= f.collection_select :harvest_end, Bean::MONTHS, :to_s, :to_s, :include_blank => true %>
+	  <%= f.label :harvest_end %>
 		<% if params[:batch_id] %>
 			<%= hidden_field_tag :batch_id, params[:batch_id] %>
 		<% end %>

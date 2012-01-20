@@ -41,10 +41,11 @@
 						<div><%= link_to "Cuppings", cuppings_url %></div>
 						<div><%= link_to 'Producers', farms_url %></div>
 						<div><%= link_to 'Roasteries', roasteries_url %></div>
+						<div><%= link_to 'About', about_path %></div>
 						<div>
-							<p>You are currently logged in with<br><%= current_user.email.camelcase %></p>
-							<%= link_to 'Edit Your Info', edit_user_path(current_user.id), :class => "navbutton"  %>
+							<p>You are currently logged in with <br><%= current_user.email.camelcase %></p>
 							<%= link_to 'Log Out', logout_path, :class => "logoutlink"  %>
+							<%= link_to 'Account', edit_user_path(current_user.id), :class => "navbutton"  %>
 						</div>
 				</nav>
 			</footer>

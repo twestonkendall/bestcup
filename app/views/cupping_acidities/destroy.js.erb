@@ -1,6 +1,5 @@
 if ($("section[id*=<%= @cupping_acidity.sample.id %>]").find("form[id*=acidity]").length > 0){
 	$("section[id*=<%= @cupping_acidity.sample.id %>]").find("form[id*=acidity]").show();
-
 	$("section[id*=<%= @cupping_acidity.sample.id %>]").find("section[id*=acidity]").hide();
 }
 
@@ -8,7 +7,7 @@ else {
 	location.reload()
 }
 
-$("section[id*=<%= @cupping_acidity.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
+$("section[id*=<%= @cupping_acidity.sample.id %>]").find("section[id=total]").html("<h2>Total Score: <%= @cupping_total_score.score %></h2>");
 
 
 // alert("Ajax!!")

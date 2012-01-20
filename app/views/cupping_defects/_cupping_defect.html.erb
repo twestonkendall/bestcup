@@ -1,5 +1,5 @@
-<section id="defects-show">
-	<h1>Defects:</h1>
-	Score: <%= cupping_defect.score %><br>
-	<%= button_to 'Re-do', cupping_defect, :method => :delete, :remote => true, :class => "button" %>
+<section class="attributesample" id="cupping_defect_<%= cupping_defect.id %>">
+	<%= button_to 'Re-do', cupping_defect, :method => :delete, :remote => true, :class => "redo"%>
+	<h2># <%= cupping_defect.sample.sample_number %></h2>
+		<p>Score: <%= cupping_defect.score %></p>
 </section>

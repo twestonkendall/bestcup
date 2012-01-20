@@ -1,21 +1,13 @@
-if ($("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[class=another-after-taste]").length > 0){
+if ($("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[class*=anotheraftertaste]").length > 0){
 	
-	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id*=after-tastes]").html('<h1>After Taste:</h1> Score: <%= @cupping_after_taste.sample.cupping_after_tastes.average(:score).to_i %><% if @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase.present? %><br>Notes: <%= @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %><% end %><br><%= link_to 'Manage', cupping_after_tastes_path(:sample_id => @cupping_after_taste.sample.id) %>');
-	
-	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
-	
+	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id*=after-taste]").html('<%= link_to 'Manage', cupping_after_tastes_path(:sample_id => @cupping_after_taste.sample.id), :class => "redlink" %><h2># <%= @cupping_after_taste.sample.sample_number %></h2><p>Score: <%= @cupping_after_taste.sample.cupping_after_tastes.average(:score).to_i %></p><% if @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase.present? %><p>Notes: <%= @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %></p><% end %>');
+	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id=total]").html("<h2>Total Score: <%= @cupping_total_score.score %></h2>");
 }
-
 else {
-	
-	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id*=after-tastes]").html('<h1>After Taste:</h1>Score: <%= @cupping_after_taste.sample.cupping_after_tastes.average(:score).to_i %><% if @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase.present? %><br>Notes: <%= @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %><% end %><br><%= link_to 'Manage', cupping_after_tastes_path(:sample_id => @cupping_after_taste.sample.id) %>');
 
-	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("form[id*=new_cupping_after_taste]").wrap('<section class="another-after-taste" />');
-
-	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("span[id*=after-taste-to-another]").html('<h1>Another After Taste:</h1>');
-
-	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("form[id*=after_taste]").find(":input[type=submit]").attr("value","Record another");
-
-	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
-
+	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id*=after-taste]").html('<%= link_to 'Manage', cupping_after_tastes_path(:sample_id => @cupping_after_taste.sample.id), :class => "redlink" %><h2># <%= @cupping_after_taste.sample.sample_number %></h2><p>Score: <%= @cupping_after_taste.sample.cupping_after_tastes.average(:score).to_i %></p><% if @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase.present? %><p>Notes: <%= @cupping_after_taste.sample.cupping_after_tastes.map(&:notes).compact.reject(&:blank?).to_sentence.downcase %></p><% end %>');
+	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("section[id=total]").html("<h2>Total Score: <%= @cupping_total_score.score %></h2>");
+	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("form[class*=cupping_after_taste]").wrap('<section class="anotheraftertaste clearfix" />');
+	$("section[id*=<%= @cupping_after_taste.sample.id %>]").find("form[class*=cupping_after_taste]").find(":input[type=submit]").attr("value","Record Another");
 }
+

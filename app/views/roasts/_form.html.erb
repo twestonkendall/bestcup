@@ -1,4 +1,4 @@
-<section  class="section">
+<section class="section inline clearfix">
 	<%= form_for(@roast) do |f| %>
 	  <% if @roast.errors.any? %>
 	    <div id="error_explanation">
@@ -11,17 +11,16 @@
 	    </div>
 	  <% end %>	
 		<% if @roastery.present? %>
-			<h1><%= @roastery.name.titleize %></h1>
 			<%= f.hidden_field :roastery_id, :value => @roastery.id %>
 		<% else %>
-			<%= f.label :roastery_id %>
 		  <%= f.collection_select(:roastery_id, Roastery.find(:all), :id, :name, :prompt => true)%> Not on the list? <%= link_to 'New Roastery', new_roastery_path() %>
+			<%= f.label :roastery_id %>
 		<% end %>	
-	  <%= f.label :name, "Roast Name:" %>
-	  <%= f.text_field :name %>
-		<% if current_user.admin? || @roastery.is_radmin?(current_user) %>
+	  <%= f.text_field :name, :placeholder => "name." %>
+		<%= f.label :name, "Roast" %>
+	  <% if current_user.admin? || @roastery.is_radmin?(current_user) %>
 			<%= f.label :description %>
-			<%= f.text_area :description, :rows => 8 %>
+			<%= f.text_area :description, :rows => 8, :placeholder => "The story of the Roast."  %>
 		<% end%>
 	  <%= f.submit "Save", :class => "button"  %>
 	<% end %>

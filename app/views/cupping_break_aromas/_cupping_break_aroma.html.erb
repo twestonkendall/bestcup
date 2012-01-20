@@ -1,11 +1,11 @@
-<section id="break-aroma-show">
-	<h1>Break Aroma:</h1>
-	Score: <%= cupping_break_aroma.score %>
+<section class="attributesample" id="cupping_break_aroma_<%= cupping_break_aroma.id %>">
+	<%= button_to 'Re-do', cupping_break_aroma, :method => :delete, :remote => true, :class => "redo"%>
+	<h2># <%= cupping_break_aroma.sample.sample_number %></h2>
+		<p>Score: <%= cupping_break_aroma.score %></p>
 	<% if cupping_break_aroma.intensity.present? %>
-	<br>Intensity: <%= cupping_break_aroma.intensity %>
+		<p>Intensity: <%= cupping_break_aroma.intensity %></p>
 	<% end %>
 	<% if cupping_break_aroma.notes.present? %>
-	<br>Notes: <%= cupping_break_aroma.notes %>
-	<% end %><br>
-	<%= button_to 'Re-do', cupping_break_aroma, :method => :delete, :remote => true, :class => "button" %>
+		<p>Notes: <%= cupping_break_aroma.notes %></p>
+	<% end %>
 </section>

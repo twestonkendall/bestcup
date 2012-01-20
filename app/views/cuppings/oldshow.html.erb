@@ -1,12 +1,10 @@
 <% if can? :update, Cupping %>
 	<header>
-		<h1>Cupping</h1>
 		<%= link_to "Home", root_url, :class => "leftbutton" %>
 		<%= link_to 'Edit Samples', edit_cupping_path(@cupping), :class => "rightbutton"  %>
 	</header>
 <% else %>
 	<header>
-		<h1>Cupping</h1>
 		<%= link_to "Home", root_url, :class => "button" %>
 	</header>
 <% end %>
@@ -14,5 +12,6 @@
 	<h2><%= @cupping.created_at.to_date.to_formatted_s(:long_ordinal) %></h2>
 </section>
 <noscript><p>These forms are designed to work best with JavaScript.<p></noscript>
-
-<%= render :partial => "samples/sample" %>
+	
+<%= render :partial => "samples/sample",
+           :collection => @cupping.samples %>

@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section inline clearfix">
 	<%= form_for(@farm) do |f| %>
 	  <% if @farm.errors.any? %>
 	    <div id="error_explanation">
@@ -10,18 +10,18 @@
 	      </ul>
 	    </div>
 	  <% end %>
-		<%= f.label :name, "The name of the producer"%>
-		<%= f.text_field :name %>
-		<%= f.label :farmer, "Name of the humans involved in the production" %>
-		<%= f.text_field :farmer %>
-		<%= f.label :country, "Country produced in" %>
+		<%= f.text_field :name, :placeholder => "of the producer." %>
+		<%= f.label :name %>
 		<%= f.collection_select :country, Farm::COUNTRIES, :to_s, :to_s, :include_blank => true %>
-		<%= f.label :region, "Region of the country selected" %>
-		<%= f.text_field :region %>
-		<%= f.label :elevation, "Elevation or elevation's of the land that the beans are grown on" %>
-		<%= f.text_field :elevation %>
-		<%= f.label :description, "The story of the producers and how they farm and process there beans" %>
-		<%= f.text_area :description, :rows => 8 %>
+		<%= f.label :country, "Country" %>
+		<%= f.text_field :region, :placeholder => "of the country selected." %>
+		<%= f.label :region %>
+		<%= f.text_field :farmer, :placeholder => "involved in the production." %>
+		<%= f.label :farmer, "Humans" %>
+		<%= f.text_field :elevation, :placeholder => "or elevation's." %>
+		<%= f.label :elevation %>
+		<%= f.label :description %>
+		<%= f.text_area :description, :rows => 5, :placeholder => "The story of the producers." %>
 		<% if params[:roast_id] %>
 			<%= hidden_field_tag :roast_id, params[:roast_id] %>
 		<% end %>

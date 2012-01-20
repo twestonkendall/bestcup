@@ -1,10 +1,12 @@
 <% if current_user.admin? %>
 	<header class="clearfix">
+	<h1>Account</h1>
 	<%= link_to 'Back', users_url, :class => "leftbutton" %>
 	<%= link_to "Home", root_url, :class => "rightbutton"  %>
 	</header>
 <% else %>
 	<header>
+		<h1>Account</h1>
 		<%= link_to "Home", root_url, :class => "button"  %>
 	</header>
 <% end %>

@@ -29,9 +29,7 @@
 		<h2>Checks</h2>
 		<% if current_user.admin? || @roastery.is_radmin?(current_user) || @roastery.is_roaster?(current_user) %>
 				<%= render 'checks/form' %>
-				<% if @checks.present? %>
 				<%= render 'checks/list' %>
-				<% end %>
 		<% end %>
 	</section>
 <% end %>

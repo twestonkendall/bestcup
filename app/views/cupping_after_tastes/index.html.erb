@@ -1,15 +1,14 @@
 <header>
-	<%= link_to 'Back', totalupdate_path(:id => @cupping_total_score.id) %>
+	<h1>After Tastes</h1>
+
+	<%= link_to 'Back', totalupdate_path(:id => @cupping_total_score.id), :class => "button"  %>	
 </header>
-<section>
-	<h1>Listing cupping After Tastes</h1>
-	<table>
+<section class="cuppingattributes">
 		<% @cupping_after_tastes.each do |cupping_after_taste| %>
-		  <tr id="<%=cupping_after_taste.id%>">
-			  <td><b>Score:</b> <%= cupping_after_taste.score %><td>
-			  <td><b>Notes:</b> <%= cupping_after_taste.notes %></td>
-				<td><%= button_to 'Remove', cupping_after_taste, :method => :delete, :remote => true %></td>
-			</tr>
+		  <section class="attributesample clearfix" id="<%=cupping_after_taste.id%>">
+			<%= button_to 'Remove', cupping_after_taste, :method => :delete, :remote => true, :class => "redo" %>
+		  Score: <%= cupping_after_taste.score %>
+			<br>Notes: <%= cupping_after_taste.notes %>
+			</section>
 		<% end %>
-	</table>
 </section>

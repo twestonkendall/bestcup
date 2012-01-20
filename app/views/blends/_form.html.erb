@@ -1,7 +1,10 @@
+<section class="section clearfix">
 <%= form_for(@blend) do |f| %>
 	<%= f.hidden_field :batch_id, :value => @batch.id %>
-	<%= link_to 'Not on the list', new_bean_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "redlink" %>	
-	<%= f.label :bean, "Variety-Producer-Country" %>
+	<!-- <%= f.label :bean, "Variety-Producer-Country" %> -->
+	
+	<%= link_to 'Not on the list', new_bean_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "redlink" %>
+	
 	<%= collection_select(:blend, :bean_id, Bean.order('variety ASC'), :id, :bean_and_farm, :prompt => "Variety-Producer-Country") %>
 	<!-- <%= f.label :lot_number %> -->
 	<%= f.text_field :lot_number, :placeholder => "Lot Number" %>
@@ -9,4 +12,4 @@
 	<%= f.text_field :weight, :placeholder => "Pounds" %>
 	<%= f.submit "Save", :class => "button" %>
 <% end %>
-
+</section>

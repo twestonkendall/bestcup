@@ -1,5 +1,5 @@
-<section id="overall-show">
-	<h1>Overall:</h1>
-	Score: <%= cupping_overall.score %>
-	<br><%= button_to 'Re-do', cupping_overall, :method => :delete, :remote => true, :class => "button" %>
+<section class="attributesample" id="cupping_overall_<%= cupping_overall.id %>">
+	<%= button_to 'Re-do', cupping_overall, :method => :delete, :remote => true, :class => "redo"%>
+	<h2># <%= cupping_overall.sample.sample_number %></h2>
+		<p>Score: <%= cupping_overall.score %></p>
 </section>

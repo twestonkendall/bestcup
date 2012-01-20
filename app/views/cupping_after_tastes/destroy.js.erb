@@ -1,6 +1,6 @@
-$("tr[id*=<%= @cupping_after_taste.id %>]").hide();
+$("section[id*=<%= @cupping_after_taste.id %>]").hide();
 
-if ($("tr:visible").length < 1){
+if ($("section:visible").length < 2){
 	$('a').click(function() { return false; });
 	window.location = 'cuppings/<%= @cupping_after_taste.sample.cupping.id %>'
 }

@@ -1,8 +1,8 @@
-<section id="acidity-show">
-	<h1>Acidity:</h1>
-	<h2>Score: <%= cupping_acidity.score %></h2>
+<section class="attributesample" id="cupping_acidity_<%= cupping_acidity.id %>">
+	<%= button_to 'Re-do', cupping_acidity, :method => :delete, :remote => true, :class => "redo"%>
+	<h2># <%= cupping_acidity.sample.sample_number %></h2>
+		<p>Score: <%= cupping_acidity.score %></p>
 	<% if cupping_acidity.intensity.present? %>
-		<h2>Intensity: <%= cupping_acidity.intensity %></h2>
+		<p>Intensity: <%= cupping_acidity.intensity %></p>
 	<% end %>
-	<%= button_to 'Re-do', cupping_acidity, :method => :delete, :remote => true, :class => "button" %>
 </section>

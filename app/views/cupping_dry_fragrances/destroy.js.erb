@@ -1,14 +1,13 @@
 if ($("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("form[id*=dry_fragrance]").length > 0){
 	$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("form[id*=dry_fragrance]").show();
-
-	$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("section[id*=dry-fragrance]").hide();
+	$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("section[id*=dry_fragrance]").hide();
 }
 
 else {
 	location.reload()
 }
 
-$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
+$("section[id*=<%= @cupping_dry_fragrance.sample.id %>]").find("section[id=total]").html("<h2>Total Score: <%= @cupping_total_score.score %></h2>");
 
 
 

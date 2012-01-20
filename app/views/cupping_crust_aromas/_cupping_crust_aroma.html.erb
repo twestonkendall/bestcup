@@ -1,11 +1,11 @@
-<section id="crust-aroma-show" class="cuppingsection">
-	<h1>Crust Aroma:</h1>
-	Score: <%= cupping_crust_aroma.score %>
+<section class="attributesample" id="cupping_crust_aroma_<%= cupping_crust_aroma.id %>">
+	<%= button_to 'Re-do', cupping_crust_aroma, :method => :delete, :remote => true, :class => "redo" %>
+	<h2># <%= cupping_crust_aroma.sample.sample_number %></h2>
+		<p>Score: <%= cupping_crust_aroma.score %></p>
 	<% if cupping_crust_aroma.intensity.present? %>
-	<br>Intensity: <%= cupping_crust_aroma.intensity %>
+		<p>Intensity: <%= cupping_crust_aroma.intensity %></p>
 	<% end %>
 	<% if cupping_crust_aroma.notes.present? %>
-	<br>Notes: <%= cupping_crust_aroma.notes %>
-	<% end %><br>
-	<%= button_to 'Re-do', cupping_crust_aroma, :method => :delete, :remote => true, :class => "button" %>
+		<p>Notes: <%= cupping_crust_aroma.notes %></p>
+	<% end %>
 </section>

@@ -2,7 +2,7 @@ class CuppingDefectsController < ApplicationController
   load_and_authorize_resource
 
   def create
-    @cupping_defect.score = (@cupping_defect.number_of_cups * @cupping_defect.intensity) 
+    @cupping_defect.score = (@cupping_defect.intensity) 
     @sample = @cupping_defect.sample
     @cupping = @sample.cupping
     @cupping_total_score = @sample.cupping_total_scores.last

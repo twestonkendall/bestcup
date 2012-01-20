@@ -7,7 +7,7 @@
 		<%= link_to "Back", farms_path, :class => "button" %>
 	<% end %>
 </header>
-<h2><%= @farm.name_and_country %></h2>
+<h2><%= @farm.name.titleize %></h2>
 <% if @beans.present? %>
 	<section class="sectionlist">
 		<h2>Beans Produced</h2>
@@ -36,10 +36,14 @@
 	<section class="section">
 		<h2>Details</h2>
 			<% if can? :update, @farm %>
-				<%= link_to 'Edit', edit_farm_path(@farm), :class => "redlink"  %>
+				<%= link_to 'Edit', edit_farm_path(@farm), :class => "redlink_section"  %>
+			<% end %>
+			<% if @farm.country.present? %>
+		  	<h2>Country</h2> 
+				<p><%= @farm.country %></p>
 			<% end %>
 			<% if @farm.region.present? %>
-		  	<h2>Region of the country</h2> 
+		  	<h2>Region</h2> 
 				<p><%= @farm.region.titleize %></p>
 			<% end %>
 			<% if @farm.farmer.present? %>
@@ -69,6 +73,7 @@
 		<nav>		
 			<div><%= link_to "Log In	", root_url %></div>
 			<div><%= link_to 'Roasteries', roasteries_url %></div>
+			<div><%= link_to 'About', about_path %></div>
 		</nav>
 	</footer>
 <% end %>

@@ -1,11 +1,11 @@
-<section id="dry-fragrance-show" class="cuppingsection">
-	<h1>Dry Fragrance:</h1>
-	<h2>Score: <%= cupping_dry_fragrance.score %></h2>
+<section class="attributesample" id="cupping_dry_fragrance_<%= cupping_dry_fragrance.id %>">
+	<%= button_to 'Re-do', cupping_dry_fragrance, :method => :delete, :remote => true, :class => "redo"%>
+	<h2># <%= cupping_dry_fragrance.sample.sample_number %></h2>
+		<p>Score: <%= cupping_dry_fragrance.score %></p>
 	<% if cupping_dry_fragrance.intensity.present? %>
-		<h2>Intensity: <%= cupping_dry_fragrance.intensity %></h2>
+		<p>Intensity: <%= cupping_dry_fragrance.intensity %></p>
 	<% end %>
 	<% if cupping_dry_fragrance.notes.present? %>
-		<h2>Notes: <%= cupping_dry_fragrance.notes %></h2>
+		<p>Notes: <%= cupping_dry_fragrance.notes %></p>
 	<% end %>
-	<%= button_to 'Re-do', cupping_dry_fragrance, :method => :delete, :remote => true, :class => "button" %>
 </section>

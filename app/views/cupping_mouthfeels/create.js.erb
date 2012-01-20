@@ -1,7 +1,8 @@
-$("section[id*=<%= @cupping_mouthfeel.sample.id %>]").find("form[id*=mouthfeel]").before('<section id="mouthfeel-show"><h1>Mouthfeel:</h1>Score: <%= @cupping_mouthfeel.score %><% if @cupping_mouthfeel.weight.present? %><br>Weight: <%= @cupping_mouthfeel.weight %><% end %><br><%= button_to 'Re-do', @cupping_mouthfeel, :method => :delete, :remote => true, :class => "button" %></div>');
-
+$("section[id*=<%= @cupping_mouthfeel.sample.id %>]").find("form[id*=mouthfeel]").before('<section id="cupping_mouthfeel_<%= @cupping_mouthfeel.id %>"><%= button_to 'Re-do', @cupping_mouthfeel, :method => :delete, :remote => true, :class => "redo"%><h2># <%= @cupping_mouthfeel.sample.sample_number %></h2><p>Score: <%= @cupping_mouthfeel.score %></p><% if @cupping_mouthfeel.weight.present? %><p>Weight: <%= @cupping_mouthfeel.weight %></p><% end %></section>');
 $("section[id*=<%= @cupping_mouthfeel.sample.id %>]").find("form[id*=mouthfeel]").hide();
+$("section[id*=<%= @cupping_mouthfeel.sample.id %>]").find("section[id=total]").html("<h2>Total Score: <%= @cupping_total_score.score %></h2>");
 
-$("section[id*=<%= @cupping_mouthfeel.sample.id %>]").find("section[id=total]").html("<h1>Total Score: <%= @cupping_total_score.score %></h1>");
 
-// alert("Ajax!!")
+
+// alert("Ajax!!");
+
