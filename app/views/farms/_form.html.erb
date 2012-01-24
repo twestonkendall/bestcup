@@ -10,18 +10,18 @@
 	      </ul>
 	    </div>
 	  <% end %>
-		<%= f.text_field :name, :placeholder => "of the producer." %>
+		<%= f.text_field :name, :placeholder => "of the farm." %>
 		<%= f.label :name %>
 		<%= f.collection_select :country, Farm::COUNTRIES, :to_s, :to_s, :include_blank => true %>
 		<%= f.label :country, "Country" %>
 		<%= f.text_field :region, :placeholder => "of the country selected." %>
 		<%= f.label :region %>
-		<%= f.text_field :farmer, :placeholder => "involved in the production." %>
+		<%= f.text_field :farmer, :placeholder => "involved in the farm." %>
 		<%= f.label :farmer, "Humans" %>
 		<%= f.text_field :elevation, :placeholder => "or elevation's." %>
 		<%= f.label :elevation %>
 		<%= f.label :description %>
-		<%= f.text_area :description, :rows => 5, :placeholder => "The story of the producers." %>
+		<%= f.text_area :description, :rows => 5, :placeholder => "The story of the farmers." %>
 		<% if params[:roast_id] %>
 			<%= hidden_field_tag :roast_id, params[:roast_id] %>
 		<% end %>

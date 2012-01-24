@@ -14,7 +14,7 @@
 				<% @cuppings.each do |cupping| %>
 						<p><%= link_to(cupping) do %>
 							<%= cupping.created_at.to_date.to_formatted_s(:long_ordinal) %>
-							<br><%= Sample.where(:cupping_id => cupping.id).length %> Sample Cupping
+							<br><%= Sample.where(:cupping_id => cupping.id).length %> Coffees
 							<% Sample.where(:cupping_id => cupping.id).each do |samp| %>
 								<% Batch.where(:id => samp.batch_id).each do |batch| %>
 									<br><%= batch.roast_from_roastery %>
@@ -34,7 +34,7 @@
 	</section>
 	<% if @padminFor.present? %>
 		<section class="sectionlist">
-			<h2>Producer Admin For</h2>
+			<h2>Farm Admin For</h2>
 			<% @padminFor.each do |pa| %>
 				<section>
 					<p><%= link_to pa.farm.name, farm_path(:id => pa.farm.id) %></p>
@@ -69,7 +69,7 @@
 		<%= link_to "Sign Up", new_user_path, :id => "signup", :class => "button" %>
 	<footer>
 		<nav>
-			<div><%= link_to 'Producers', farms_url %></div>
+			<div><%= link_to 'Farms', farms_url %></div>
 			<div><%= link_to 'Roasteries', roasteries_url %></div>
 			<div><%= link_to 'About', about_path %></div>
 		</nav>

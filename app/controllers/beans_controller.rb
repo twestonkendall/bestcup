@@ -18,7 +18,7 @@ class BeansController < ApplicationController
   end
 
   def edit
-    @farm = @bean.farm    
+    @farm = @bean.farm
   end
   
   def create

@@ -5,7 +5,7 @@
 			<section id="total">		
 				<%= render "cupping_total_scores/cupping_total_score", :sample => sample %>
 			</section>
-			<h2>Sample# <%= sample.sample_number %></h2>
+			<h2>Coffee # <%= sample.sample_number %></h2>
 			<% if sample.batch.present? || sample.color.present? %>
 				<% if sample.batch.present? %>
 					<p>Roast: <%= sample.batch.roast.name %></p>

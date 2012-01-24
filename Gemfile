@@ -17,6 +17,7 @@ gem 'sprockets', "~> 2.0.2"
 gem 'bcrypt-ruby'
 gem "modernizr-rails", "~> 2.0.6"
 gem "cancan"
+gem "friendly_id"
 # gem 'jquery_mobile_rails'
 
 

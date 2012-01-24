@@ -34,12 +34,12 @@
 						<% if current_user.admin? %>
 							<div><%= link_to "Users", users_url %></div>
 							<div><%= link_to "Roasters", roasters_url %></div>
-							<div><%= link_to "Producer Admins", producer_admins_url %></div>
+							<div><%= link_to "Farm Admins", producer_admins_url %></div>
 							<div><%= link_to "Roastery Admins", roastery_admins_url %></div>
 						<% end %>
 						<div><%= link_to 'New Cupping', new_cupping_path %></div>
 						<div><%= link_to "Cuppings", cuppings_url %></div>
-						<div><%= link_to 'Producers', farms_url %></div>
+						<div><%= link_to 'Farms', farms_url %></div>
 						<div><%= link_to 'Roasteries', roasteries_url %></div>
 						<div><%= link_to 'About', about_path %></div>
 						<div>

@@ -1,8 +1,8 @@
 <section class="section inline clearfix">
+	<h2>Details</h2>
 	<%= form_for(@roastery) do |f| %>
 	  <% if @roastery.errors.any? %>
 	  	<div id="error_explanation">
-	      <h2><%= pluralize(@roastery.errors.count, "error") %> prohibited this roastery from being saved:</h2>
 	      <ul>
 	      <% @roastery.errors.full_messages.each do |msg| %>
 	        <li><%= msg %></li>

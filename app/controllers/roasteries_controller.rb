@@ -20,6 +20,7 @@ load_and_authorize_resource
       format.html # show.html.erb
       format.json { render :json => @roastery }
     end
+    
   end
 
   def new

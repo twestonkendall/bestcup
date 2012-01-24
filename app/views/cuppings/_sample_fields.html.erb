@@ -1,7 +1,7 @@
 <section class="newsamplefields">
 	<%= f.hidden_field :_destroy %>  
 	<%= f.number_field :sample_number, :size=> 1  %>
-	<%= f.label :sample_number, "Sample #" %>
+	<%= f.label :sample_number, "Coffee #" %>
 	<%= f.collection_select(:batch_id, Batch.order('roasted_on DESC'), :id, :batch_slelct, {:include_blank => 'Please Select'}) %>
 	<%= f.label :batch, "Batch:" %>
 	<%= f.label :color, "Roast Level:" %><br>

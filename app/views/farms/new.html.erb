@@ -1,11 +1,11 @@
 <% if @batch.present? %>
 	<header class="clearfix">
-		<h1>Producer</h1>
+		<h1>Farm</h1>
 		<%= link_to "Back", new_bean_path(:batch_id => @batch.id, :roast_id => @roast.id), :class => "button" %>
 	</header>
 <% else %>
 	<header class="clearfix">
-		<h1>Producer</h1>
+		<h1>Farm</h1>
 		<%= link_to "Back", farms_path, :class => "button"  %>
 	</header>
 <% end %>

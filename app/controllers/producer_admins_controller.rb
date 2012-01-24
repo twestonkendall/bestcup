@@ -13,7 +13,7 @@ class ProducerAdminsController < ApplicationController
     @producer_admin = ProducerAdmin.new(params[:producer_admin])
     respond_to do |format|
       if @producer_admin.save
-        format.html { redirect_to @producer_admin.farm, :notice => 'Producer admin was successfully created.' }
+        format.html { redirect_to @producer_admin.farm, :notice => 'Farm admin was successfully created.' }
       else
         format.html { redirect_to @producer_admin.farm }
       end

@@ -1,8 +1,8 @@
 <header class="clearfix">
-	<h1>Producers</h1>
+	<h1>Farms</h1>
 </header>
 <% if can? :create, Farm %>
-	<%= link_to 'New Producer', new_farm_path , :class => "button" %>
+	<%= link_to 'New Farm', new_farm_path , :class => "button" %>
 <% end %>
 <section class="list">
 	<% @farms.each do |farm| %>

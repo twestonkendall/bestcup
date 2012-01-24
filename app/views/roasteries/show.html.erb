@@ -21,25 +21,40 @@
 		<% end %>
 		</section>
 	</section>
+<% else %>
+	<section class="sectionlist">
+		<h2>Roasts</h2>
+		<section>
+			<p>No roasts have been created.</p>
+		</section>
+	</section>
 <% end %>
-<section class="section">
-	<h2>Details</h2>
+<% if @roastery.year_opened.present? || @roastery.description.present? || @roastery.website.present? %>
+	<section class="section">
+		<h2>Details</h2>
+		<% if current_user && current_user.admin? || @roastery.is_radmin?(current_user) %>
+		<%= link_to 'Edit', edit_roastery_path(@roastery), :class => "redlink_section" %>
+		<% end %>
+		<% if @roastery.year_opened.present? %>
+			<h2>Year opened</h2> 
+			<p><%= @roastery.year_opened %></p>
+		<% end %>
+		<% if @roastery.description.present? %>
+		  <h2>Description</h2> 
+			<p><%= @roastery.description.camelcase %></p>
+		<% end %>
+		<% if @roastery.website.present? %>
+		  <h2>Website</h2> 
+			<p id="weblink"><%= link_to @roastery.get_host_without_www(@roastery.website).camelcase, @roastery.website %></p>
+		<% end %>
+	</section>
+<% else %>
 	<% if current_user && current_user.admin? || @roastery.is_radmin?(current_user) %>
-	<%= link_to 'Edit', edit_roastery_path(@roastery), :class => "redlink_section" %>
+	<section class="clearfix">
+		<%= link_to 'Add Details', edit_roastery_path(@roastery), :class => "redlink_section" %>
+	</section>
 	<% end %>
-	<% if @roastery.year_opened.present? %>
-		<h2>Year opened</h2> 
-		<p><%= @roastery.year_opened %></p>
-	<% end %>
-	<% if @roastery.description.present? %>
-	  <h2>Description</h2> 
-		<p><%= @roastery.description.camelcase %></p>
-	<% end %>
-	<% if @roastery.website.present? %>
-	  <h2>Website</h2> 
-		<p id="weblink"><%= link_to @roastery.get_host_without_www(@roastery.website).camelcase, @roastery.website %></p>
-	<% end %>
-</section>
+<% end %>
 <% if current_user && current_user.admin?  || @roastery.is_radmin?(current_user) %>
 	<section class="sectionlist">
 			<h2>Roasters</h2>
@@ -60,7 +75,7 @@
 	<footer>
 		<nav>
 			<div><%= link_to "Log In", root_url %></div>
-			<div><%= link_to 'Producers', farms_url %></div>
+			<div><%= link_to 'Farms', farms_url %></div>
 			<div><%= link_to 'About', about_path %></div>
 		</nav>
 	</footer>

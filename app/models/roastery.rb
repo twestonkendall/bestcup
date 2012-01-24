@@ -1,10 +1,17 @@
 class Roastery < ActiveRecord::Base
+  before_validation :downcase_name
+  
+  extend FriendlyId
+  friendly_id :name, :use => :history
+  
+  
   default_scope :order => 'name'
   validates :name,   
             :presence => true,   
             :uniqueness => { :case_sensitive => false }
             
-  validates_format_of :website, 
+  validates_format_of :website,
+                      :allow_blank => true,
                       :with => URI::regexp, 
                       :message => "must start with http://", 
                       :on => :update
@@ -35,4 +42,11 @@ class Roastery < ActiveRecord::Base
     host = URI.parse(url).host.downcase
     host.start_with?('www.') ? host[4..-1] : host
   end
+
+  private
+
+  def downcase_name
+    self.name = self.name.downcase if self.name.present?
+  end
 end
+
