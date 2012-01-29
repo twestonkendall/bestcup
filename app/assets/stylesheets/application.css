@@ -49,6 +49,6 @@ button {width: auto; overflow: visible;}
 /* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
 ::-moz-selection{background: #999; color: #fff; text-shadow: none;}
 ::selection {background: #999; color: #fff; text-shadow: none;}
-a {text-decoration:	none;margin: 0;padding: 0;font-size: 100%;vertical-align: baseline;background: transparent;color: #000;&:visited {color: #000; } &:hover {color: #fff;background-color: #000; } }
+a {text-decoration:	none;margin: 0;padding: 0;font-size: 100%;vertical-align: baseline;background: transparent;color: #000;&:visited {color: #666; } &:hover {color: #fff;background-color: #000; } }
 div {&.field, &.actions {margin-bottom: 10px; } }
 ul li {list-style: none;}
