@@ -5,6 +5,9 @@ set :application, "bestcup.co"
 set :repository,  "git@github.com:twestonkendall/bestcup.git"
 set :deploy_to, "/var/www/vhost/bestcup"
 
+# default_environment['PATH']='<your paths>:/usr/local/bin:/usr/bin:/bin'
+# default_environment['GEM_PATH']='<your paths>:/usr/lib/ruby/gems/1.8'
+
 set :deploy_via, :copy
 set :scm, "git"
 set :branch, "master"
