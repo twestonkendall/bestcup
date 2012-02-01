@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
-
+gem 'execjs'
+gem 'therubyracer'
 gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
