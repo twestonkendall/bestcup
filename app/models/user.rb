@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_validation :downcase_email
   default_scope :order => 'email'
   
-  attr_accessible :email, :password, :password_confirmation, :admin, :roles
+  attr_accessible :username, :email, :password, :password_confirmation, :admin, :roles
   has_secure_password
   validates :password, :presence => { :on => :create }
   validates :password_confirmation, :presence => true, :on => :create

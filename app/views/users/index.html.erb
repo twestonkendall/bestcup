@@ -3,7 +3,7 @@
 	<section>
 		<% @users.each do |user| %>
 			<p>
-				<%= link_to user.email, edit_user_path(user) %>
+				<%= link_to user.username, edit_user_path(user) %>
 				<% if user.admin.present? %>
 					<b>ADMIN!!!</b>
 				<% end %>

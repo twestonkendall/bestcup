@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
-gem 'execjs'
-gem 'therubyracer'
+
+gem "rake", "0.9.2.2"
+
 gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
@@ -26,8 +27,15 @@ gem "friendly_id"
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+# gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'execjs'
+
+gem 'therubyracer'
+
+group :production do
+  gem 'mysql'
+end

@@ -37,10 +37,6 @@ load_and_authorize_resource
     @user = current_user
     respond_to do |format|
       if @roastery.save
-        @roastery_admin = RoasteryAdmin.new
-        @roastery_admin.user_id = @user.id
-        @roastery_admin.roastery_id = @roastery.id
-        @roastery_admin.save
         format.html { redirect_to @roastery, :notice => 'Roastery was successfully created.' }
         format.json { render :json => @roastery, :status => :created, :location => @roastery }
       else

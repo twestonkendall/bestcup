@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124232738) do
+ActiveRecord::Schema.define(:version => 20120203024343) do
 
   create_table "batches", :force => true do |t|
     t.date     "roasted_on"
@@ -119,11 +119,11 @@ ActiveRecord::Schema.define(:version => 20120124232738) do
 
   create_table "cupping_defects", :force => true do |t|
     t.integer  "sample_id"
+    t.integer  "number_of_cups"
     t.integer  "intensity"
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "number_of_cups"
   end
 
   add_index "cupping_defects", ["sample_id"], :name => "index_cupping_defects_on_sample_id"
@@ -274,7 +274,6 @@ ActiveRecord::Schema.define(:version => 20120124232738) do
     t.integer  "roastery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "description"
     t.string   "slug"
   end
 
@@ -298,6 +297,7 @@ ActiveRecord::Schema.define(:version => 20120124232738) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
+    t.string   "username"
   end
 
 end

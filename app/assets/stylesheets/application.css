@@ -25,7 +25,7 @@ input[type="checkbox"] {vertical-align: bottom; *vertical-align: baseline;}
 .ie6 input {vertical-align: text-bottom;}
 select, input, textarea {font: 99% sans-serif;}
 table {font-size: inherit; font: 100%;}
-a:hover, a:active {outline: none;}
+
 small {font-size: 85%;}
 strong, th {font-weight: bold;}
 td, td img {vertical-align: top;}
@@ -47,8 +47,9 @@ button {width: auto; overflow: visible;}
 .clearfix:after { clear: both; }  
 .clearfix { zoom: 1; }
 /* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
-::-moz-selection{background: #999; color: #fff; text-shadow: none;}
-::selection {background: #999; color: #fff; text-shadow: none;}
-a {text-decoration:	none;margin: 0;padding: 0;font-size: 100%;vertical-align: baseline;background: transparent;color: #000;&:visited {color: #666; } &:hover {color: #fff;background-color: #000; } }
-div {&.field, &.actions {margin-bottom: 10px; } }
+::-moz-selection{background: #000; color: #fff; text-shadow: none;}
+::selection {background: #000; color: #fff; text-shadow: none;}
 ul li {list-style: none;}
+a { text-decoration:	none; margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent; color: #fff; }
+a:hover, a:active {outline: none; background-color: transparent; color: #fff; }
+a:visited { color: #fff; }

@@ -19,8 +19,8 @@
 	  <%= f.text_field :name, :placeholder => "name." %>
 		<%= f.label :name, "Roast" %>
 	  <% if current_user.admin? || @roastery.is_radmin?(current_user) %>
-			<%= f.label :description %>
-			<%= f.text_area :description, :rows => 8, :placeholder => "The story of the Roast."  %>
+			<!-- <%= f.label :description %>
+			<%= f.text_area :description, :rows => 8, :placeholder => "The story of the Roast."  %> -->
 		<% end%>
 	  <%= f.submit "Save", :class => "button"  %>
 	<% end %>
