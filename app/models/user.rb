@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   before_validation :downcase_email
+  before_create { generate_token(:auth_token) }
+  
   default_scope :order => 'username'
   
   attr_accessible :username, :email, :password, :password_confirmation, :admin, :roles
@@ -18,10 +20,17 @@ class User < ActiveRecord::Base
   has_many :roastery_admins, :dependent => :destroy
   has_many :roasters, :dependent => :destroy
   
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.hex
+    end while User.exists?(column => self[column])
+  end
+  
   private
 
   def downcase_email
     self.email = self.email.downcase if self.email.present?
   end
+  
   
 end

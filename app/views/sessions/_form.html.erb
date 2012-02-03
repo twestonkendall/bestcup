@@ -5,5 +5,7 @@
   <%= label_tag :username, "User" %>
   <%= password_field_tag :password %>
   <%= label_tag :password, "Pass." %>
+	<%= check_box_tag :remember_me, 1, params[:remember_me] %>
+	<%= label_tag :remember_me %>
   <%= submit_tag "Log in", :class => "button" %>
 <% end %>

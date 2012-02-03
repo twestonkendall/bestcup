@@ -26,8 +26,7 @@ class UsersController < ApplicationController
   def create
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id
-        format.html { redirect_to root_url, :notice => 'You are now logged in.' }
+        format.html { redirect_to root_url, :notice => 'You may now logged in.' }
         format.json { render :json => root_url, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }

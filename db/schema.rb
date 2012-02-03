@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120203024343) do
+ActiveRecord::Schema.define(:version => 20120203211848) do
 
   create_table "batches", :force => true do |t|
     t.date     "roasted_on"
@@ -298,6 +298,7 @@ ActiveRecord::Schema.define(:version => 20120203024343) do
     t.datetime "updated_at"
     t.boolean  "admin"
     t.string   "username"
+    t.string   "auth_token"
   end
 
 end
