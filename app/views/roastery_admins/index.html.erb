@@ -4,7 +4,7 @@
 		<% @roastery_admins.each do |roastery_admin| %>
 			<p>
 				<%= link_to 'Remove', roastery_admin, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
-				<b><%= roastery_admin.user.email %></b> for <b><%= link_to roastery_admin.roastery.name, roastery_path(:id => roastery_admin.roastery.id) %></b>
+				<b><%= roastery_admin.user.username %></b> for <b><%= link_to roastery_admin.roastery.name, roastery_path(:id => roastery_admin.roastery.id) %></b>
 			</p>
 		<% end %>
 	</section>

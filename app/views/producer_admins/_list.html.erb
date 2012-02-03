@@ -2,7 +2,7 @@
 	<% @producer_admins.each do |pa| %>
 		<p>
 			<%= link_to 'Remove', pa, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton"  %>
-			<%= pa.user.email %>
+			<%= pa.user.username %>
 		</p>
 	<% end %>
 </section>

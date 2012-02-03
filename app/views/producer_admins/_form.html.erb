@@ -1,7 +1,7 @@
 <%= form_for(@producer_admin) do |f| %>
 	<%= f.hidden_field :farm_id, :value => @farm.id %>
 	<!-- <%= f.label :user_id %> -->
-	<%= f.collection_select(:user_id, User.find(:all), :id, :email, :prompt => "Select User")%>
+	<%= f.collection_select(:user_id, User.find(:all), :id, :username, :prompt => "Select User")%>
 	<%= f.submit "Approve Admin", :class => "button"%>
 <% end %>
 	

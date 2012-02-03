@@ -3,7 +3,7 @@
 		<% @roasters.each do |rsters| %>
 			<p>
 				<%= link_to 'Remove', rsters, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
-				<%= rsters.user.email %> 
+				<%= rsters.user.username %> 
 			</p>
 		<% end %>
 	<% end %>

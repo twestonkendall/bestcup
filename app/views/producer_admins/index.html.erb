@@ -4,7 +4,7 @@
 		<% @producer_admins.each do |producer_admin| %>
 			<p>
 				<%= link_to 'Remove', producer_admin, :confirm => 'Are you sure?', :method => :delete, :class => "removebutton" %>
-				<b><%= producer_admin.user.email %></b> for <b><%= link_to producer_admin.farm.name, farm_path(:id => producer_admin.farm.id) %></b>
+				<b><%= producer_admin.user.username %></b> for <b><%= link_to producer_admin.farm.name, farm_path(:id => producer_admin.farm.id) %></b>
 			</p>
 		<% end %>
 	</section>
