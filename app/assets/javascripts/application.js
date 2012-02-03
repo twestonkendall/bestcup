@@ -93,3 +93,8 @@ if (Modernizr.positionfixed) {
 		});
 	});
 };
+
+$('a').live('click', function (event) {
+    event.preventDefault();
+    window.location = $(this).attr("href");
+});

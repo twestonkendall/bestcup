@@ -16,7 +16,7 @@
 		<meta charset="utf-8">
 	  <title>BestCup</title>
 		<meta name="title" content="BestCup">
-		<link rel="apple-touch-icon-precomposed" href="images/icon.png"/>
+		<link rel="apple-touch-icon" href="/assets/custom_icon.png"/>
 		<meta name="apple-mobile-web-app-capable" content="yes" />  
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />  		
 		<link href='http://fonts.googleapis.com/css?family=Coustard' rel='stylesheet' type='text/css'>
@@ -31,19 +31,20 @@
 			<footer>
 				<nav>
 						<div><%= link_to 'Home', root_url %></div>
-						<% if current_user.admin? %>
-							<div><%= link_to "Users", users_url %></div>
-							<div><%= link_to "Roasters", roasters_url %></div>
-							<div><%= link_to "Farm Admins", producer_admins_url %></div>
-							<div><%= link_to "Roastery Admins", roastery_admins_url %></div>
-						<% end %>
 						<div><%= link_to 'New Cupping', new_cupping_path %></div>
 						<div><%= link_to "Cuppings", cuppings_url %></div>
 						<div><%= link_to 'Farms', farms_url %></div>
 						<div><%= link_to 'Roasteries', roasteries_url %></div>
 						<div><%= link_to 'About', about_path %></div>
+						<% if current_user.admin? %>
+							<div></div>
+							<div><%= link_to "Users", users_url %></div>
+							<div><%= link_to "Farm Admins", producer_admins_url %></div>
+							<div><%= link_to "Roastery Admins", roastery_admins_url %></div>
+							<div><%= link_to "Roasters", roasters_url %></div>
+						<% end %>
 						<div>
-							<p>You are currently logged in with <br><%= current_user.email.camelcase %></p>
+							<p>You are currently logged in as <br><b><%= current_user.username.camelcase %></b></p>
 							<%= link_to 'Log Out', logout_path, :class => "logoutlink"  %>
 							<%= link_to 'Account', edit_user_path(current_user.id), :class => "navbutton"  %>
 						</div>
