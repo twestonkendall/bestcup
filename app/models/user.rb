@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   before_validation :downcase_email
-  default_scope :order => 'email'
+  default_scope :order => 'username'
   
   attr_accessible :username, :email, :password, :password_confirmation, :admin, :roles
   has_secure_password
